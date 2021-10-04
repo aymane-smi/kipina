@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href='/styles/nav.css' rel='stylesheet'>
+     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+     <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   </head>
+<body>
+  <div class="logo-details">
+    <img src="/img/Logo.png">
+  </div>
+  <div class="sidebar close">
+    <ul class="nav-links">
+      <li class="li-h">
+        <a href="/dashboard" style="margin-left: 20px;" title="accueil">
+          <img src="/img/icons/acceuil.png" alt="acceuil">
+        </a>
+      </li>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/modification" style="margin-left: 20px; margin-top:50px;" title="modification">
+          <img src="/img/icons/etudiant.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/rapport" style="margin-left: 20px; margin-top:50px;" title="rapport">
+          <img src="/img/icons/rapport.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/finance" style="margin-left: 20px; margin-top:50px;" title="finance">
+          <img src="/img/icons/finance.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/english-after-school" style="margin-left: 25px; margin-top:50px;" title="english after school">
+          <img src="/img/icons/english-after-school.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/camps" style="margin-left: 25px; margin-top:50px;" title="camps">
+          <img src="/img/icons/camp.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/add-user" style="margin-left: 25px; margin-top:50px;" title="ajouter utilisateur">
+          <i class="fas fa-user-plus" style="color: white;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/add-kipina" style="margin-left: 25px; margin-top:50px;" title="ajouter kipina">
+          <i class="fal fa-plus-square" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'educatrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/competence" style="margin-left: 25px; margin-top:50px;" title="ajouter compétence">
+          <i class="fal fa-tasks" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/users" style="margin-left: 20px; margin-top:50px;" title="liste des utilisateurs">
+          <i class="fal fa-users" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/kipinas" style="margin-left: 20px; margin-top:50px;" title="liste des kipinas">
+          <i class="fal fa-hospitals" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'educatrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/plan" style="margin-left: 25px; margin-top:50px;" title="ajouter un plan">
+          <i class="fal fa-calendar" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/list-plan" style="margin-left: 25px; margin-top:50px;"title="liste des plans">
+          <i class="fal fa-calendar-check" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <li>
+        <%}%>
+        <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+        <a href="/dashboard/list-competence" style="margin-left: 25px; margin-top:50px;" title="liste des compétences">
+          <i class="fal fa-list" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+    </ul>
+  </div>
+  <section class="home-content">
+    <div class="margin-left: 20px;">
+        <div class="col position-absolute add-pattern add-one" style="padding-bottom: -300px; padding-top: -100px;">
+            <form action="/dashboard/modification/<%=enfant._id%>" method="post" enctype="multipart/form-data">
+              <div class="row">
+          
+          
+          
+                <div class="col-xl-4 col-lg-1 flex-nowrap">
+                  <div class="card shadow-sm flex-nowrap" style=" border: 0;padding: 20px 0; padding-left: 10px; margin-top: 10px; border-radius: 20px;">
+                    <!-- enfant -->
+                    <p class="big-font">Renseignement de l'enfant</p>
+                  <!-- nom famille -->
+                  <div class="form-group w-75">
+                    <label for="nom-famille"></label>
+                    <input type="text" class="form-control shadow shadow" id="nom-famille" placeholder="Nom de famille" value="<%=enfant.nom%>" name="e_nom">
+                  </div>
+                  <!-- prenom -->
+                  <div class="form-group w-75">
+                    <label for="prenom"></label>
+                    <input type="text" class="form-control shadow shadow" id="prénom" placeholder="Prénom" value="<%=enfant.prenom%>" name="e_prenom">
+                  </div>
+                  <!-- date de naissance -->
+                  <div class="form-group w-75">
+                    <label for="date-naissance"></label>
+                    <input type="date" class="form-control shadow shadow" data-date-format="DD-MM-YYYY"  name="e_date" value="<%=(enfant.date_naissance).toISOString().split('T')[0]%>" id="date-naissance" placeholder="date de naissance">
+                  </div>
+                  <!-- lieu de naissance -->
+                  <div class="form-group w-75">
+                    <label for="lieu-naissance"></label>
+                    <input type="text" class="form-control shadow shadow" id="lieu-naissance" name="e_lieu" placeholder="Lieu de naissance" value="<%=enfant.lieu_naissance%>">
+                  </div>
+                  <!-- sexe -->
+                  <div class="form-group w-75" style="margin-top: 40px; margin-left: 10px;">
+                    <label for="sex" style="display: block;" class="big-medium">Sexe</label>
+                    <input type="checkbox" id="sexe" name="e_garcon" <%if(enfant.sexe === 1){%> <%= 'checked'%> <%}%> > Garçon
+                    <input type="checkbox" id="sexe" name="e_fille" <%if(enfant.sexe === 0){%> <%= 'checked'%> <%}%> > Fille
+                  </div>
+                  <!-- nationnalité -->
+                  <div class="form-group w-75">
+                    <label for="nationnalite"></label>
+                    <input type="text" name="e_nationnalite" class="form-control shadow shadow" id="nationnalite" placeholder="nationnalité" value="<%=enfant.nationnalite%>">
+                  </div>
+                  <!-- langue maternelle -->
+                  <div class="form-group w-75">
+                    <label for="lang-maternelle"></label>
+                    <input type="text" name="e_maternelle" class="form-control shadow shadow" id="lang-maternelle" placeholder="langue maternelle" value="<%=enfant.langue_maternelle%>">
+                  </div>
+                  <!-- langues parlées -->
+                  <div class="form-group w-75">
+                    <label for="lang-parlees"></label>
+                    <textarea class="form-control shadow shadow" name="e_parlees" id="lang-parlees" placeholder="langues parlées"><%=enfant.langues_parlees%></textarea>
+                  </div>
+                  <div class="form-group w-75" style="margin-top:40px;">
+                    <label for="classes" class="big-medium">Classe:</label>
+                    <select class="form-select" name="classe" id="classes">
+                      <%for(let i=1;i<=nbr_classe;i++){%>
+                        <option value="<%=i%>" <%if(enfant.classe == i){%>selected<%}%> >
+                          <%if(i==1){%>
+                            Swans
+                          <%}%>
+                          <%if(i == 2){%>
+                            Little foxes
+                          <%}%>
+                          <%if(i == 3){%>
+                            Foxes
+                          <%}%>
+                          <%if(i == 4){%>
+                            Bears
+                          <%}%>
+                          <%if(i == 5){%>
+                            Seals
+                          <%}%>
+                          <%if(i == 6){%>
+                            Owls
+                          <%}%>
+                        </option>
+                      <%}%>
+                    </select>
+                  </div>
+                  <div class="form-group w-75" style="margin-top:40px;">
+                    <label for="type" class="big-medium">Type enfant:</label>
+                    <select class="form-select" name="type_eleve" id="classes">
+                      <option value="1" <%if(enfant.type_eleve == 1){%>selected<%}%> >Personnel</option>
+                      <option value="2" <%if(enfant.type_eleve == 2){%>selected<%}%> >Internne</option>
+                      <option value="3" <%if(enfant.type_eleve == 3){%>selected<%}%>  >Externe</option>
+                    </select>
+                  </div>
+                  <div class="form-group w-75" style="margin-top: 40px; margin-left: 10px;">
+                    <label for="sm" style="display: block;" class="big-medium">Réseaux sociaux</label>
+                    <input type="radio" id="sm" name="sm" value="oui" <%if(enfant.sm){%>checked<%}%> > Oui
+                    <input type="radio" id="sm" name="sm" value="non" <%if(!enfant.sm){%>checked<%}%> > Non
+                  </div>
+                  <div class="form-group w-75" style="margin-top: 40px; margin-left: 10px;">
+                    <label for="ancien" style="display: block;" class="big-medium">Enfant ancien</label>
+                    <input type="checkbox" id="ancien" name="ancien" <%if(enfant.type_scolarite == 1){%>checked<%}%> > Oui
+                  </div>
+                  </div>
+                </div>
+                
+
+                <div class="col flex-nowrap" style="margin-top: 40px; width: 100px;">
+                  <!-- urgence -->
+                  <div class="row">
+                    <div class="card shadow-sm flex-nowrap" style="border: 0;padding: 20px 0; padding-left: 10px; border-radius: 20px; margin-top:-30px; margin-left: 20px;">
+                        <p class="big-font">Personne a contacter en cas d'urgence</p>
+                    <div class="form-groupe w-75">
+                      <label for="nom-urgence"></label>
+                      <input type="text" id="nom-urgence" class="form-control shadow" placeholder="nom" name="nom_urgence" value="<%=urgence.nom%>">
+                    </div>
+                    <div class="form-groupe w-75">
+                      <label for="lien-urgence"></label>
+                      <input type="text" id="lien-urgence" class="form-control shadow" placeholder="lieu" name="lien_urgence" value="<%=urgence.lien%>">
+                    </div>
+                    <div class="form-groupe w-75">
+                      <label for="tele-urgence"></label>
+                      <input type="text" id="tele-urgence" class="form-control shadow" placeholder="telephone" name="tel_urgence" value="<%=urgence.telephone%>">
+                    </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="card shadow flex-nowrap" style="border: 0;padding: 20px 0; padding-left: 10px;border-radius: 20px; margin-top: 40px;">
+                        <span style="margin-left: 5px;"><p class="big-font">Kipina Sessions</p></span>
+                            <div style="margin-top: 10px;" class="big-medium">Forfaits</div>
+                            <div class="form-group" style="margin-top: 5px;">
+                              <label for="complete"></label>
+                              <input type="checkbox" id="complete" name="forfait" value="1" <%if(enfant.type_forfait.includes(1)){%>checked<%}%>> Journée complète
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="AM"></label>
+                              <input type="checkbox" id="AM" name="forfait" value="2" <%if(enfant.type_forfait.includes(2)){%>checked<%}%>> AM
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="complete"></label>
+                              <input type="checkbox" id="PM" name="forfait" value="3" <%if(enfant.type_forfait.includes(3)){%>checked<%}%>> PM
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="2jrs"></label>
+                              <input type="checkbox" id="2jrs" name="forfait" value="4" <%if(enfant.type_forfait.includes(4)){%>checked<%}%>> 2 Jours
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="3jrs"></label>
+                              <input type="checkbox" id="3jrs" name="forfait" value="5"<%if(enfant.type_forfait.includes(5)){%>checked<%}%> > 3 Jours
+                            </div>
+                            <div style="margin-top: 10px;" class="big-medium">Service de gardes</div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="s_am"></label>
+                              <input type="checkbox" id="s_am" name="service" value="1" <%if(enfant.gardes_type.includes(1)){%>checked<%}%> > AM
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="s_pm"></label>
+                              <input type="checkbox" id="s_pm" name="service" value="2" <%if(enfant.gardes_type.includes(2)){%>checked<%}%> > PM
+                            </div>
+                            <div style="margin-top: 10px;" class="big-medium">Mercredi après-midi</div>
+                            <div class="form-group" style="margin-top: 5px;">
+                              <label for="m_oui"></label>
+                              <input type="checkbox" id="m_oui" name="mercredi" value="1" <%if(enfant.mercredi){%>checked<%}%> > Oui
+                              </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="m_non"></label>
+                              <input type="checkbox" id="m_non" name="mercredi" value="2" <%if(!enfant.mercredi){%>checked<%}%>> Non
+                            </div>
+                            <div style="margin-top: 10px;" class="big-medium">Cantine</div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="c_4jrs"></label>
+                              <input type="checkbox" id="c_4jrs" name="cantine" value="1"<%if(enfant.type_cantine == 1){%>checked<%}%>> 4 Jours
+                              </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="c_5jrs"></label>
+                              <input type="checkbox" id="c_5jrs" name="cantine" value="2"<%if(enfant.type_cantine == 2){%>checked<%}%>> 5 Jours
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="gouter"></label>
+                              <input type="checkbox" id="gouter" name="cantine" value="3" <%if(enfant.type_cantine == 3){%>checked<%}%>> Goûter
+                            </div>
+                            <div style="margin-top: 20px;" class="big-medium">Transport</div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="aller"></label>
+                              <input type="checkbox" id="aller" name="transport" value="1" <%if(enfant.type_transport == 1){%>checked<%}%>> Aller
+                              </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="retour"></label>
+                              <input type="checkbox" id="retour" name="transport" value="2" <%if(enfant.type_transport == 2){%>checked<%}%>> Retour
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;">
+                              <label for="aller-retour"></label>
+                              <input type="checkbox" id="aller-retour" name="transport" value="3" <%if(enfant.type_transport == 3){%>checked<%}%>> Aller-retour
+                            </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- medicaux -->
+                <div class="col-xl-4 col-lg-1 flex-nowrap" style="margin-top: 40px;">
+                  <div class="card shadow flex-nowrap" style="border:0;height: 900px; overflow-y:scroll;padding: 20px 0; padding-left: 10px;border-radius: 20px; margin-top: -25px;">
+                    <p class="big-font">Renseignement Médicaux</p>
+                  <div class="form-group w-75">
+                    <label id="text"></label>
+                    <input type="text" class="form-control shadow" id="text" placeholder="Médecin de l'enfant" name="medcin_nom" value="<%=medical.nom%>">
+                  </div>
+                  <div class="form-group w-75">
+                    <label id="text"></label>
+                    <input type="text" class="form-control shadow" id="text" placeholder="téléphone Médecin" name="medcin_tel" value="<%=medical.telephone%>">
+                  </div>
+                  <div class="form-group w-75">
+                    <label id="text"></label>
+                    <input type="text" class="form-control shadow" id="text" placeholder="adresse Médecin" name="adresse_medcine" value="<%=medical.adresse_medcine%>">
+                  </div>
+                  <div class="form-group w-75">
+                    <label id="text"></label>
+                    <textarea type="text" class="form-control shadow" id="text" placeholder="adresse clinique" name="adresse_clinique"><%=medical.adresse_clinique%></textarea>
+                  </div>
+                  <div class="form-group w-75">
+                    <label id="text" style="margin-top: 20px; margin-left: 10px;" class="big-medium">Votre enfant a-t-il des problèmes de santé?</label>
+                    <input type="checkbox"  id="text" name="prob_oui" style="margin-left: 10px;"<%if(medical.prob_sante){%>checked<%}%> >Oui
+                    <input type="checkbox"  id="text" name="prob_non" style="margin-left: 10px;" <%if(!medical.prob_sante){%>checked<%}%> >Non
+                  </div>
+                  <div class="form-group w-75">
+                    <label id="text" style="margin-top: 20px;margin-left: 10px;" class="big-medium">Si oui, veuillez-précisez:</label>
+                    <textarea type="text" class="form-control shadow" id="text" name="desc_prob_sante" ><%=medical.type_prob%></textarea>
+                  </div>
+                  <div class="form-group w-75">
+                    <label id="text" style="margin-top: 20px;margin-left: 10px;" class="big-medium">Votre enfant a-t-il eu des maladies ou un des symptômes suivants?</label>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-5" style="margin-left: 10px; white-space: nowrap;">
+                      <div class="form-group w-75" style="margin-top: 10px;">
+                        <input type="checkbox"  id="text" name="s11" <%if(medical.type_maladie.includes(1)){%>checked<%}%> > Allergies
+
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+                        <input type="checkbox"  id="text" name="s12" <%if(medical.type_maladie.includes(2)){%>checked<%}%> > Coqueluche
+
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+
+                        <input type="checkbox"  id="text" name="s13" <%if(medical.type_maladie.includes(3)){%>checked<%}%> > Polimoyèlite
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+
+                        <input type="checkbox"  id="text" name="s14" <%if(medical.type_maladie.includes(4)){%>checked<%}%>> Maladie du rein
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+
+                        <input type="checkbox"  id="text" name="s15" <%if(medical.type_maladie.includes(5)){%>checked<%}%> > Convulsions
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px; white-space: normal;">
+
+                        <input type="checkbox"  id="text" name="s16" <%if(medical.type_maladie.includes(6)){%>checked<%}%>> lésion osseuse ou articulaire
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+
+                        <input type="checkbox"  id="text" name="s17" <%if(medical.type_maladie.includes(7)){%>checked<%}%> > Rougeole
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+
+                        <input type="checkbox"  id="text" name="s18" <%if(medical.type_maladie.includes(8)){%>checked<%}%>> Asthme
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+
+                        <input type="checkbox"  id="text" name="s19" <%if(medical.type_maladie.includes(9)){%>checked<%}%>> Oreillon
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+
+                        <input type="checkbox"  id="text"name="s110"<%if(medical.type_maladie.includes(10)){%>checked<%}%>> Otite
+                      </div>
+                    </div>
+                    <div class="col-lg-5">
+                      <div class="form-group w-75" style="margin-top: 10px; white-space: nowrap;">
+                        <input type="checkbox"  id="text" name="s21" <%if(medical.type_maladie.includes(11)){%>checked<%}%>> Diabete
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+                        <input type="checkbox"  id="text" name="s22" <%if(medical.type_maladie.includes(12)){%>checked<%}%>> Épilepsie
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+                        <input type="checkbox"  id="text"name="s23" <%if(medical.type_maladie.includes(13)){%>checked<%}%>> Maladie chronique
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+                        <input type="checkbox"  id="text" name="s24" <%if(medical.type_maladie.includes(14)){%>checked<%}%>> Rubéole
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+                        <input type="checkbox"  id="text" name="s25" <%if(medical.type_maladie.includes(15)){%>checked<%}%>> Scarlatine
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+                        <input type="checkbox"  id="text" name="s26" <%if(medical.type_maladie.includes(16)){%>checked<%}%>> Varicelle
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px; white-space: nowrap;">
+                        <input type="checkbox"  id="text" name="s27" <%if(medical.type_maladie.includes(17)){%>checked<%}%>> Rhumastismale
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px;">
+                        <input type="checkbox"  id="text" name="s28" <%if(medical.type_maladie.includes(18)){%>checked<%}%>> Hépatite A
+                      <div class="form-group w-75" style="margin-top: 0px; white-space: nowrap;">
+                        <input type="checkbox"  id="text" name="s29" <%if(medical.type_maladie.includes(19)){%>checked<%}%>> Perte auditive
+                      </div>
+                      <div class="form-group w-75" style="margin-top: 10px; white-space: nowrap;">
+                        <input type="checkbox"  id="text" name="s210" <%if(medical.type_maladie.includes(20)){%>checked<%}%>> Affection cutan
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="form-group w-75" style="margin-top: 30px;">
+                    <label id="text" style="margin-left: 10px;" class="big-medium">Détailles sur maladies:</label>
+                    <textarea type="text" class="form-control shadow" id="text" name="maladie_detaille" ><%=medical.maladie_desc%></textarea>
+                  </div>
+                  <div class="form-group w-75" style="margin-top: 30px;">
+                    <label id="text" style="margin-left: 10px;" class="big-medium">Veuillez mentionner tout accident grave,opération chirugicale ou blessure que votre enfant subit:</label>
+                    <textarea type="text" class="form-control shadow" id="text" name="accident" ><%=medical.accident_desc%></textarea>
+                  </div>
+                  <div class="form-group w-75" style="margin-top: 30px;">
+                    <label id="text" style="margin-left: 10px;" class="big-medium">Si votre enfant souffre d'allergies connues, veuillez les mentionner et décrire les réactions allergiques:</label>
+                    <textarea type="text" class="form-control shadow" id="text" name="allergies" ><%=medical.allergie_desc%></textarea>
+                  </div>
+                  <div class="form-group w-75" style="margin-top: 30px;">
+                    <label id="text" style="margin-left: 10px;" class="big-medium">Si votre enfant prend des médicaments de façon règuliére,veuillez mentionner le nom de médicamments et l'état de santé de votre enfant:</label>
+                    <textarea type="text" class="form-control shadow" id="text" name="medicaments" ><%=medical.medica_desc%></textarea>
+                  </div>
+                  <div class="form-group w-75" style="margin-top: 30px;">
+                    <label id="text" style="margin-left: 10px;" class="big-medium">Désirez-vous qu'un memebre de personnel de la crèche administre le(s) médicament(s):</label>
+                    <input type="checkbox"  id="text" name="oui"<%if(medical.medica){%>checked<%}%>> Oui s.v.p
+                    <input type="checkbox"  id="text" name="non"<%if(!medical.medica){%>checked<%}%> style="margin-left: 10px;"> Non, merci
+                  </div>
+                  <div class="form-group w-75" style="margin-top: 30px;">
+                    <label id="text" style="margin-left: 10px;" class="big-medium">Si oui, veuillez les horaires de la prise de médicaments:</label>
+                    <textarea type="text" class="form-control shadow" id="text" name="horaires" ><%=medical.medica_horaires%></textarea>
+                  </div>
+                  <div class="form-group w-75" style="margin-top: 30px;">
+                    <label id="text" style="margin-left: 10px;" class="big-medium">Veuillez préciser toute autre information médicale ou besoins spéciaux que Kipina doit connaitre:</label>
+                    <textarea type="text" class="form-control shadow" id="text" name="info" ><%=medical.info_plus%>
+                    </textarea>
+                  </div>
+                  </div>
+                </div>
+          
+              </div>
+          
+              <div class="row">
+                <div class="col-xl-4 col-lg-1" >
+                  <!-- files -->
+                  <a class="btn btn-success" style="margin-top: 30px;" data-toggle="modal" href="#myModal">
+                    importer la photo d'enfant!
+                  </a>
+                  <div class="modal" id="myModal">
+                    <div class="jumbotron" style="background: white;margin: 100px auto; height: 500px; border-radius: 20px; width: 1000px; position:relative; overflow: hidden;">
+                      <div style="position:absolute; top:0; right: 0px; background:rgb(231, 71, 43); width: 40px;"  data-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times" style="font-size: 40px; color: white; margin-left: 5px;"></i>
+                      </div>
+                      <div>
+                        <i class="fas fa-image" style="color: grey; font-size: 200px; margin-left: 40%;"></i>
+                      </div>
+                      <div>
+                        <label for="photo-enfant" class="btn btn-success btn-lg" style=" margin-left: 45%;">Ajouter une nouvelle photo</label>
+                        <input type="file" id="photo-enfant" style="display:none;" name="photo_enfant">
+                      </div>
+                    </div>
+                  </div>
+                  <div style="margin-top: 10px;">
+                    <button class="btn btn-warning">Modifier enfant</button>
+                  </div>
+                  <div class="modal" id="myModal">
+                    <div class="jumbotron" style="background: white;margin: 100px auto; height: 500px; border-radius: 20px; width: 1000px; position:relative; overflow: hidden;">
+                      <div style="position:absolute; top:0; right: 0px; background:rgb(231, 71, 43); width: 40px;"  data-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times" style="font-size: 40px; color: white; margin-left: 5px;"></i>
+                      </div>
+                      <div>
+                        <i class="fas fa-image" style="color: grey; font-size: 200px; margin-left: 40%;"></i>
+                      </div>
+                      <div>
+                        <label for="photo-enfant" class="btn btn-success btn-lg" style=" margin-left: 45%;">upload</label>
+                        <input type="file" id="photo-enfant" style="display:none;" name="photo_enfant">
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </form>
+          </div>
+    </div>
+  </section>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>     
+  <script src="/scripts/dashboard.js"></script>
+  </body>
+  </html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>cantine</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style rel="stylesheet" type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;700&display=swap');
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
+        table{
+            width: 700px;
+            margin: 100px auto 0 auto;
+            border-collapse: collapse;
+            border-radius: 20px;
+        }
+        th, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <img src="http://localhost:3000/img/Logo.png" style="width:100px; height:100px;">
+    <center>
+        <p id="rapport">
+            <h1>Rapport Cantine</h1>
+        </p>
+    </center>
+    <div>
+        nombre d'enfant total: <%=enfant.length%>
+    </div>
+    <%if(!Array.isArray(classes)){classes = [classes]}%>
+    <%classes.forEach((i)=>{%>
+        <div><h3>classe: <%if(i==1){%>
+            Swans
+          <%}%>
+          <%if(i == 2){%>
+            Little foxes
+          <%}%>
+          <%if(i == 3){%>
+            Foxes
+          <%}%>
+          <%if(i == 4){%>
+            Bears
+          <%}%>
+          <%if(i == 5){%>
+            Seals
+          <%}%>
+          <%if(i == 6){%>
+            Owls
+          <%}%></h3></div>
+          <table>
+            <tbody>
+                <tr>
+                <td height="53" align="center" valign="bottom"></td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="25" align="center" valign="middle"><b><font size="5" color="#000000">NOM DE LA CLASSE</font></b></td>
+                </tr>
+            <tr>
+                <td>Nom</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="center" valign="bottom"><font color="#000000">Lundi</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="center" valign="bottom"><font color="#000000">Mardi</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="center" valign="bottom"><font color="#000000">Mercredi</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="center" valign="bottom"><font color="#000000">Jeudi</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="5" align="center" valign="bottom"><font color="#000000">Vendredi</td>
+                </tr>
+            <tr>
+                <td><br></td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T Am</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T PM</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Dodo</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Repas</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Selle</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T Am</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T PM</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Dodo</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Repas</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Selle</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T Am</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T PM</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Dodo</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Repas</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Selle</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T Am</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T PM</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Dodo</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Repas</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Selle</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T Am</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">T PM</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Dodo</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Repas</td>
+                <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom"><font color="#000000">Selle</td>
+            </tr>
+            <%for(let j=0;j<enfant.length;j++){%>
+                <tr> 
+                    <%if(enfant[j].classe == i){%>
+                    <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" height="20" align="center" valign="bottom"><%=enfant[j].nom+" "+enfant[j].prenom%></td>
+                            <%if(routine[j]['lundi']){%>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['lundi']['t_am']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['lundi']['t_pm']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['lundi']['dodo']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['lundi']['repas']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['lundi']['selle']%>
+                            </td>
+                            <%}%>
+                            <!--  -->
+                            <%if(routine[j]['mardi']){%>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mardi']['t_am']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mardi']['t_pm']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mardi']['dodo']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mardi']['repas']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mardi']['selle']%>
+                            </td>
+                            <%}%>
+                            <!--  -->
+                            <%if(routine[j]['mercredi']){%>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mercredi']['t_am']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mercredi']['t_pm']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mercredi']['dodo']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mercredi']['repas']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['mercredi']['selle']%>
+                            </td>
+                            <%}%>
+                            <!--  -->
+                            <%if(routine[j]['jeudi']){%>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['jeudi']['t_am']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['jeudi']['t_pm']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['jeudi']['dodo']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['jeudi']['repas']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['jeudi']['selle']%>
+                            </td>
+                            <%}%>
+                            <!--  -->
+                            <%if(routine[j]['vendredi']){%>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['vendredi']['t_am']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['vendredi']['t_pm']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['vendredi']['dodo']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['vendredi']['repas']%>
+                            </td>
+                            <td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" align="left" valign="bottom">
+                                <%=routine[j]['vendredi']['selle']%>
+                            </td>
+                            <%}%>
+                    <%}%>
+                </tr>
+                <%}%>
+        
+        </tbody>
+    </table>
+    <%});%>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="./styles/login.css">
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron">
+			<div class="borderr"></div>
+			<div class="leftt">
+				<p>Log In</p>
+			<form action="/login" method="post">
+				<div class="topp">
+					<div class="form-group">
+						<label for="username">
+							<input class="form-control form-control-lg input-mysize inputt" type="text" width="300" placeholder="Username" id="username"name="username">
+						</label>
+					</div>
+					<div class="form-group mdp">
+						<label for="password">
+							<input class="form-control form-control-lg input-mysize inputt" type="password" placeholder="Mot de passe" id="password" name="password">
+						</label>
+					</div>
+					<div class="form-group float-right btn-left">
+						<label for="submit">
+							<button id="submit">Se connecter</button>
+						</label>
+					</div>
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>cantine</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style rel="stylesheet" type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;700&display=swap');
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
+        table{
+            width: 50%;
+            margin: 100px auto 0 auto;
+            border-collapse: collapse;
+            border-radius: 20px;
+        }
+        th, td{
+            border: 1px solid black; 
+        }
+    </style>
+</head>
+<body>
+    <img src="http://localhost:3000/img/Logo.png" style="width:100px; height:100px;">
+    <center>
+        <p>
+            <h1>Rapport E-mails parents</h1>
+        </p>
+    </center>
+    <%if(!Array.isArray(classes)){classes = [classes]}%>
+    <%classes.forEach((i)=>{%>
+        <div><h3>classe: <%if(i==1){%>
+            Swans
+          <%}%>
+          <%if(i == 2){%>
+            Little foxes
+          <%}%>
+          <%if(i == 3){%>
+            Foxes
+          <%}%>
+          <%if(i == 4){%>
+            Bears
+          <%}%>
+          <%if(i == 5){%>
+            Seals
+          <%}%>
+          <%if(i == 6){%>
+            Owls
+          <%}%></h3></div>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">nom</th>
+                    <th scope="col">prenom</th>
+                    <th scope="col">email père</th>
+                    <th scope="col">email mère</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <%for(let j=0;j<enfant.length;j++){%>
+                    <%if(enfant[j].classe == i){%>
+                    <tr>
+                    <td>
+                        <%=enfant[j].nom%>
+                    </td>
+                    <td>
+                        <%=enfant[j].prenom%>
+                    </td>
+                    <td>
+                        <%if(pere[j].courriel){%>
+                        <%=pere[j].courriel%>
+                        <%}%>
+                    </td>
+                    <td>
+                        <%if(mere[j].courriel){%>
+                        <%=mere[j].courriel%>
+                        <%}%>
+                    </td>
+                </tr>
+                <%}%>
+                <%}%>
+            </tbody>
+        </table>
+    <%});%>
+</body>
+</html>

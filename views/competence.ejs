@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="/styles/rapport.css" rel="stylesheet">
+     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+     <link href='/styles/nav.css' rel='stylesheet'>
+     <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   </head>
+<body>
+  <div class="logo-details">
+    <img src="/img/Logo.png">
+  </div>
+  <div class="sidebar close">
+    <ul class="nav-links">
+      <li class="li-h">
+        <a href="/dashboard" style="margin-left: 20px;" title="accueil">
+          <img src="/img/icons/acceuil.png" alt="acceuil">
+        </a>
+      </li>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/modification" style="margin-left: 20px; margin-top:50px;" title="modification">
+          <img src="/img/icons/etudiant.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/rapport" style="margin-left: 20px; margin-top:50px;" title="rapport">
+          <img src="/img/icons/rapport.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/finance" style="margin-left: 20px; margin-top:50px;" title="finance">
+          <img src="/img/icons/finance.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/english-after-school" style="margin-left: 25px; margin-top:50px;" title="english after school">
+          <img src="/img/icons/english-after-school.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/camps" style="margin-left: 25px; margin-top:50px;" title="camps">
+          <img src="/img/icons/camp.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/add-user" style="margin-left: 25px; margin-top:50px;" title="ajouter utilisateur">
+          <i class="fas fa-user-plus" style="color: white;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/add-kipina" style="margin-left: 25px; margin-top:50px;" title="ajouter kipina">
+          <i class="fal fa-plus-square" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'educatrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/competence" style="margin-left: 25px; margin-top:50px;" title="ajouter compétence">
+          <i class="fal fa-tasks" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'educatrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/routine" style="margin-left: 25px; margin-top:50px;" title="ajouter routine">
+          <i class="far fa-clipboard-list-check" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/users" style="margin-left: 20px; margin-top:50px;" title="liste des utilisateurs">
+          <i class="fal fa-users" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/kipinas" style="margin-left: 20px; margin-top:50px;" title="liste des kipinas">
+          <i class="fal fa-hospitals" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'educatrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/plan" style="margin-left: 25px; margin-top:50px;" title="ajouter un plan">
+          <i class="fal fa-calendar" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/list-plan" style="margin-left: 25px; margin-top:50px;"title="liste des plans">
+          <i class="fal fa-calendar-check" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <li>
+        <%}%>
+        <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+        <a href="/dashboard/list-competence" style="margin-left: 25px; margin-top:50px;" title="liste des compétences">
+          <i class="fal fa-list" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+    </ul>
+  </div>
+
+<!--
+container content
+-->
+  <section class="home-content" >
+    <div style="margin-top: 30px; margin-left: 20px;">
+      <div class="row">
+        <div class="col-lg-7 col-sm-12 text-nowarp flex-nowrap" style="display: flex; align-items: center;">
+          <div style="flex-shrink:0;display:inline-block; width: 70px; height: 70px; border-radius: 50%;position: relative;background: linear-gradient(-30deg, #839000, #BCCF00);">
+            <img class="rounded-circle" src="/img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
+          </div>
+          <div style="margin-left: 30px;flex-shrink:0">
+              <span class="bjr1-span ">Bonjour </span>
+              <span class="bjr2-spanp">,<%=user.username%></span>
+          </div>
+        </div>
+        <div class="col-lg col-sm-12">
+          <div class="row">
+            <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
+              <div class="input-group rounded-pill search shadow" style="background: white; overflow: hidden; border: 0 none; width: 300px; display: inline-block; height: 50px;flex-shrink:0" >
+                <div class="input-group-prepend border-0">
+                  <button  type="button" id="search-button" style="margin-left: 10px; margin-top: 18px;background: url(/img/icons/search-icon.png) no-repeat center/70%;"class="btn search-enfant"></button>
+                  <input type="search" placeholder="search" id="search-input"style="margin-left: 10px; margin-top: 10px;" class="border-0">
+                </div>
+              </div>
+            </div>
+            <div class="col-sm12 col-lg" style="display: flex; margin-top: 25px; margin-left:30px;">
+              <!-- <div class="col-1" style="flex: 1; flex-grow: 0; flex-shrink:0">
+                <img src="../img/icons/notification.png" id="notification-image">
+              </div> -->
+              <div class="col-1" style="flex: 1; margin-left: 14px; flex-grow: 0;flex-shrink:0;margin-top:-4px;">
+                <a href="/dashboard/settings">
+                  <img src="/img/icons/settings.png" id="settings-image">
+                </a>
+              </div>
+              <div class="col-1" style="flex: 1; margin-left: -30px; flex-grow: 0;flex-shrink:0;margin-top:-21px;">
+                <form action="/logout" method="post">
+                  <button style="border: none; background: none;">
+                    <img src="/img/icons/logout.png">
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div> 
+      </div>
+      <div class="card add-one add-pattern" style="padding: 30px;">
+        <form action="/comptence" method="post" enctype="multipart/form-data">
+        <center>
+          <p class="big-font">
+            Remplire le rapport de compétence:
+          </p>
+        </center>
+        <div class="row">
+          <div class="col-xs-1 col-lg-4 card shadow-sm" style=" border: 0;padding: 20px 0; padding-left: 10px; margin-top: 10px; border-radius: 20px;">
+            <div class="form-group w-75">
+              <p class="big-font ml-5">compétence 1</p>
+              <label for="file" class="btn btn-md btn-success" style="margin-left:80px;">Images compétence1
+              </label>
+              <input type="file" id="file" name="img1" style="display: none;" multiple accept="image/png, image/jpeg">
+              <textarea class="form-control shadow shadow" placeholder="image1 description" name="d1_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image1 description" name="d1_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image1 description" name="d1_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <!-- non image -->
+              <textarea class="form-control shadow shadow" placeholder="description1" name="d1_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description2" name="d1_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description3" name="d1_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description4" name="d1_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description5" name="d1_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description6" name="d1_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description7" name="d1_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description8" name="d1_2" style="margin-left:40px;margin-top:10px;"></textarea>
+            </div>
+          </div>
+          <div class="col-xs-1 col-lg-4 card shadow-sm" style=" border: 0;padding: 20px 0; padding-left: 10px; margin-top: 10px; border-radius: 20px;">
+            <div class="form-group w-75">
+              <p class="big-font ml-5">compétence 2</p>
+              <label for="filee" class="btn btn-md btn-success" style="margin-left:80px;">Images compétence2
+              </label>
+              <input type="file" id="filee" name="img2" style="display: none;" multiple accept="image/png, image/jpeg">
+              <textarea class="form-control shadow shadow" placeholder="image2 description" name="d2_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image2 description" name="d2_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image2 description" name="d2_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <!-- non image -->
+              <textarea class="form-control shadow shadow" placeholder="description2" name="d2_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description1" name="d2_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description3" name="d2_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description4" name="d2_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description5" name="d2_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description6" name="d2_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description7" name="d2_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description8" name="d2_2" style="margin-left:40px;margin-top:10px;"></textarea>
+            </div>
+          </div>
+          <div class="col-xs-1 col-lg-4 card shadow-sm" style=" border: 0;padding: 20px 0; padding-left: 10px; margin-top: 10px; border-radius: 20px;">
+            <div class="form-group w-75">
+              <p class="big-font ml-5">compétence 3</p>
+              <label for="file3" class="btn btn-md btn-success" style="margin-left:80px;">Images compétence3
+              </label>
+              <input type="file" id="file3" name="img3" style="display: none;" multiple accept="image/png, image/jpeg">
+              <textarea class="form-control shadow shadow" placeholder="image3 description" name="d3_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image3 description" name="d3_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image3 description" name="d3_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <!-- non image -->
+              <textarea class="form-control shadow shadow" placeholder="description1" name="d3_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description2" name="d3_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description3" name="d3_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description4" name="d3_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description5" name="d3_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description6" name="d3_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description7" name="d3_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description8" name="d3_2" style="margin-left:40px;margin-top:10px;"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1 col-lg-4 card shadow-sm" style=" border: 0;padding: 20px 0; padding-left: 10px; margin-top: 10px; border-radius: 20px;">
+            <div class="form-group w-75">
+              <p class="big-font ml-5">compétence 4</p>
+              <label for="file4" class="btn btn-md btn-success" style="margin-left:80px;">Images compétence4
+              </label>
+              <input type="file" id="file4" name="img4" style="display: none;" multiple accept="image/png, image/jpeg">
+              <textarea class="form-control shadow shadow" placeholder="image4 description" name="d4_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image4 description" name="d4_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image4 description" name="d4_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <!-- non image -->
+              <textarea class="form-control shadow shadow" placeholder="description1" name="d4_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description2" name="d4_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description3" name="d4_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description4" name="d4_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description5" name="d4_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description6" name="d4_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description7" name="d4_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description8" name="d4_2" style="margin-left:40px;margin-top:10px;"></textarea>
+            </div>
+          </div>
+          <div class="col-xs-1 col-lg-4 card shadow-sm" style=" border: 0;padding: 20px 0; padding-left: 10px; margin-top: 10px; border-radius: 20px;">
+            <div class="form-group w-75">
+              <p class="big-font ml-5">compétence 5</p>
+              <label for="file5" class="btn btn-md btn-success" style="margin-left:80px;">Images compétence5
+              </label>
+              <input type="file" id="file5" name="img5" style="display: none;" multiple accept="image/png, image/jpeg">
+              <textarea class="form-control shadow shadow" placeholder="image5 description" name="d5_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image5 description" name="d5_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image5 description" name="d5_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <!-- non image -->
+              <textarea class="form-control shadow shadow" placeholder="description1" name="d5_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description2" name="d5_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description3" name="d5_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description4" name="d5_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description5" name="d5_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description6" name="d5_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description7" name="d5_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description8" name="d5_2" style="margin-left:40px;margin-top:10px;"></textarea>
+            </div>
+          </div>
+          <div class="col-xs-1 col-lg-4 card shadow-sm" style=" border: 0;padding: 20px 0; padding-left: 10px; margin-top: 10px; border-radius: 20px;">
+            <div class="form-group w-75">
+              <p class="big-font ml-5">compétence 6</p>
+              <label for="file6" class="btn btn-md btn-success" style="margin-left:80px;">Images compétence6
+              </label>
+              <input type="file" id="file6" name="img6" style="display: none;" multiple accept="image/png, image/jpeg">
+              <textarea class="form-control shadow shadow" placeholder="image6 description" name="d6_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image6 description" name="d6_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="image6 description" name="d6_1" style="margin-left:40px;margin-top:10px;"></textarea>
+              <!-- non image -->
+              <textarea class="form-control shadow shadow" placeholder="description1" name="d6_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description2" name="d6_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description3" name="d6_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description4" name="d6_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description5" name="d6_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description6" name="d6_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description7" name="d6_2" style="margin-left:40px;margin-top:10px;"></textarea>
+              <textarea class="form-control shadow shadow" placeholder="description8" name="d6_2" style="margin-left:40px;margin-top:10px;"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 20px;">
+          <div class="col-xs-1 col-lg-6">
+            <select name="eleve">
+              <%enfant.forEach((enfant)=>{%>
+                <option value="<%=enfant._id%>"><%=enfant.nom+" "+enfant.prenom%></option>
+              <%})%>
+            </select>
+            <div>
+              <label for="file7" class="btn btn-md btn-success" style="margin-top:20px;">Images enfant
+              </label>
+              <input type="file" id="file7" name="img" style="display: none;"accept="image/png, image/jpeg">
+            </div>
+          </div>
+          <div class="col-xs-1 col-lg-6">
+            <button class='btn btn-md btn-success float-right'>créer le rapport</button>
+          </div>
+        </div>
+      </form>
+      </div>
+      </section>
+      <script src="/scripts/dashboard.js"></script>
+      </body>
+      </html>

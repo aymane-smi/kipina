@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href='/styles/nav.css' rel='stylesheet'>
+     <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   </head>
+<body>
+  <div class="logo-details">
+    <img src="/img/Logo.png">
+  </div>
+  <div class="sidebar close">
+    <ul class="nav-links">
+      <li class="li-h">
+        <a href="/dashboard" style="margin-left: 20px;">
+          <img src="/img/icons/acceuil.png">
+        </a>
+      </li>
+      <li class="li-h">
+        <a href="/dashboard/modification" style="margin-left: 20px; margin-top:50px;">
+          <img src="/img/icons/etudiant.png">
+        </a>
+      </li>
+      <li class="li-h">
+        <a href="/dashboard/rapport" style="margin-left: 20px; margin-top:50px;">
+          <img src="/img/icons/rapport.png">
+        </a>
+      </li>
+      <li class="li-h">
+        <a href="/dashboard/finance" style="margin-left: 20px; margin-top:50px;">
+          <img src="/img/icons/finance.png">
+        </a>
+      </li>
+      <li class="li-h">
+        <a href="/dashboard/english-after-school" style="margin-left: 25px; margin-top:50px;">
+          <img src="/img/icons/english-after-school.png">
+        </a>
+      </li>
+      <li class="li-h">
+        <a href="/dashboard/camps" style="margin-left: 25px; margin-top:50px;">
+          <img src="/img/icons/camp.png">
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-content">
+      <div class="container">
+        <div class="jumbotron modified-jumbotron">
+            <p class="big-font" style="font-size:40px;">
+                Remplire les information:
+            </p>
+            <form action="/facture" method="post">
+                <div class="form-group mt-4">
+                  <label for="exampleInputPassword1">choisissait Enfant:</label>
+                  <br>
+                  <select name="enfant">
+                    <%enfant.forEach((enfant)=>{%>
+                        <option value="<%=enfant._id%>"><%= enfant.nom+" "+enfant.prenom%></option>
+                    <%})%>
+                  </select>
+                </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-left:42%; margin-top: 30px;">ajouter!</button>
+              </form>
+            </div>
+        </div>
+      </div>
+  </section>
+</body>
+</html>

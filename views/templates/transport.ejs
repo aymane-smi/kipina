@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>cantine</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style rel="stylesheet" type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;700&display=swap');
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
+        table{
+            width: 50%;
+            margin: 100px auto 0 auto;
+            border-collapse: collapse;
+            border-radius: 20px;
+        }
+        th, td{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <img src="http://localhost:3000/img/Logo.png" style="width:100px; height:100px;">
+    <center>
+        <p>
+            <h1>Rapport transport</h1>
+        </p>
+        <div>
+            total enfant:<%=enfant.length%>
+        </div>
+    </center>
+    <%if(!Array.isArray(classes)){classes = [classes]}%>
+    <%classes.forEach((i)=>{%>
+        <div><h3>classe: classe: <%if(i==1){%>
+            Swans
+          <%}%>
+          <%if(i == 2){%>
+            Little foxes
+          <%}%>
+          <%if(i == 3){%>
+            Foxes
+          <%}%>
+          <%if(i == 4){%>
+            Bears
+          <%}%>
+          <%if(i == 5){%>
+            Seals
+          <%}%>
+          <%if(i == 6){%>
+            Owls
+          <%}%></h3></div>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">nom</th>
+                    <th scope="col">prenom</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <%enfant.forEach((enfant)=>{%>
+                    <%if(enfant.classe == i){%>
+                    <tr>
+                    <td>
+                        <%=enfant.nom%>
+                    </td>
+                    <td>
+                        <%=enfant.prenom%>
+                    </td>
+                </tr>
+                <%}%>
+                <%});%>
+            
+            </tbody>
+        </table>
+    <%});%>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>cantine</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style rel="stylesheet" type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;700&display=swap');
+        body{
+            font-family: 'Montserrat', sans-serif;
+        }
+        table{
+            width: 50%;
+            margin: 100px auto 0 auto;
+            border-collapse: collapse;
+            border-radius: 20px;
+        }
+        th, td{
+            border: 1px solid black;  
+        }
+    </style>
+</head>
+<body>
+    <img src="http://localhost:3000/img/Logo.png" style="width:100px; height:100px;">
+    <center class="container">
+        <p>
+            <h1>Rapport classe</h1>
+        </p>
+        <div>
+            Nombre d'élèves: <%=enfant[0].length%>
+        </div>
+    </center>
+    <%let j=0;if(!Array.isArray(classes)){classes = [classes]}%>
+    <%classes.forEach((i)=>{%>
+        <div><h3>Classe:<%if(i==1){%>
+            Swans
+          <%}%>
+          <%if(i == 2){%>
+            Little foxes
+          <%}%>
+          <%if(i == 3){%>
+            Foxes
+          <%}%>
+          <%if(i == 4){%>
+            Bears
+          <%}%>
+          <%if(i == 5){%>
+            Seals
+          <%}%>
+          <%if(i == 6){%>
+            Owls
+          <%}%></h3></div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">nom</th>
+                    <th scope="col">prenom</th>
+                    <th scope="col">date de naissance</th>
+                    <th scope="col">contact urgence</th>
+                    <th scope="col">Social media</th>
+                    <th scope="col">Forfait</th>
+                    <th scope="col">Cantine</th>
+                    <th scope="col">Service de garde</th>
+                    <th scope="col">Mercredi après-midi</th>
+                    <th col="col">Transport</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%enfant[0].forEach((enfant)=>{%>
+                    <%if(enfant.classe == i){%>
+                    <tr>
+                    <td>
+                        <%=enfant.nom%>
+                    </td>
+                    <td>
+                        <%=enfant.prenom%>
+                    </td>
+                    <td>
+                        <%=enfant.date_naissance.getDay()+"/"+(enfant.date_naissance.getMonth()+1)+"/"+enfant.date_naissance.getFullYear()%>
+                    </td>
+                    <td>
+                        <%=urgence[j]%>
+                        <%j++;%>
+                    </td>
+                    <td>
+                        <%if(enfant.sm){%>
+                            oui
+                        <%};%>
+                        <%if(!enfant.sm){%>
+                            non
+                        <%};%>
+                    </td>
+                    <td>
+                        <%if(enfant.type_forfait.includes(1)){%>
+                             Journée complèt
+                        <%};%>
+                        <%if(enfant.type_forfait.includes(2)){%>
+                             AM
+                        <%};%>
+                        <%if(enfant.type_forfait.includes(3)){%>
+                             PM
+                        <%};%>
+                        <%if(enfant.type_forfait.includes(4)){%>
+                             2 jours
+                        <%};%>
+                        <%if(enfant.type_forfait.includes(5)){%>
+                             3 jours
+                        <%};%>
+                    </td>
+                    <td>
+                        <%if(enfant.cantine){%>
+                            oui
+                        <%};%>
+                        <%if(!enfant.cantine){%>
+                            non
+                        <%};%>
+                    </td>
+                    <td>
+                        <%if(enfant.gardes){%>
+                            oui
+                        <%};%>
+                        <%if(!enfant.gardes){%>
+                            non
+                        <%};%>
+                    </td>
+                    <td>
+                        <%if(enfant.mercredi){%>
+                            oui
+                        <%};%>
+                        <%if(!enfant.mercredi){%>
+                            non
+                        <%};%>
+                    </td>
+                    <td>
+                        <%if(enfant.transport){%>
+                            oui
+                        <%}%>
+                        <%if(!enfant.transport){%>
+                            non
+                        <%};%>
+                    </td>
+                </tr>
+                <%};%>
+                <%});%>
+            </tbody>
+        </table>
+    <%});%>
+</body>
+</html>

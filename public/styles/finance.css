@@ -1,0 +1,46 @@
+.row-chart{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 100px;
+    /* justify-content: center; */
+}
+/* .doughnut{
+    width: 25%;
+} */
+.bar1{
+    width: 60%;
+    margin-left: 100px;
+}
+.bar2{
+    width:40%;
+    height: 10%;
+    margin-bottom: 70px;
+}
+.bar{
+    width:900px;
+    margin-left: 100px;
+    /* margin-right: 10px; */
+}
+.card-chart{
+    border: 0;
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 6px 6px 15px rgba(113, 113, 113, 0.23);
+}
+#button-chart{
+    text-decoration: none;
+    color: black;
+    display:inline-block;
+    text-align: center;
+    line-height: 60px;;
+    width: 250px;
+    margin-left: 50px;
+    margin-top: 40px;
+    height: 80px;
+    border: 0;
+    border-radius: 18px;
+    height: 60px;
+    background: white;
+    box-shadow: 6px 6px 15px rgba(113, 113, 113, 0.23);
+}

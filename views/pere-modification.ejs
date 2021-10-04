@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+     <link href='/styles/nav.css' rel='stylesheet'>
+     <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   </head>
+<body>
+  <div class="logo-details">
+    <img src="/img/Logo.png">
+  </div>
+  <div class="sidebar close">
+    <ul class="nav-links">
+      <li class="li-h">
+        <a href="/dashboard" style="margin-left: 20px;" title="accueil">
+          <img src="/img/icons/acceuil.png" alt="acceuil">
+        </a>
+      </li>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/modification" style="margin-left: 20px; margin-top:50px;" title="modification">
+          <img src="/img/icons/etudiant.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/rapport" style="margin-left: 20px; margin-top:50px;" title="rapport">
+          <img src="/img/icons/rapport.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/finance" style="margin-left: 20px; margin-top:50px;" title="finance">
+          <img src="/img/icons/finance.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/english-after-school" style="margin-left: 25px; margin-top:50px;" title="english after school">
+          <img src="/img/icons/english-after-school.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/camps" style="margin-left: 25px; margin-top:50px;" title="camps">
+          <img src="/img/icons/camp.png">
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/add-user" style="margin-left: 25px; margin-top:50px;" title="ajouter utilisateur">
+          <i class="fas fa-user-plus" style="color: white;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/add-kipina" style="margin-left: 25px; margin-top:50px;" title="ajouter kipina">
+          <i class="fal fa-plus-square" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'educatrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/competence" style="margin-left: 25px; margin-top:50px;" title="ajouter compétence">
+          <i class="fal fa-tasks" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/users" style="margin-left: 20px; margin-top:50px;" title="liste des utilisateurs">
+          <i class="fal fa-users" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/kipinas" style="margin-left: 20px; margin-top:50px;" title="liste des kipinas">
+          <i class="fal fa-hospitals" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'educatrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/plan" style="margin-left: 25px; margin-top:50px;" title="ajouter un plan">
+          <i class="fal fa-calendar" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+      <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+      <li class="li-h">
+        <a href="/dashboard/list-plan" style="margin-left: 25px; margin-top:50px;"title="liste des plans">
+          <i class="fal fa-calendar-check" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <li>
+        <%}%>
+        <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
+        <a href="/dashboard/list-competence" style="margin-left: 25px; margin-top:50px;" title="liste des compétences">
+          <i class="fal fa-list" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
+    </ul>
+  </div>
+
+<!--
+container content
+-->
+<section class="home-content" >
+  <div style="margin-top: 30px; margin-left: 20px;">
+    <div class="row">
+      <div class="col-lg-7 col-sm-12 text-nowarp flex-nowrap" style="display: flex; align-items: center;">
+        <div style="flex-shrink:0;display:inline-block; width: 70px; height: 70px; border-radius: 50%;position: relative;background: linear-gradient(-30deg, #839000, #BCCF00);">
+          <img class="rounded-circle" src="/img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
+        </div>
+        <div style="margin-left: 30px;flex-shrink:0">
+            <span class="bjr1-span ">Bonjour </span>
+            <span class="bjr2-spanp">,<%=user.username%></span>
+        </div>
+      </div>
+      <div class="col-lg col-sm-12">
+        <div class="row">
+          <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
+            <div class="input-group rounded-pill search shadow" style="background: white; overflow: hidden; border: 0 none; width: 300px; display: inline-block; height: 50px;flex-shrink:0" >
+              <div class="input-group-prepend border-0">
+                <button  type="button" id="search-button" style="margin-left: 10px; margin-top: 18px;background: url(/img/icons/search-icon.png) no-repeat center/70%;"class="btn search-enfant"></button>
+                <input type="search" placeholder="search" id="search-input"style="margin-left: 10px; margin-top: 10px;" class="border-0">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm12 col-lg" style="display: flex; margin-top: 25px; margin-left:30px;">
+            <!-- <div class="col-1" style="flex: 1; flex-grow: 0; flex-shrink:0">
+              <img src="../img/icons/notification.png" id="notification-image">
+            </div> -->
+            <div class="col-1" style="flex: 1; margin-left: 14px; flex-grow: 0;flex-shrink:0;margin-top:-4px;">
+              <a href="/dashboard/settings">
+                <img src="/img/icons/settings.png" id="settings-image">
+              </a>
+            </div>
+            <div class="col-1" style="flex: 1; margin-left: -30px; flex-grow: 0;flex-shrink:0;margin-top:-21px;">
+              <form action="/logout" method="post">
+                <button style="border: none; background: none;">
+                  <img src="/img/icons/logout.png">
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div> 
+    </div>
+    <div style='width: 30%; margin: 0 auto;'>
+        <form action="/modification-pere/<%=pere._id%>" method="post">
+            <div class="form-group w-75">
+              <label for="nom-famille"></label>
+              <input type="text" class="form-control shadow" id="nom-famille" placeholder="Nom de famille" name="p_nom" value="<%=pere.nom%>">
+            </div>
+            <!-- prenom -->
+            <div class="form-group w-75">
+              <label for="prenom"></label>
+              <input type="text" class="form-control shadow" id="prénom" placeholder="Prénom" name="p_prenom" value="<%=pere.prenom%>">
+            </div>
+            <!-- courreil -->
+            <div class="form-group w-75">
+              <label for="courreil"></label>
+              <input type="email" class="form-control shadow" id="courreil" placeholder="courriel" name="p_courreil" value="<%=pere.courriel%>">
+            </div>
+            <!-- nationnalité -->
+            <div class="form-group w-75">
+              <label for="nationnalite"></label>
+              <input type="text" class="form-control shadow" id="nationnalite" placeholder="nationnalité" name="p_nationalite" value="<%=pere.nationalite%>">
+            </div>
+            <!-- profession -->
+            <div class="form-group w-75">
+              <label for="profession"></label>
+              <input type="text" class="form-control shadow" id="profession" placeholder="profession" name="p_profession" value="<%=pere.profession%>">
+            </div>
+            <!-- téléphone -->
+            <div class="form-group w-75">
+              <label for="tele"></label>
+              <input type="text" class="form-control shadow" id="tele" placeholder="téléphone portable" name="p_tele" value="<%=pere.telephone%>">
+            </div>
+            <!-- adresse -->
+              <div class="form-group w-75">
+                <label for="num_rue"></label>
+                <input type="number" class="form-control shadow" id="num_rue" placeholder="n° rue" name="p_n_rue" value="<%=pere.num_rue%>">
+              </div>
+              <div class="form-group w-75">
+                <label for="rue"></label>
+                <input type="text" class="form-control shadow" id="rue" placeholder="rue" name="p_rue" value="<%=pere.rue%>">
+              </div>
+              <div class="form-group w-75">
+                <label for="quartier"></label>
+                <input type="text" class="form-control shadow" id="quartier" placeholder="quartier" name="p_quartier" value="<%=pere.quartier%>">
+              </div>
+            <div>
+              <div class="form-group w-25" style="display: inline-block;">
+                <label for="ville"></label>
+                <input type="text" class="form-control shadow" id="ville" placeholder="ville" name="p_ville" value="<%=pere.ville%>">
+              </div>
+              <div class="form-group w-50" style="display: inline-block;">
+                <label for="pays"></label>
+                <input type="text" class="form-control shadow" id="pays" placeholder="pays" name="p_pays" value="<%=pere.pays%>">
+              </div>
+            </div>
+            <div class="form-group w-75">
+              <label for="id"></label>
+              <input type="text" class="form-control shadow" id="id" placeholder="CIN/Passport" name="p_id" value="<%=pere.cin_passport%>">
+            </div>
+            <div class="form-group w-25">
+              <label for="button"></label>
+              <button class="form-control shadow btn btn-warning" id="button" style="width: 100px; margin-left: 120px; margin-bottom: 20px;">modifier</button>
+            </div>
+        </form>
+    </div>
+</section>
+<script src="/scripts/dashboard.js"></script>
+</body>
+</html>

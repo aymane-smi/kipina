@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;700&display=swap');
+html{
+  height: 100%;
+  width: 100%;
+}
+*:first-letter {
+  text-transform: uppercase;
+}
+body{
+    min-height: 100%;
+    background-image: url(../img/Background.png);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    font-family: 'Montserrat', sans-serif;   
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+/*side navbar css code*/
+.sidebar{
+  padding-top: 80px;
+  opacity: 1;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  /* z-index: -1; */
+  height: 100%;
+  width: 260px;
+  background: linear-gradient(to top,#A34903, #ED7D27);
+  border-bottom-right-radius: 20px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.sidebar.close{
+  width:  80px;
+
+}
+.logo-details{
+  position: fixed;
+  z-index: 101;
+  left:0;
+  top:0;
+  height: 80px;
+  width: 80px;
+  background: white;
+  padding: 10px;
+  border-bottom-right-radius: 20px;
+}
+.logo-details img{
+  width: 60px;
+  text-align: center;
+}
+.sidebar .nav-links{
+  height: 100%;
+  padding: 30px 0 150px 0;
+  overflow: auto;
+}
+.sidebar.close .nav-links{
+  overflow: visible;
+}
+.sidebar .nav-links li{
+  position: relative;
+  list-style: none;
+  margin-top: 50px;
+  padding: 10px 0;
+  border-top: solid rgba(240, 240, 240, 0) 2px;
+  border-bottom: solid rgba(240, 240, 240, 0) 2px;
+  /* transition: all 0.4s ease; */
+}
+.sidebar .nav-links .li-h:hover{
+  background: rgba(240, 240, 240, 0.5);
+  /* height: 80px;*/
+  border-top: solid rgba(240, 240, 240, 0.5) 2px;
+  border-bottom: solid rgba(240, 240, 240, 0.5) 2px;
+}
+.home-section{
+  position: relative;
+  height: 100vh;
+  width: calc(100% - 270px);
+}
+ .sidebar.close ~ .home-section{
+  left: 78px; 
+  width: calc(100% - 78px);
+} 
+.home-content{
+  width: calc(100vw - 80px);
+  position: relative;
+  left: 80px;
+}
+.home-section .home-content{
+  height: 60px;
+  display: flex;
+}
+.home-section .home-content .bx-menu,
+.home-section .home-content .text{
+  color: #11101d;
+  font-size: 35px;
+}
+.home-section .home-content .bx-menu{
+  margin: 0 15px;
+  cursor: pointer;
+}
+.home-section .home-content .text{
+  font-size: 26px;
+  font-weight: 600;
+}
+/* container elements css code */
+.list-group{
+  border-radius: 20px;
+}
+.list-group-item{
+  border-top: 0 none;
+  border-left: 0 none;
+  border-right: 0 none;
+  border-bottom: 0 none;
+}
+.card-modify{
+  padding-top: 10px;
+}
+.section-left{
+  margin-left: 30%;
+}
+.changing{
+  position: relative !important;
+}
+.add{
+  width: 100%;
+  background: green;
+  position: absolute;
+}
+.add-pattern{
+  margin-top: 40px;
+  background: white;
+  border-radius: 20px;
+  width: 94%;
+  margin-left: 30px;
+  padding-bottom: 20px;
+}
+.form-group{
+  margin-bottom: -10px;
+}
+.form-control{
+  height: 50px;
+  border-radius: 20px;
+}
+.btn:focus{
+  outline: none;
+}
+.card-info{
+  width: 300px;
+  background: white;
+  height: 90px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 3px;
+}
+.div-color{
+  background:linear-gradient(to top,rgb(34, 34, 165), rgb(125, 125, 255));
+  width: 30px;
+  flex: 1;
+  height: 90px;
+  text-align: center;
+}
+.card-down{
+  margin-top: 30px;
+}
+#search-input:focus{
+  outline: none;
+}
+#search-button:focus{
+  outline: none;
+}
+#settings-image:hover{
+  animation: mymove 1s;
+}
+@keyframes mymove {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+#notification-image:hover{
+  animation: mymove1 0.5s;
+}
+@keyframes mymove1 {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+.card-font1{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  flex: 6;
+  padding-left: 10px;
+  padding-top: 20px;
+}
+.card-font2{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 45px;
+  flex: 3;
+  padding-top: 10px;
+}
+.border1{
+  background: linear-gradient(30deg, #036B92, #00A1DD);
+}
+.border2{
+  background: linear-gradient(30deg, #720F59, #A0197E);
+}
+.border3{
+  background: linear-gradient(30deg, #839000, #BCCF00);
+}
+.border4{
+  background: linear-gradient(30deg, #C0641E, #EB7C27);
+}
+.border5{
+  background: linear-gradient(30deg, #B9A807, #FFE90E);
+}
+.title_form{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+.button-div{
+  display: flex;
+  flex-wrap: wrap;
+}
+.modal-pere{
+  position: relative;
+  height: 600px;
+  margin: 50px auto;
+  overflow-x: hidden;
+}
+.card-parent{
+  width: 450px;
+  position: relative;
+}
+.delete-button{
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  background: rgb(247, 44, 44);
+  width: 40px;
+  height: 40px;
+}
+.delete-button i{
+  margin-left: 10px;
+  line-height: 40px;
+  font-size: 20px;
+}
+.p-pere{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  margin-left: -50px;
+}
+[for="mere"], [for="pere"]{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: -6px;
+}
+.big-font{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.big-medium{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey; 
+  border-radius: 100px;
+}
+
+.modified-jumbotron{
+  background: white;
+  border-radius: 20px;
+  margin-top: 200px;
+  margin-left: 200px;
+  padding-top: 30px;
+  width: 600px;
+}
+
+.text-500{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  font-size:20px;
+}
+.nom{
+  font-size: 13px;
+  font-weight: 200;
+  display: block;
+}
+.prenom{
+  font-size: 13px;
+  font-weight: 700;
+  display: block;
+}
+.card-eleve{
+  width: 160px;
+  height: 165px;
+}
+.rounded-circle{
+  margin-top: 18px;
+  margin-bottom: 15px;
+}
+.bjr1-span{
+  font-weight: 700;
+  font-size: 38px;
+}
+.bjr2-span{
+  font-weight: 200;
+  font-size: 38px;
+}

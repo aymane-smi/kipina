@@ -1,0 +1,12 @@
+const mongoose = require("mongoose"),
+    campSchema = new mongoose.Schema({
+        nom: String,
+        nbr_jrs: Number,
+        location: String,
+        type_camp: String,
+        date_creation:{
+            type: Date,
+            default: Date.now
+        }
+    });
+module.exports = mongoose.model("Camp", campSchema);
