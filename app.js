@@ -1051,15 +1051,14 @@ app.post("/rapport-email", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper
     }));
     console.log(pere_arr);
     console.log(mere_arr)
-    res.render("templates/emails", {enfant:enfant_arr, classes: req.body.class_check, pere: pere_arr, mere: mere_arr});
-    // , (err ,data)=>{
-    //   pdf.create(data, {"format":"A4",
-    //   "orientation":'landscape', "width": "3in", timeout: '100000'}).toFile("./rapport-email.pdf", (err, file)=>{
-    //     res.download("rapport-email.pdf", (err)=>{
-    //       console.log("downloaded!");
-    //     });
-    //   });
-    // });
+    res.render("templates/emails", {enfant:enfant_arr, classes: req.body.class_check, pere: pere_arr, mere: mere_arr}, (err ,data)=>{
+      pdf.create(data, {"format":"A4",
+      "orientation":'landscape', "width": "3in", timeout: '100000'}).toFile("./rapport-email.pdf", (err, file)=>{
+        res.download("rapport-email.pdf", (err)=>{
+          console.log("downloaded!");
+        });
+      });
+    });
     });
   });
  
@@ -1238,7 +1237,7 @@ app.get("/dashboard/camps/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.is
 app.get("/dashboard/english-after-school", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
   let enfant_arr = [];
   english.findOne({location: req.user.location}, async(err, english_af)=>{
-    if(english_af){
+    if(english_af != null){
       console.log("not empty!");
       await Promise.all(english_af.eleve.map(async (id)=>{
         console.log(id);
