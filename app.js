@@ -1539,6 +1539,7 @@ app.get("/dashboard/list-plan", AccessMiddleware.isLoggedIn, AccessMiddleware.is
   try{
     user.find({location: req.user.location}, async (err, allusers)=>{
       await Promise.all(allusers.map(async (user)=>{
+        console.log(user);
         await plan.findOne({user: user._id}, (err, plan)=>{
           console.log(plan);
           if(plan){
@@ -1569,8 +1570,14 @@ app.post("/plan", AccessMiddleware.isLoggedIn, AccessMiddleware.isEducatrice, up
   const plan_obj = {
     file: req.file.filename
   };
-  plan.findOneAndUpdate({user: req.user._id}, plan_obj, (err, plan)=>{
-    if(err || !plan)
+  plan.findOneAndUpdate({user: req.user._id}, plan_obj, (err, plan_)=>{
+    if(plan_ == null){
+      plan_obj.user = req.user._id;
+      plan.create(plan_obj, (err, plan__)=>{
+        res.redirect("/dashboard");
+      });
+    }
+    else if(err)
       res.redirect("/dashboard/plan");
     else
       res.redirect("/dashboard/");

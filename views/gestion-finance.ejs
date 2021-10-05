@@ -23,96 +23,103 @@
   </div>
   <div class="sidebar close">
     <ul class="nav-links">
-      <li class="li-h">
+      <li class="li-h" title="accueil">
         <a href="/dashboard" style="margin-left: 20px;" title="accueil">
           <img src="/img/icons/acceuil.png" alt="acceuil">
         </a>
       </li>
       <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
-      <li class="li-h">
-        <a href="/dashboard/modification" style="margin-left: 20px; margin-top:50px;" title="modification">
+      <li class="li-h" title="modification">
+        <a href="/dashboard/modification" style="margin-left: 20px; margin-top:50px;" >
           <img src="/img/icons/etudiant.png">
         </a>
       </li>
       <%}%>
       <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
-      <li class="li-h">
+      <li class="li-h" title="rapport">
         <a href="/dashboard/rapport" style="margin-left: 20px; margin-top:50px;" title="rapport">
           <img src="/img/icons/rapport.png">
         </a>
       </li>
       <%}%>
       <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
-      <li class="li-h">
+      <li class="li-h" title="finance">
         <a href="/dashboard/finance" style="margin-left: 20px; margin-top:50px;" title="finance">
           <img src="/img/icons/finance.png">
         </a>
       </li>
       <%}%>
       <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
-      <li class="li-h">
+      <li class="li-h" title="english after school">
         <a href="/dashboard/english-after-school" style="margin-left: 25px; margin-top:50px;" title="english after school">
           <img src="/img/icons/english-after-school.png">
         </a>
       </li>
       <%}%>
       <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
-      <li class="li-h">
+      <li class="li-h" title="camps">
         <a href="/dashboard/camps" style="margin-left: 25px; margin-top:50px;" title="camps">
           <img src="/img/icons/camp.png">
         </a>
       </li>
       <%}%>
       <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
-      <li class="li-h">
+      <li class="li-h" title="ajouter utilisateur">
         <a href="/dashboard/add-user" style="margin-left: 25px; margin-top:50px;" title="ajouter utilisateur">
           <i class="fas fa-user-plus" style="color: white;"></i>
         </a>
       </li>
       <%}%>
       <%if(user.role == 'directrice'){%>
-      <li class="li-h">
+      <li class="li-h" title="ajouter kipina">
         <a href="/dashboard/add-kipina" style="margin-left: 25px; margin-top:50px;" title="ajouter kipina">
           <i class="fal fa-plus-square" style="color: white; font-size:33px;"></i>
         </a>
       </li>
       <%}%>
       <%if(user.role == 'educatrice'){%>
-      <li class="li-h">
+      <li class="li-h"  title="ajouter compétence">
         <a href="/dashboard/competence" style="margin-left: 25px; margin-top:50px;" title="ajouter compétence">
           <i class="fal fa-tasks" style="color: white; font-size:33px;"></i>
         </a>
       </li>
       <%}%>
+      <%if(user.role == 'educatrice'){%>
+      <li class="li-h" title="ajouter routine">
+        <a href="/dashboard/routine" style="margin-left: 25px; margin-top:50px;" title="ajouter routine">
+          <i class="far fa-clipboard-list-check" style="color: white; font-size:33px;"></i>
+        </a>
+      </li>
+      <%}%>
       <%if(user.role == 'directrice'){%>
-      <li class="li-h">
+      <li class="li-h" title="liste des utilisateurs">
         <a href="/dashboard/users" style="margin-left: 20px; margin-top:50px;" title="liste des utilisateurs">
           <i class="fal fa-users" style="color: white; font-size:33px;"></i>
         </a>
       </li>
       <%}%>
       <%if(user.role == 'directrice'){%>
-      <li class="li-h">
+      <li class="li-h" title="liste des kipinas">
         <a href="/dashboard/kipinas" style="margin-left: 20px; margin-top:50px;" title="liste des kipinas">
           <i class="fal fa-hospitals" style="color: white; font-size:33px;"></i>
         </a>
       </li>
       <%}%>
       <%if(user.role == 'educatrice'){%>
-      <li class="li-h">
+      <li class="li-h" title="ajouter un plan">
         <a href="/dashboard/plan" style="margin-left: 25px; margin-top:50px;" title="ajouter un plan">
           <i class="fal fa-calendar" style="color: white; font-size:33px;"></i>
         </a>
       </li>
       <%}%>
       <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
-      <li class="li-h">
-        <a href="/dashboard/list-plan" style="margin-left: 25px; margin-top:50px;"title="liste des plans">
+      <li class="li-h" title="liste des plans">
+        <a href="/dashboard/list-plan" style="margin-left: 25px; margin-top:50px;" title="liste des plans">
           <i class="fal fa-calendar-check" style="color: white; font-size:33px;"></i>
         </a>
       </li>
-      <li>
-        <%}%>
+      <%}%>
+      <li class="li-h" title="liste des compétences">
         <%if(user.role == 'administrateur' || user.role == 'directrice'){%>
         <a href="/dashboard/list-competence" style="margin-left: 25px; margin-top:50px;" title="liste des compétences">
           <i class="fal fa-list" style="color: white; font-size:33px;"></i>
