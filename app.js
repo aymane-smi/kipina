@@ -659,7 +659,7 @@ app.post(
       medical_obj.prob_sante = true;
       medical_obj.type_prob = req.body.desc_prob_sante;
     }
-    if (req.body.prob_non === "on") medical.obj.prob_sante = false;
+    if (req.body.prob_non === "on") medical_obj.prob_sante = false;
     const medical_arr = [];
     if (req.body.s11 === "on") medical_arr.push(1);
     if (req.body.s12 === "on") medical_arr.push(2);
@@ -895,7 +895,7 @@ app.post("/rapport-paye", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper,
   let enfant_arr = [];
   enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec((err, allEnfant) => {
     allEnfant.forEach((enfant) => {
-      if (enfant.paye) enfant_arr.push(enfant);
+      if (enfant.payement) enfant_arr.push(enfant);
     });
     res.render("templates/paye", {enfant:enfant_arr, classes: req.body.class_check}, (err, data)=>{
       pdf.create(data, {"format":"A4",
@@ -921,7 +921,7 @@ app.post("/rapport-impaye", AccessMiddleware.isLoggedIn, AccessMiddleware.isSupe
   let enfant_arr = [];
   enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec((err, allEnfant) => {
     allEnfant.forEach((enfant) => {
-      if (!enfant.paye) enfant_arr.push(enfant);
+      if (!enfant.payement) enfant_arr.push(enfant);
     });
     res.render("templates/impaye", {enfant:enfant_arr, classes: req.body.class_check}, (err, data)=>{
       pdf.create(data, {"format":"A4",
@@ -1050,7 +1050,7 @@ app.post("/rapport-email", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper
       });
     }));
     console.log(pere_arr);
-    console.log(mere_arr)
+    console.log(mere_arr);
     res.render("templates/emails", {enfant:enfant_arr, classes: req.body.class_check, pere: pere_arr, mere: mere_arr}, (err ,data)=>{
       pdf.create(data, {"format":"A4",
       "orientation":'landscape', "width": "3in", timeout: '100000'}).toFile("./rapport-email.pdf", (err, file)=>{
