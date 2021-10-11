@@ -48,6 +48,10 @@ const mongoose   = require("mongoose"),
               type: Number,
               default: 75
           },
+          remise:{
+            type: Number,
+            default: 15
+        },
           location: String
       });
 module.exports = mongoose.model("Prix", prixSchema);

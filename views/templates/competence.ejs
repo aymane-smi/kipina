@@ -3,327 +3,215 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>cantine</title>
+    <title>rapport clone</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <style rel="stylesheet" type="text/css">
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;700&display=swap');
-        #rapport{
-            padding-left: 35%;
-            font-size: 30px;
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+        *{
+            font-family: 'Montserrat';
+        }
+        #logo{
+            margin-left: 80px;
+            display:inline-block;
+            width: 100vw;
+        }
+        .top{
+            width: 40px;
+            height: 40px;
+            position: fixed;
+            top: 100px;
+            right: 10px;
+            /* float:right;
+            margin-top: -220px;
+            margin-right: 150px; */
+        }
+        .card{
+            /* overflow: auto; */
+            margin-top: 50px;
+            padding-top: 30px;
+            padding-left: 100px;
+            width: 300px;
+            margin-left: 50px;
+            background: rgb(223, 215, 215);
+            border-radius: 28px;
+            /* display: flex;
+            flex-wrap: nowrap;
+            display: -webkit-flex; */
+        }
+        .card p {
+            margin-left: 20px;
+            font-size: 6px;
+            font-weight: 300;
+            padding-bottom: 10px;
+        }
+        .number{
+            font-weight: 700;
+            float: right;
+        }
+        .left-border{
+            position: fixed;
+            top:0;
+            left: 0;
+            height: 60px;
+            width: 900vw;
+            background: #BCCF00;
+        }
+        .container{
+            top: 10px;
+            margin-left: 20px;
+        }
+        .title{
+            margin-top: 90px;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .table{
+            margin-left: 80px;
+        }
+        .competence{
+            margin-left: 10px;
+            margin-top: 40px;
+            font-size: 10px;
             font-weight: 700;
         }
-        body{
-            font-family: 'Montserrat', sans-serif;
-        }
         table{
-            width: 50%;
-            margin: 100px auto 0 auto;
             border-collapse: collapse;
+            width: 90%;
         }
-        th, td{
-            border: 1px solid black;
-            height: 300px;
-            width: 300px;
+        td,th{
+            border: 1px solid #ddd;
+            border-left:0;
+            border-right:0;
         }
-        img{
-            width: 300px;
-            height: 200px;
-            margin-left: 20px;
+        th{
+            border-top: 0;
+            /* float:left; */
+            text-align: left;
+        }
+        tr:nth-child(even){background-color: #f2f2f2;}
+        .prix{
+            width: 20%;
+            margin-top: 50px;
+            margin-left: 1020px;
+            border-top: 1px solid black;
+        }
+        .prix th, .prix td{
+            border: 0;
+            background: white;
+            text-align: center;
+        }
+        .card-img img{
+            width: 170px;
+            height: 170px;
+            margin-left: -50px;
+            /* flex: 50%; */
+            transform: translateX(-50px);
+            margin-top: -3px;
+            border-radius: 50%;
+        }
+        .clear {
+    clear:both;
+    line-height:0;
+}
+        .card-img{
+            width: 45%;
+            margin: 1.66%;
+            float: left;
+        }
+        .card-text{
+            margin-top: -10px;
+            margin-left: -10px;
+            /* flex: 50%; */
+            width: 45%;
+            margin: 1.66%;
+            float: left;
+        }
+        .card-text .big{
+            font-weight: 700;
+            font-size: 13px;
+        }
+        .card2{
+            margin-left: 10px;
+            margin-top: 15px;
+            /* flex: 30%; */
+            background: #ddd;
+            width: 25%;
+            vertical-align: top;
+            margin: 1.66%;
+            border-radius: 28px; 
+            display: inline-block;
+            height: auto;
+        }
+        .card2 img{
+            border-radius: 28px;
+        }
+        .container2{
+            margin-top: 20px;
+            width: 700px;
+            margin-left: 50px;
+        }
+        .container3{
+            padding: 2px 16px;
         }
     </style>
 </head>
 <body>
-    <img src="http://localhost:3000/img/Logo.png" style="width: 80px; height: 80px;">
-    <p>
-        Classe: <%if(enfant.classe==1){%>
-            Swans
-          <%}%>
-          <%if(enfant.classe == 2){%>
-            Little foxes
-          <%}%>
-          <%if(enfant.classe == 3){%>
-            Foxes
-          <%}%>
-          <%if(enfant.classe == 4){%>
-            Bears
-          <%}%>
-          <%if(enfant.classe == 5){%>
-            Seals
-          <%}%>
-          <%if(enfant.classe == 6){%>
-            Owls
-          <%}%>
-    </p>
-    <p>
-        <b>Nom de l’enfant:</b> <%=enfant.nom+" "+enfant.prenom%>
-    </p>
-    <%let i=1;%>
-    <center>
-        <!-- 1 -->
-        <img src="http://localhost:3000//files/competence/<%=competence.enfant%>" style="width: 400px; height: 600px;margin-top: 20px; margin-bottom: 40px; margin-left: 20px;">
-        <p style="text-decoration: underline;"><b>Domaine de compétences 1:</b></p>
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img1[0]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img1[0]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img1[1]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img1[1]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img1[2]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img1[2]%>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            <b>
-                Autres compétences:
-            </b>
-        </p>
-        <p>
-            <%i=1;competence.description1.forEach((non_image)=>{%>
-                <br>
-                    <%=i+"-"+non_image%>
-                <br>
-                <br>
-                <%i++;%>
-            <%});%>
-        </p>
-        <!-- 2 -->
-        <b style="text-decoration: underline;">Domaine de compétences 2:</b>
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img2[0]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img2[0]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img2[1]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img2[1]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img2[2]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img2[2]%>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            <b>
-                Autres compétences:
-            </b>
-        </p>
-        <p>
-            <%i=1;competence.description2.forEach((non_image)=>{%>
-                <br>
-                    <%=i+"-"+non_image%>
-                <br>
-                <br>
-                <%i++;%>
-            <%});%>
-        </p>
-        <!-- 3 -->
-        <b style="text-decoration: underline;">Domaine de compétences 3:</b>
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img3[0]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img3[0]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img3[1]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img3[1]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img3[2]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img3[2]%>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            <b>
-                Autres compétences:
-            </b>
-        </p>
-        <p>
-            <%i=1;competence.description3.forEach((non_image)=>{%>
-                <br>
-                    <%=i+"-"+non_image%>
-                <br>
-                <br>
-                <%i++;%>
-            <%});%>
-        </p>
-        <!-- 4 -->
-        <b style="text-decoration: underline;">Domaine de compétences 4:</b>
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img4[0]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img4[0]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img4[1]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img4[1]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img4[2]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img4[2]%>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            <b>
-                Autres compétences:
-            </b>
-        </p>
-        <p>
-            <%i=1;competence.description4.forEach((non_image)=>{%>
-                <br>
-                    <%=i+"-"+non_image%>
-                <br>
-                <br>
-                <%i++;%>
-            <%});%>
-            </p>
-        <!-- 5 -->
-        <b style="text-decoration: underline;">Domaine de compétences 5:</b>
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img5[0]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img5[0]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img5[1]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img5[1]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img5[2]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img5[2]%>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            <b>
-                Autres compétences:
-            </b>
-        </p>
-        <p>
-            <%i=1;competence.description5.forEach((non_image)=>{%>
-                <br>
-                    <%=i+"-"+non_image%>
-                <br>
-                <br>
-                <%i++;%>
-            <%});%>
-        </p>
-        <!-- 6 -->
-        <b style="text-decoration: underline;">Domaine de compétences 6:</b>
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img6[0]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img6[0]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img6[1]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img6[1]%>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <img src="http://localhost:3000//files/competence/<%=competence.img6[2]%>">
-                    </td>
-                    <td>
-                        <%=competence.non_img6[2]%>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <p>
-            <b>
-                Autres compétences:
-            </b>
-        </p>
-        <p>
-            <%i=1;competence.description6.forEach((non_image)=>{%>
-                <br>
-                    <%=i+"-"+non_image%>
-                <br>
-                <br>
-                <%i++;%>
-            <%});%>
-        </p>
-    </center>
+    <div class="left-border"></div>
+    <div class="container">
+        <div id="logo">
+            <p class="title">Rapport de compétence</p>
+            <div class="card">
+                <div class="card-img">
+                    <img src="http://localhost:3000/files/avatar/<%=enfant.image%>">
+                </div> 
+                <div class="card-text">
+                    <p class="big"><%=enfant.nom%></p>
+                    <p class="big"><%=enfant.prenom%></p>
+                    <p style="font-size: 8px;"><%if(enfant.classe==1){%>
+                        Swans
+                      <%}%>
+                      <%if(enfant.classe == 2){%>
+                        Little foxes
+                      <%}%>
+                      <%if(enfant.classe == 3){%>
+                        Foxes
+                      <%}%>
+                      <%if(enfant.classe == 4){%>
+                        Bears
+                      <%}%>
+                      <%if(enfant.classe == 5){%>
+                        Seals
+                      <%}%>
+                      <%if(enfant.classe == 6){%>
+                        Owls
+                      <%}%><span style="margin-left: 20px;">2020-2021</span></p>
+                </div> 
+                <br class="clear">             
+            </div>
+            <img class="top" src="http://localhost:3000/img/Logo.png">
+        </div>
+        <%if(!Array.isArray(competence)){competence = [competence]}%>
+        <%for(let i=1;i<=6;i++){%>
+        <p class="competence">Domaine de compétence <%=i%></p>
+        <div class="container2">
+            <center>
+                <%for(let j=0;j<competence.length;j++){%>
+                    <%if(competence[j].domaine_competence == i){%>
+                    <div class="card2">
+                        <%if(competence[j].competence_image){%>
+                        <img src="http://localhost:3000/files/competence/<%=competence[j].image_competence%>" style="width: 100%;">
+                        <%}%>
+                        <div class="container3">
+                            <h3><%=competence[j].sous_domaine%></h3>
+                            <p><%=competence[j].competence%></p>
+                    </div>
+                    </div>
+                    <%}%>
+                <%}%>
+                <br class="clear">
+            </center>
+        </div>
+        <%}%>
+    </div>
 </body>
 </html>

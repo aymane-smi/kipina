@@ -3,6 +3,13 @@ html{
   height: 100%;
   width: 100%;
 }
+.title{
+  font-size: 10px;
+  margin-left:18px;
+  margin-top:10px;
+  color: white;
+  font-weight: 400;
+}
 *:first-letter {
   text-transform: uppercase;
 }
@@ -338,5 +345,5 @@ body{
 }
 .bjr2-span{
   font-weight: 200;
-  font-size: 38px;
+  font-size: 30px;
 }

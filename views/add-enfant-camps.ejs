@@ -129,8 +129,8 @@
             <img class="rounded-circle" src="/img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
           </div>
           <div style="margin-left: 30px;flex-shrink:0">
-              <span class="bjr1-span ">Bonjour </span>
-              <span class="bjr2-spanp">,<%=user.username%></span>
+              <span class="bjr1-span ">Bonjour</span>
+              <span class="bjr2-span">, <%=user.nom%></span>
           </div>
         </div>
         <div class="col-lg col-sm-12">
@@ -171,7 +171,7 @@
             </p>
             <form action="/<%=camp%>/add-enfant-camp" method="post">
                 <div class="form-group mt-4">
-                  <label for="exampleInputPassword1">choisissait Enfant(s):</label>
+                  <label for="exampleInputPassword1">choisissez Enfant(s):</label>
                   <%enfant.forEach((enfant)=>{%>
                     <div>
                       <label for="check"></label>

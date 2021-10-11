@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
 	nom: String,
 	prenom: String,
 	role: String,
-	location: String
+	location: String,
+	classe: [String]
 });
 userSchema.plugin(localmongoose);
 module.exports = mongoose.model("User",userSchema);

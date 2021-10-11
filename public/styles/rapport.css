@@ -192,8 +192,12 @@ form{
     margin: 10px 0px 0px 0px;
     width: 200%;
 }
+.back-loading{
+    position: relative;
+    transform: translate(63px, -10px);
+}
 .back-loading, .front-loading{
-    width: 100%;
+    width: 130px;
     background-color: #c1c1c1;
     height: 10px;
     border-radius: 16px;
@@ -202,8 +206,9 @@ form{
 }
 
 .front-loading{
+    position: absolute;
     background-color: #BCCF00;
-    top: -10px;
+    /* top: -10px; */
 }
 
 .text-time{

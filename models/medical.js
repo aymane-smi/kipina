@@ -2,7 +2,7 @@ const mongoose      = require("mongoose"),
       medicalSchema = mongoose.Schema({
         nom: String,
         adresse_medcine: String,
-        adresse_clinique: String,
+        // adresse_clinique: String,
         telephone: String,
         prob_sante: Boolean,
         type_prob: {

@@ -3,63 +3,131 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>cantine</title>
+    <title>rapport clone</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <style rel="stylesheet" type="text/css">
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;400;500;700&display=swap');
-        body{
-            font-family: 'Montserrat', sans-serif;
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+        *{
+            font-family: 'Montserrat';
+        }
+        #logo{
+            margin-left: 80px;
+            display:inline-block;
+            width: 100vw;
+        }
+        #logo img{
+            position: fixed;
+            right: 50px;
+            top: 20px;
+            width: 50px;
+            height: 50px;
+            /* float:right;
+            margin-top: -220px;
+            margin-right: 150px; */
+        }
+        .card{
+            margin-top: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            width: 230px;
+            background: rgb(223, 215, 215);
+            border-radius: 28px;
+        }
+        .card p {
+            margin-left: 20px;
+            font-size: 10px;
+            font-weight: 300;
+        }
+        .number{
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        .left-border{
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 70px;
+            height: 900vh;
+            background: #ED7D27;
+        }
+        .container{
+            margin-left: 20px;
+        }
+        .title{
+            color: #ED7D27;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .table{
+            margin-left: 80px;
+            font-size: 12px;
+        }
+        .table p{
+            margin-left: 10px;
+            margin-top: 40px;
+            font-size: 10px;
+            font-weight: 700;
         }
         table{
-            width: 50%;
-            margin: 100px auto 0 auto;
             border-collapse: collapse;
-            border-radius: 20px;
+            width: 90%;
         }
-        th, td{
-            border: 1px solid black;
+        td,th{
+            border: 1px solid #ddd;
+            border-left:0;
+            border-right:0;
+            padding-top:10px;
+            padding-right:10px;
+            text-align: center;
         }
+        th{
+            border-top: 0;
+            /* float:left; */
+            text-align: center;
+        }
+        tr:nth-child(even){background-color: #f2f2f2;}
     </style>
 </head>
 <body>
-    <img src="http://localhost:3000/img/Logo.png" style="width:100px; height:100px;">
-    <center>
-        <p>
-            <h1>Rapport transport</h1>
-        </p>
-        <div>
-            total enfant:<%=enfant.length%>
+    <div class="left-border"></div>
+    <div class="container">
+        <div id="logo">
+            <p class="title">Rapport Transport</p>
+            <div class="card">
+                <p>Nombre total d'enfants: <span class="number"> <%=enfant.length%></span></p>
+                <p>Nombre de classes:<span class="number"><%=classes.length%></span></p>
+            </div>
+            <img src="http://localhost:3000/img/Logo.png">
         </div>
-    </center>
-    <%if(!Array.isArray(classes)){classes = [classes]}%>
-    <%classes.forEach((i)=>{%>
-        <div><h3>classe: classe: <%if(i==1){%>
-            Swans
-          <%}%>
-          <%if(i == 2){%>
-            Little foxes
-          <%}%>
-          <%if(i == 3){%>
-            Foxes
-          <%}%>
-          <%if(i == 4){%>
-            Bears
-          <%}%>
-          <%if(i == 5){%>
-            Seals
-          <%}%>
-          <%if(i == 6){%>
-            Owls
-          <%}%></h3></div>
-        <table>
-            <thead>
+        <%if(!Array.isArray(classes)){classes = [classes]}%>
+        <%classes.forEach((i)=>{%>
+        <div class=table>
+            <p>Classe <%if(i==1){%>
+                Swans
+              <%}%>
+              <%if(i == 2){%>
+                Little foxes
+              <%}%>
+              <%if(i == 3){%>
+                Foxes
+              <%}%>
+              <%if(i == 4){%>
+                Bears
+              <%}%>
+              <%if(i == 5){%>
+                Seals
+              <%}%>
+              <%if(i == 6){%>
+                Owls
+              <%}%></p>
+            <table>
                 <tr>
                     <th scope="col">nom</th>
                     <th scope="col">prenom</th>
+                    <th scope="col">type</th>
                 </tr>
-            </thead>
-            <tbody>
-                
                 <%enfant.forEach((enfant)=>{%>
                     <%if(enfant.classe == i){%>
                     <tr>
@@ -69,12 +137,23 @@
                     <td>
                         <%=enfant.prenom%>
                     </td>
+                    <td>
+                        <%if(enfant.type_transport == 1){%>
+                            Aller
+                        <%}%>
+                        <%if(enfant.type_transport == 2){%>
+                            Retour
+                        <%}%>
+                        <%if(enfant.type_transport == 3){%>
+                            Aller-retour
+                        <%}%>
+                    </td>
                 </tr>
                 <%}%>
                 <%});%>
-            
-            </tbody>
-        </table>
-    <%});%>
+            </table>
+        </div>
+        <%});%>
+    </div>
 </body>
 </html>

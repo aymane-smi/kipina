@@ -3,119 +3,335 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>rapport clone</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <style>
-        li{
-            margin-top: 10px;
-            margin-left: 40px;
-            font-size: 20px;;
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+        *{
+            font-family: 'Montserrat';
+        }
+        #logo{
+            margin-left: 80px;
+            display:inline-block;
+            width: 100vw;
+        }
+        #logo img{
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            right: 50px;
+            top:60px;
+            /* float:right;
+            margin-top: -220px;
+            margin-right: 150px; */
+        }
+        .card{
+            margin-top: 50px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 15px;
+            padding-right: 15px;
+            width: 230px;
+            background: rgb(223, 215, 215);
+            border-radius: 10px;
+        }
+        .card p {
+            margin-left: 20px;
+            font-size: 8px;
+            font-weight: 300;
+        }
+        .number{
+            font-weight: 700;
+            float: right;
+        }
+        .left-border{
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 70px;
+            height: 900vh;
+            background: #ED7D27;
+        }
+        .container{
+            margin-left: 20px;
+        }
+        .title{
+            color: #ED7D27;
+            font-weight: 700;
+            font-size: 12px;
+        }
+        .table{
+            margin-left: 80px;
+            font-size: 8px;
+        }
+        .table p{
+            margin-left: 10px;
+            margin-top: 40px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        table{
+            border-collapse: collapse;
+            width: 80%;
+        }
+        td,th{
+            border: 1px solid #ddd;
+            border-left:0;
+            border-right:0;
+        }
+        th{
+            border-top: 0;
+            /* float:left; */
+            text-align: left;
+        }
+        tr:nth-child(even){background-color: #f2f2f2;}
+        .prix{
+            width: 20%;
+            margin-top: 50px;
+            margin-left: 430px;
+            border-top: 1px solid black;
+        }
+        .prix th, .prix td{
+            border: 0;
+            background: white;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <img src="http://localhost:3000/img/Logo.png">
-        <%let total = 0;let tmp = [];%>
-            <%if(impaye){%>
-                <%impaye.forEach((item)=>{%>
-                    <div style="margin-left: 40%;">
-                    <p><b>Facture pour la date:<%=item.date.getDate()+"/"+(item.date.getMonth()+1)+"/"+item.date.getFullYear()%></b></p>
-                    <ul>
-                        <h3>Scolarité:</h3>
-                        <%if(enfant.type_scolarite == 1){%>
-                            <li>ancien prix: <%=prix.scolarite_ancien%>dh</li>
-                            <%total += prix.scolarite_ancien%>
-                        <%}%>
-                        <%if(enfant.type_scolarite == 2){%>
-                            <li>nouveau prix: <%=prix.scolarite_nv%>dh</li>
-                            <%total += prix.scolarite_nv%>
-                        <%}%>
-                        <h3>Transport:</h3>
-                        <%if(enfant.transport){%>
-                            <%if(enfant.type_transport == 1){%>
-                                <li>Aller: <%=prix.trajet%>dh</li>
-                                <%total += prix.trajet%>
-                            <%}%>
-                            <%if(enfant.type_transport == 2){%>
-                                <li>Retour: <%=prix.trajet%></li>
-                                <%total += prix.trajet%>
-                            <%}%>
-                            <%if(enfant.type_transport == 3){%>
-                                <li>Aller-retour: <%=prix.aller_retour%>dh</li>
-                                <%total += prix.aller_retour%>
-                            <%}%>
-                        <%}%>
-                        <h3>Service de garde:</h3>
-                        <%if(enfant.gardes){%>
-                            <%if(enfant.gardes_type.includes(1)){%>
-                                <li>Am: <%=prix.garde%>dh</li>
-                                <%total += prix.garde%>
-                            <%}%>
-                            <%if(enfant.gardes_type.includes(2)){%>
-                                <li>pm: <%=prix.garde%>dh</li>
-                                <%total += prix.garde%>
-                            <%}%>
-                        <%}%>
-                        <h3>Service de garde mercredi après-midi:</h3>
-                        <%if(enfant.mercredi){%>
-                            <li>mercredi après-midi: <%=prix.mercredi%>dh</li>
-                            <%total += prix.mercredi%>
-                        <%}%>
-                        <h3>Cantine:</h3>
-                        <%if(enfant.cantine){%>
-                            <%if(enfant.type_cantine == 1){%>
-                                <li>4 jours: <%=prix.cantine4%>dh</li>
-                                <%total += prix.cantine4%>
-                            <%}%>
-                            <%if(enfant.type_cantine == 2){%>
-                                <li>5 jours: <%=prix.cantine5%>dh</li>
-                                <%total += prix.cantine5%>
-                            <%}%>
-                        <%}%>
-                    </ul>
-                </div>
-                <hr>
-                <%})%>
-            <%}%>
-            <center>
-                <%if(trajet_unitaire){%>
-                    <%tmp = trajet_unitaire.split(",")%>
-                    <h3><h3><p>Les dates:</p></h3></h3>
-                    <p><%=tmp%></p>
-                    <p style="font-size: 20px;">Trajet unitaire: <%=tmp.length*prix.trajet_unitaire%>dh</p>
-                    <%total += tmp.length*prix.trajet_unitaire%>
-                <%}%>
-                <%if(cantine_unitaire){%>
-                    <%tmp = cantine_unitaire.split(",")%>
-                    <h3><p>Les dates:</p></h3>
-                    <p><%=tmp%></p>
-                    <p style="font-size: 20px;">Cantine repas unitaire: <%=tmp.length*prix.cantine_unitaire%>dh</p>
-                    <%total += tmp.length*prix.cantine_unitaire%>
-                <%}%>
-                <%if(mercredi_unitaire){%>
-                    <%tmp = mercredi_unitaire.split(",")%>
-                    <h3><p>Les dates:</p></h3>
-                    <p><%=tmp%></p>
-                    <p style="font-size: 20px;">Mercredi unité: <%=tmp.length*prix.mercredi_unitaire%>dh</p>
-                    <%total += tmp.length*prix.mercredi_unitaire%>
-                <%}%>
-                <%if(retart_garde){%>
-                    <%tmp = retart_garde.split(",")%>
-                    <h3><p>Les dates:</p></h3>
-                    <p><%=tmp%></p>
-                    <p style="font-size: 20px;">Retard garde: <%=tmp.length*50%>dh</p>
-                    <%total += tmp.length*50%>
-                <%}%>
-                <%if(retart_paiement){%>
-                    <%tmp = retart_paiement.split(",")%>
-                    <h3><p>Les dates:</p></h3>
-                    <p><%=tmp%></p>
-                    <p style="font-size: 20px;">Retard paiement: <%=tmp.length*50%>dh</p>
-                    <%total += tmp.length*50%>
-                <%}%>
-            </center>
-            <hr>
-            <h3><b>Total: </b></h3><span style="font-weight: 600; font-size: 20px; color: green;"><%=total%>dh</span>
+    <div class="left-border"></div>
+    <div class="container">
+        <div id="logo">
+            <p class="title">Facture</p>
+            <div class="card">
+                <p>Père: <span class="number"><%=pere.nom+" "+pere.prenom%></span></p>
+                <p>Mère: <span class="number"><%if(mere){%><%=mere.nom+" "+mere.prenom%><%}%></span></p>
+                <br>
+                <p>enfant: <span class="number"> <%=enfant.nom+" "+enfant.prenom%></span></p>
+                <p>Nom de classe: <span class="number"><%if(enfant.classe==1){%>
+                    Swans
+                  <%}%>
+                  <%if(enfant.classe == 2){%>
+                    Little foxes
+                  <%}%>
+                  <%if(enfant.classe == 3){%>
+                    Foxes
+                  <%}%>
+                  <%if(enfant.classe == 4){%>
+                    Bears
+                  <%}%>
+                  <%if(enfant.classe == 5){%>
+                    Seals
+                  <%}%>
+                  <%if(enfant.classe == 6){%>
+                    Owls
+                  <%}%></span></p>
+                <p>Date<span class="number">01/<%=month.slice(5)%>/<%=month.slice(0,4)%><%=//month.getFullYear()%></span></p>
             </div>
+            <img src="http://localhost:3000/img/Logo.png">
+        </div>
+        <div class=table>
+            <%let total = 0;let tmp = [];cpt=0;%>
+            <p>Valeur en DHS</p>
+            <table>
+
+                <tr>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Qte</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                </tr>
+                <%impaye.forEach((x)=>{%>
+                    <%if ((x.date.getMonth()+1) == Number.parseInt(month.slice(5)) && (x.date.getFullYear() == Number.parseInt(month.slice(0,4))) ){%>
+                        <tr>
+                    <td>Scolarité</td>
+                    <%if(enfant.type_scolarite == 1){%>
+                        <td><%=prix.scolarite_ancien%></td>
+                        <%total += prix.scolarite_ancien%>
+                    <%}%>
+                    <%if(enfant.type_scolarite == 2){%>
+                        <td><%=prix.scolarite_nv%>dh</td>
+                        <%total += prix.scolarite_nv%>
+                    <%}%>
+                    <td>1</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Transport</td>
+                    <%if(enfant.transport){%>
+                        <%if(enfant.type_transport == 1){%>
+                            <td><%=prix.trajet%></td>
+                            <%total += prix.trajet%>
+                        <%}%>
+                        <%if(enfant.type_transport == 2){%>
+                            <td><%=prix.trajet%></td>
+                            <%total += prix.trajet%>
+                        <%}%>
+                        <%if(enfant.type_transport == 3){%>
+                            <td><%=prix.aller_retour%></td>
+                            <%total += prix.aller_retour%>
+                        <%}%>
+                    <%}else{%>
+                        <td></td>
+                    <%}%>
+                    <%if(enfant.transport){%>
+                    <td>1</td>
+                    <%}else{%>
+                        <td></td>
+                    <%}%>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Service de Garde</td>
+                    <td>
+                    <%if(enfant.gardes){%>
+                        <%if(enfant.gardes_type.includes(1)){%>
+                            <%=prix.garde%><br>
+                            <%total += prix.garde%>
+                        <%}%>
+                        <%if(enfant.gardes_type.includes(2)){%>
+                            <%=prix.garde%><br>
+                            <%total += prix.garde%>
+                        <%}%>
+                    <%}else{%>
+                       <span></span>>
+                    <%}%>
+                </td>
+                    <%if(enfant.gardes){%>
+                    <td>1</td>
+                    <%}else{%>
+                        <td></td>
+                    <%}%>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Service de garde mercredi après-midi</td>
+                        <%if(enfant.mercredi){%>
+                        <td><%=prix.mercredi%></td>
+                        <%total += prix.mercredi%>
+                    <%}else{%>
+                        <td></td>
+                    <%}%>
+                        <%if(enfant.mercredi){%>
+                            <td>1</td>>
+                        <%}else{%>
+                            <td></td> 
+                        <%}%>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Cantine</td>
+                    <%if(enfant.cantine){%>
+                        <%if(enfant.type_cantine == 1){%>
+                            <td><%=prix.cantine4%></td>
+                            <%total += prix.cantine4%>
+                        <%}%>
+                        <%if(enfant.type_cantine == 2){%>
+                            <td><%=prix.cantine5%></td>
+                            <%total += prix.cantine5%>
+                        <%}%>
+                    <%}else{%>
+                        <td></td>
+                    <%}%>
+                    <%if(enfant.cantine){%>
+                    <td>1</td>
+                    <%}else{%>
+                        <td></td>
+                    <%}%>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <%if(trajet_unitaire){%>
+                        <%tmp = trajet_unitaire.split(",")%>
+                        <td>Trajet Unitaire</td>
+                        <td><%=tmp.length*prix.trajet_unitaire%></td>
+                        <td><%=tmp.length%></td>
+                        <td><%tmp.forEach((date)=>{%>
+                            <%=date%><br>
+                        <%})%></td>
+                        <td></td>
+                        <%total += tmp.length*prix.trajet_unitaire%>
+                    <%}%>
+                </tr>
+                <tr>
+                    <%if(cantine_unitaire){%>
+                        <%tmp = cantine_unitaire.split(",")%>
+                        <td>Cantine Unitaire</td>
+                        <td><%=tmp.length*prix.cantine_unitaire%></td>
+                        <td><%=tmp.length%></td>
+                        <td><%tmp.forEach((date)=>{%>
+                            <%=date%><br>
+                        <%})%></td>
+                        <td></td>
+                        <%total += tmp.length*prix.cantine_unitaire%>
+                    <%}%>
+                </tr>
+                <tr>
+                    <%if(mercredi_unitaire){%>
+                        <%tmp = mercredi_unitaire.split(",")%>
+                        <td>Mercredi Unitaire</td>
+                        <td><%=tmp.length*prix.mercredi_unitaire%></td>
+                        <td><%=tmp.length%></td>
+                        <td><%tmp.forEach((date)=>{%>
+                            <%=date%><br>
+                        <%})%></td>
+                        <td></td>
+                        <%total += tmp.length*prix.mercredi_unitaire%>
+                    <%}%>
+                </tr>
+                <tr>
+                    <%if(retart_garde){%>
+                        <%tmp = retart_garde.split(",")%>
+                        <td>Retard de garde</td>
+                        <td><%=tmp.length*50%></td>
+                        <td><%=tmp.length%></td>
+                        <td><%tmp.forEach((date)=>{%>
+                            <%=date%><br>
+                        <%})%></td>
+                        <td></td>
+                        <%total += tmp.length*50%>
+                    <%}%>
+                </tr>
+                <tr>
+                    <%if(retart_paiement){%>
+                        <%tmp = retart_paiement.split(",")%>
+                        <td>Retard de paiement</td>
+                        <td><%=tmp.length*50%></td>
+                        <td><%=tmp.length%></td>
+                        <td><%tmp.forEach((date)=>{%>
+                            <%=date%><br>
+                        <%})%></td>
+                        <td></td>
+                        <%total += tmp.length*50;%>
+                    <%}%>
+                </tr>
+                <%}%>
+                <%})%>
+            </table>
+            <br>
+            <table class="prix">
+                <tr style="margin-top: 10px;">
+                    <th>Somme</th>
+                    <td><%=total%></td>
+                </tr>
+                <tr>
+                    <th>Remise</th>
+                    <td><%=prix.remise%>%</td>
+                </tr>
+                <%if(remise){%>
+                <tr>
+                    <th>Total</th>
+                    <td><%=total-(total*(prix.remise/100))%></td>
+                </tr>
+                <%}%>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

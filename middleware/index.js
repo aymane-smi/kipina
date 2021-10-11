@@ -27,6 +27,7 @@ AccessMiddleware.isEducatrice = function(req, res, next){
 AccessMiddleware.isLoggedIn = function(req, res, next){
     if(req.isAuthenticated())
         return next();
+    req.flash("error", "Mot de passe ou nom d'utilisateur est incorrecte!");
     res.redirect("/");
 };
 module.exports = AccessMiddleware;

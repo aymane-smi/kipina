@@ -134,8 +134,8 @@ container content
             <img class="rounded-circle" src="/img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
           </div>
           <div style="margin-left: 30px;flex-shrink:0">
-              <span class="bjr1-span ">Bonjour </span>
-              <span class="bjr2-spanp">,<%=user.username%></span>
+              <span class="bjr1-span ">Bonjour</span>
+              <span class="bjr2-span">, <%=user.nom%></span>
           </div>
         </div>
         <div class="col-lg col-sm-12">
@@ -198,8 +198,9 @@ container content
           </div>
           <div class="time-remaining">
               <div class="progress-bar-loading">
-                  <div class="back-loading"></div>
-                  <div class="front-loading" style="width: 90%;"></div>
+                  <div class="back-loading">
+                    <div class="front-loading" style="width: 90%;"></div>
+                  </div>
               </div>
               <div class="text-time"> 3 semaines</div>
           </div> 
@@ -309,7 +310,7 @@ container content
           current = moment(new Date());
         if(<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days')>0){
         tmp  = moment("<%=camps[i].date_creation%>");
-               progress[<%=i%>].style.width = (100*current.diff(tmp, 'days')/<%=camps[i].nbr_jrs%>)+"%";
+        progress[<%=i%>].style.width = (100*current.diff(tmp, 'days')/<%=camps[i].nbr_jrs%>)+"%";
         current = moment(new Date());
               tmp     = moment("<%=camps[i].date_creation%>");
         text[<%=i%>].innerText = (<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days'))+" jours restants";

@@ -26,10 +26,14 @@ const express = require("express"),
   payement = require("./models/payement"),
   kipina = require("./models/kipina"),
   english = require("./models/english"),
+  pdfcrowd = require("pdfcrowd"),
   impaye =require("./models/impaye"),
   plan = require("./models/plan"),
+  sous_competence = require("./models/sous_competence"),
   pdf = require("html-pdf"),
   prix = require("./models/prix"),
+  flash = require("connect-flash"),
+  client = new pdfcrowd.HtmlToPdfClient("demo", "ce544b6ea52a5621fb9d55f8b542d14d"),
   AccessMiddleware = require("./middleware/index"),
   mongo_url =
     "mongodb+srv://tester:p7dJ3dFR3xBXvOWI@cluster0.b4bpq.mongodb.net/test?retryWrites=true";
@@ -60,7 +64,7 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 
 //login
-
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new local(user.authenticate()));
@@ -76,14 +80,14 @@ app.use((req, res, next) => {
 //logic
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", {error: req.flash("error")});
 });
-
 app.post(
   "/login",
   passport.authenticate("local", {
-    failureRedirect: "/",
+    failureRedirect: "/login",
     successRedirect: "/dashboard",
+    failureFlash: { type: 'error', message: "Mot de passe/Nom d'utilisateur invalide!" }
   }),
   (req, res) => {}
 );
@@ -100,10 +104,10 @@ const storage = multer.diskStorage({
     },
   }),
   upload_img = multer({ storage: storage });
-app.get("/dashboard/settings", AccessMiddleware.isLoggedIn, (req, res) => {
+app.get("/dashboard/settings", AccessMiddleware.isLoggedIn, AccessMiddleware.isDirector, (req, res) => {
   res.render("settings.ejs");
 });
-app.post("/dashboard/settings", AccessMiddleware.isLoggedIn, upload_img.single("new_image"), (req, res) => {
+app.post("/dashboard/settings", AccessMiddleware.isLoggedIn, AccessMiddleware.isDirector, upload_img.single("new_image"), (req, res) => {
   const obj = {};
   if (req.file) obj.photo_profile = req.user._id; //+'.'+//req.file.originalname.split('.').pop();
   obj.username = req.body.username;
@@ -125,24 +129,7 @@ app.get("/", (req, res) => {
 });
 //dashboard page
 app.post("/dashboard/creation-pere", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res) => {
-  const pere_obj = {
-    nom: req.body.p_nom,
-    prenom: req.body.p_prenom,
-    courriel: req.body.p_courreil,
-    nationalite: req.body.p_nationalite,
-    profession: req.body.p_profession,
-    telephone: req.body.p_tele,
-    num_rue: req.body.p_n_rue,
-    rue: req.body.p_rue,
-    quartier: req.body.p_quartier,
-    ville: req.body.p_ville,
-    pays: req.body.p_pays,
-    cin_passport: req.body.p_id,
-    sexe: 1
-  };
-  personne.create(pere_obj, (err, pere) => {
-    res.redirect("/dashboard/modification");
-  });
+  
 });
 app.post("/dashboard/creation-mere", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res) => {
   const mere_obj = {
@@ -166,7 +153,7 @@ app.post("/dashboard/creation-mere", AccessMiddleware.isLoggedIn, AccessMiddlewa
 });
 
 app.post("/dashboard/", AccessMiddleware.isLoggedIn, (req, res) => {
-  let obj = {},
+  let bool = true,obj = {},
     paye = 0,
     cantine_1 = 0,
     cantine_2 = 0,
@@ -184,29 +171,152 @@ app.post("/dashboard/", AccessMiddleware.isLoggedIn, (req, res) => {
   });
   enfant.find({}, (err, total) => {
     total.forEach((iteration) => {
+      console.log(req.body.class_check);
       if((req.body.class_check)){
-        if (
-          (req.body.paye && iteration.payement) ||
-          (req.body.impaye && !iteration.payement) ||
-          (req.body.transport1 && iteration.transport) ||
-          (req.body.transport2 && !iteration.transport) ||
-          (req.body.g_pm && iteration.gardes) ||
-          (req.body.g_am && !iteration.gardes) ||
-          (req.body.mercredi_oui && iteration.mercredi) ||
-          (req.body.mercredi_non && !iteration.mercredi) && req.body.class_check.includes(iteration.classe))
-            enfant_arr.push(iteration);
-      }else{
-        if (
-          (req.body.paye && iteration.payement) ||
-          (req.body.impaye && !iteration.payement) ||
-          (req.body.transport1 && iteration.transport) ||
-          (req.body.transport2 && !iteration.transport) ||
-          (req.body.g_pm && iteration.gardes) ||
-          (req.body.g_am && !iteration.gardes) ||
-          (req.body.mercredi_oui && iteration.mercredi) ||
-          (req.body.mercredi_non && !iteration.mercredi))
-            enfant_arr.push(iteration);
+        console.log("class check");
+      if(!Array.isArray(req.body.class_check)){
+        if(req.body.class_check == ''+iteration.classe){
+          console.log("contain");
+          bool &= true;
+        }else{
+          console.log("not in");
+          bool &= false;
+        }
       }
+      if(Array.isArray(req.body.class_check)){
+      for (let i = 0; i < req.body.class_check.length; i++)
+      req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
+      if(req.body.class_check.includes(iteration.classe)){
+        console.log("in array");
+        bool &= true;
+      }else{
+        console.log("not in the array");
+        bool &= false;
+      }
+    }
+        if(req.body.paye){
+          if(iteration.payement){
+            console.log("paye");
+            bool &= true;}
+          else{
+            bool &= false;
+            console.log("non paye1")
+          }
+          }
+        if(req.body.impaye){
+          if(!iteration.payement){
+            console.log("non paye");
+            bool &= true;
+          }
+          else{
+            console.log("paye1");
+            bool &= false;
+          }
+          }
+        if(req.body.transport1){
+          if(iteration.transport){
+            bool &= true;
+          }
+          else
+            bool &= false;
+        }
+        if(req.body.transport2){
+          if(!iteration.transport){
+            bool &= true;
+          }
+          else{
+            bool &= false;
+          }
+        }
+        if(req.body.g_pm){
+          if(iteration.gardes){
+            bool &=true;
+          }
+          else
+            bool &= false;
+        }
+        if(req.body.g_am){
+          if(!iteration.gardes){
+            bool &= true;
+          }
+          else
+            bool &= false;
+        }
+        if(req.body.mercredi_oui){
+          if(iteration.mercredi){
+            bool &= true;
+          }
+          else
+            bool &= false;
+        }
+        if(req.body.mercredi_non){
+          if(!iteration.mercredi){
+            bool &= true;
+          }
+          else
+            bool &= false;          
+        }
+      }else{
+        if(req.body.paye){
+          if(iteration.payement){
+            bool &= true;}
+          else
+            bool &= false;
+          }
+        if(req.body.impaye){
+          if(!iteration.payement){
+            bool &= true;
+          }
+          else
+            bool &= false;
+          }
+        if(req.body.transport1){
+          if(iteration.transport){
+            bool &= true;
+          }
+          else
+            bool &= false;
+        }
+        if(req.body.transport2){
+          if(!iteration.transport){
+            bool &= true;
+          }
+          else{
+            bool &= false;
+          }
+        }
+        if(req.body.g_pm){
+          if(iteration.gardes){
+            bool &=true;
+          }
+          else
+            bool &= false;
+        }
+        if(req.body.g_am){
+          if(!iteration.gardes){
+            bool &= true;
+          }
+          else
+            bool &= false;
+        }
+        if(req.body.mercredi_oui){
+          if(iteration.mercredi){
+            bool &= true;
+          }
+          else
+            bool &= false;
+        }
+        if(req.body.mercredi_non){
+          if(!iteration.mercredi){
+            bool &= true;
+          }
+          else
+            bool &= false;          
+        }
+      }
+      if(bool)
+        enfant_arr.push(iteration);
+      console.log(bool);
       if (iteration.payement == true) paye++;
       if (iteration.payement == false) impaye++;
       medical.find({ eleve: iteration._id }, (err, medical) => {
@@ -219,7 +329,7 @@ app.post("/dashboard/", AccessMiddleware.isLoggedIn, (req, res) => {
       if (iteration.type_cantine == 1) cantine_1++;
       if (iteration.type_cantine == 2) cantine_2++;
     });
-    console.log(enfant_arr);
+    // console.log(enfant_arr);
     res.render("dashboard", {
       personnel: personnel,
       cantine_1: cantine_1,
@@ -248,7 +358,7 @@ app.get("/dashboard/", AccessMiddleware.isLoggedIn, (req, res) => {
     cantine_1 = 0,
     cantine_2 = 0,
     gardes_1 = 0;
-  kipina.findOne({ nom: "kipina1" }, (err, kipina) => {
+  kipina.findOne({ nom: req.user.location }, (err, kipina) => {
     console.log(kipina);
     nbr_classe = kipina.nbr_classe;
     console.log(nbr_classe);
@@ -286,8 +396,14 @@ app.get("/dashboard/", AccessMiddleware.isLoggedIn, (req, res) => {
 
 //creation of 'enfant' and all his fields
 
-app.post("/create", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, upload.single("photo_enfant"), (req, res) => {
-  const enfant_obj = {
+app.post("/create", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, upload.single("photo_enfant"), async(req, res) => {
+  console.log("====>");
+  console.log(req.body.key_p);
+  console.log(req.body.key_m);
+  console.log(req.body.pere);
+  console.log(req.body.mere);
+  let mere_, pere_;
+  let enfant_obj = {
     nom: req.body.e_nom,
     prenom: req.body.e_prenom,
     date_naissance: req.body.e_date,
@@ -297,6 +413,60 @@ app.post("/create", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, uploa
     langues_parlees: req.body.e_parlees,
     location: req.user.location,
   };
+  if(req.body.key_p == "true"){
+    console.log("ajouter pere");
+    const pere_obj = {
+      nom: req.body.p_nom,
+      prenom: req.body.p_prenom,
+      courriel: req.body.p_courreil,
+      nationalite: req.body.p_nationalite,
+      profession: req.body.p_profession,
+      telephone: req.body.p_tele,
+      num_rue: req.body.p_n_rue,
+      rue: req.body.p_rue,
+      quartier: req.body.p_quartier,
+      ville: req.body.p_ville,
+      pays: req.body.p_pays,
+      cin_passport: req.body.p_id,
+      sexe: 1
+    };
+      await personne.create(pere_obj).then(pere => {
+        console.log(pere);
+        enfant_obj.pere = pere._id;
+        console.log("pere1:"+enfant_obj.pere);
+      });
+    console.log("pere:"+enfant_obj.pere);
+  }if(req.body.key_p == "false"){
+    enfant_obj.pere = req.body.pere;
+    console.log("pere2:"+enfant_obj.pere);
+  }
+  if(req.body.key_m == "true"){
+    console.log("ajouter mere");
+    const mere_obj = {
+      nom: req.body.m_nom,
+      prenom: req.body.m_prenom,
+      courriel: req.body.m_courreil,
+      nationalite: req.body.m_nationalite,
+      profession: req.body.m_profession,
+      telephone: req.body.m_tel,
+      num_rue: req.body.m_n_rue,
+      rue: req.body.m_rue,
+      quartier: req.body.m_quartier,
+      ville: req.body.m_ville,
+      pays: req.body.m_pays,
+      cin_passport: req.body.m_id,
+      sexe: 0
+    };
+      await personne.create(mere_obj).then(mere => {
+        enfant_obj.mere = mere._id;
+        console.log("mere1:"+enfant_obj.mere);
+      });
+    console.log("mere:"+enfant_obj.mere);
+  }if(req.body.key_m == "false"){
+    console.log("mere2:"+enfant_obj.mere);
+    enfant_obj.mere = req.body.mere;
+  }
+  console.log(enfant_obj.pere+" pere:mere "+enfant_obj.mere);
   if(req.body.sm == 'oui')
     enfant_obj.sm = true;
   if(req.body.sm == 'non')
@@ -344,12 +514,10 @@ app.post("/create", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, uploa
   if (req.body.e_garcon === "on") enfant_obj.sexe = 1;
   if (req.body.e_fille === "on") enfant_obj.sexe = 0;
   enfant_obj.type_eleve = Number.parseInt(req.body.type_eleve);
-  enfant_obj.mere = req.body.mere;
-  enfant_obj.pere = req.body.pere;
   console.log(enfant_obj);
-  enfant.create(enfant_obj, (err, enfant) => {
-    routine.create({eleve:enfant._id}, (err, routine)=>{});
-    let historique_obj = {nom: enfant.nom, prenom: enfant.prenom, date_inscription: Date.now()};
+  await enfant.create(enfant_obj, (err, enfant_) => {
+    routine.create({eleve:enfant_._id}, (err, routine)=>{});
+    let historique_obj = {nom: enfant_.nom, prenom: enfant_.prenom, date_inscription: Date.now()};
     historique.create(historique_obj, (err, historique)=>{
       if(historique)
         console.log("created");
@@ -364,18 +532,18 @@ app.post("/create", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, uploa
         nom: req.body.nom_urgence,
         lien: req.body.lien_urgence,
         telephone: req.body.tel_urgence,
-        eleve: enfant,
+        eleve: enfant_,
       };
       const medical_obj = {
         nom: req.body.medcin_nom,
         adresse_medcine: req.body.adresse_medcine,
-        adresse_clinique: req.body.adresse_clinique,
+        // adresse_clinique: req.body.adresse_clinique,
         telephone: req.body.medcin_tel,
         accident_desc: req.body.accident,
         allergie_desc: req.body.allergies,
         medica_desc: req.body.medicaments,
         info_plus: req.body.info,
-        eleve: enfant,
+        eleve: enfant_,
       };
       console.log(medical_obj);
       if (req.body.prob_oui === "on") {
@@ -432,15 +600,21 @@ app.post("/dashboard/delete/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.
   let ObjectId = require('mongoose').Types.ObjectId; 
   await enfant.findById(req.params.id, (err, enfant_)=>{
     console.log("=>"+enfant_);
-    enfant.countDocuments({pere:new ObjectId(enfant_.pere)}, (err, count)=>{
+    enfant.countDocuments({pere:enfant_.pere}, (err, count)=>{
       console.log(count);
       if(count == 1)
-        personne.findByIdAndRemove(enfant_.pere, (err, pere)=>{});
+        personne.findByIdAndRemove(enfant_.pere, (err, pere)=>{
+          console.log("deleted pere!");
+          console.log(pere);
+        });
     });
-    enfant.countDocuments({mere:new ObjectId(enfant_.mere)}, (err, count)=>{
+    enfant.countDocuments({mere:enfant_.mere}, (err, count)=>{
       console.log(count);
       if(count == 1)
-        personne.findByIdAndRemove(enfant_.mere, (err, mere)=>{});
+        personne.findByIdAndRemove(enfant_.mere, (err, mere)=>{
+          console.log("deleted mere!");
+          console.log(mere);
+        });
     });
     });
   enfant.findByIdAndDelete(req.params.id, (err, enfant_) => {
@@ -509,7 +683,7 @@ app.get("/dashboard/modification", AccessMiddleware.isLoggedIn, [AccessMiddlewar
   });
 });
 app.post("/dashboard/modification", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res) => {
-  let arr_pere = [],
+  let bool = true, arr_pere = [],
     arr_mere = [];
   personne.find({}, (err, personne) => {
     personne.forEach((personne) => {
@@ -518,37 +692,152 @@ app.post("/dashboard/modification", AccessMiddleware.isLoggedIn, AccessMiddlewar
     });
     let enfant_arr = [];
     if (req.body.class_check)
-      for (let i = 0; i < req.body.class_check.length; i++)
-        req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
     enfant.find({}, (err, enfant) => {
-      enfant.forEach((eleve) => {
-        // if (req.body.class_check)
-        //   if (req.body.class_check.includes(eleve.classe))
-        //     enfant_arr.push(eleve);
-        if(req.body.class_check){
-          if (
-            (req.body.paye && eleve.payement) ||
-            (req.body.impaye && !eleve.payement) ||
-            (req.body.transport1 && eleve.transport) ||
-            (req.body.transport2 && !eleve.transport) ||
-            (req.body.g_pm && eleve.gardes) ||
-            (req.body.g_am && !eleve.gardes) ||
-            (req.body.mercredi_oui && eleve.mercredi) ||
-            (req.body.mercredi_non && !eleve.mercredi) || req.body.class_check.includes(eleve.classe))
-            enfant_arr.push(eleve);
+      enfant.forEach((iteration) => {
+        if((req.body.class_check)){
+          console.log("class check");
+        if(!Array.isArray(req.body.class_check)){
+          if(req.body.class_check == ''+iteration.classe){
+            console.log("contain");
+            bool &= true;
+          }else{
+            console.log("not in");
+            bool &= false;
           }
-        else{
-          if (
-            (req.body.paye && eleve.payement) ||
-            (req.body.impaye && !eleve.payement) ||
-            (req.body.transport1 && eleve.transport) ||
-            (req.body.transport2 && !eleve.transport) ||
-            (req.body.g_pm && eleve.gardes) ||
-            (req.body.g_am && !eleve.gardes) ||
-            (req.body.mercredi_oui && eleve.mercredi) ||
-            (req.body.mercredi_non && !eleve.mercredi))
-            enfant_arr.push(eleve);
+        }
+        if(Array.isArray(req.body.class_check)){
+        for (let i = 0; i < req.body.class_check.length; i++)
+        req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
+        if(req.body.class_check.includes(iteration.classe)){
+          console.log("in array");
+          bool &= true;
+        }else{
+          console.log("not in the array");
+          bool &= false;
+        }
+      }
+          if(req.body.paye){
+            if(iteration.payement){
+              console.log("paye");
+              bool &= true;}
+            else{
+              bool &= false;
+              console.log("non paye1")
+            }
+            }
+          if(req.body.impaye){
+            if(!iteration.payement){
+              console.log("non paye");
+              bool &= true;
+            }
+            else{
+              console.log("paye1");
+              bool &= false;
+            }
+            }
+          if(req.body.transport1){
+            if(iteration.transport){
+              bool &= true;
+            }
+            else
+              bool &= false;
           }
+          if(req.body.transport2){
+            if(!iteration.transport){
+              bool &= true;
+            }
+            else{
+              bool &= false;
+            }
+          }
+          if(req.body.g_pm){
+            if(iteration.gardes){
+              bool &=true;
+            }
+            else
+              bool &= false;
+          }
+          if(req.body.g_am){
+            if(!iteration.gardes){
+              bool &= true;
+            }
+            else
+              bool &= false;
+          }
+          if(req.body.mercredi_oui){
+            if(iteration.mercredi){
+              bool &= true;
+            }
+            else
+              bool &= false;
+          }
+          if(req.body.mercredi_non){
+            if(!iteration.mercredi){
+              bool &= true;
+            }
+            else
+              bool &= false;          
+          }
+        }else{
+          if(req.body.paye){
+            if(iteration.payement){
+              bool &= true;}
+            else
+              bool &= false;
+            }
+          if(req.body.impaye){
+            if(!iteration.payement){
+              bool &= true;
+            }
+            else
+              bool &= false;
+            }
+          if(req.body.transport1){
+            if(iteration.transport){
+              bool &= true;
+            }
+            else
+              bool &= false;
+          }
+          if(req.body.transport2){
+            if(!iteration.transport){
+              bool &= true;
+            }
+            else{
+              bool &= false;
+            }
+          }
+          if(req.body.g_pm){
+            if(iteration.gardes){
+              bool &=true;
+            }
+            else
+              bool &= false;
+          }
+          if(req.body.g_am){
+            if(!iteration.gardes){
+              bool &= true;
+            }
+            else
+              bool &= false;
+          }
+          if(req.body.mercredi_oui){
+            if(iteration.mercredi){
+              bool &= true;
+            }
+            else
+              bool &= false;
+          }
+          if(req.body.mercredi_non){
+            if(!iteration.mercredi){
+              bool &= true;
+            }
+            else
+              bool &= false;          
+          }
+        }
+        if(bool)
+          enfant_arr.push(iteration);
       });
       kipina.find({ nom: req.user.location }, (err, kipina) => {
         res.render("modification", {
@@ -586,9 +875,9 @@ app.post(
       langue_maternelle: req.body.e_maternelle,
       langues_parlees: req.body.e_parlees,
     };
-    if(req.body.ancien)
+    if(req.body.ancien_oui)
       enfant_obj.type_scolarite = 1;
-    if(!req.body.ancien)
+    if(req.body.ancien_non)
       enfant_obj.type_scolarite = 2;
     if(req.body.sm == 'oui')
       enfant_obj.sm = true;
@@ -648,7 +937,7 @@ app.post(
     const medical_obj = {
       nom: req.body.medcin_nom,
       adresse_medcine: req.body.adresse_medcine,
-      adresse_clinique: req.body.adresse_clinique,
+      // adresse_clinique: req.body.adresse_clinique,
       telephone: req.body.medcin_tel,
       accident_desc: req.body.accident,
       allergie_desc: req.body.allergies,
@@ -717,6 +1006,7 @@ app.get("/dashboard/add-kipina", AccessMiddleware.isLoggedIn, AccessMiddleware.i
   res.render("add-kipina");
 });
 app.post("/dashboard/add-kipina", AccessMiddleware.isLoggedIn, AccessMiddleware.isDirector, (req, res) => {
+  english.create({}, (err, english)=>{});
   kipina.create(
     {
       nom: req.body.nom
@@ -737,14 +1027,25 @@ app.get("/dashboard/add-user", AccessMiddleware.isLoggedIn, AccessMiddleware.isD
   });
 });
 app.post("/dashboard/add-user", AccessMiddleware.isLoggedIn,  AccessMiddleware.isDirector,(req, res) => {
+  let obj = {
+    username: req.body.username,
+    nom: (req.body.nom).charAt(0).toUpperCase() + req.body.nom.slice(1),
+    prenom: req.body.prenom,
+    role: req.body.role,
+    location: req.body.location,
+  };
+  if(req.body.class){
+    if(Array.isArray(req.body.class)){
+      for(let i=0;i<req.body.class.length;i++){
+        req.body.class[i] = Number.parseInt(req.body.class[i]);
+      }
+      obj.classe = req.body.class;
+    }else{
+      obj.classe = [req.body.class];
+      }
+    }
   user.register(
-    new user({
-      username: req.body.username,
-      nom: req.body.nom,
-      prenom: req.body.prenom,
-      role: req.body.role,
-      location: req.body.location,
-    }),
+    new user(obj),
     req.body.password,
     (err, user) => {
       res.redirect("/dashboard");
@@ -762,21 +1063,29 @@ app.post("/rapport-cantine", AccessMiddleware.isLoggedIn, AccessMiddleware.isSup
   if (req.body.class_check)
     for (let i = 0; i < req.body.class_check.length; i++)
       req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
-      console.log(req.body.class_check);
+      
   if (req.body.cantine)
     for (let i = 0; i < req.body.cantine.length; i++)
       req.body.cantine[i] = Number.parseInt(req.body.cantine[i]);
   let enfant_arr = [],
     type1 = 0,
     type2 = 0;
+    console.log("=>"+req.body.class_check);
+    console.log("=>"+req.body.cantine);
   enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec((err, allEnfant)=>{
     allEnfant.forEach((enfant) => {
+      console.log(enfant);
       if (req.body.class_check && req.body.cantine)
-        if (req.body.class_check.includes(enfant.classe) && req.body.cantine.includes(enfant.type_cantine) )
+        if (req.body.class_check.includes(enfant.classe) && req.body.cantine.includes(enfant.type_cantine) ){
+          console.log("ok");
           enfant_arr.push(enfant);
-      if (enfant.type_cantine == 1) type1++;
+          if (enfant.type_cantine == 1) type1++;
       if (enfant.type_cantine == 2) type2++;
+        }
     });
+    console.log(type1);
+    console.log(type2);
+    console.log(enfant_arr);
   res.render("templates/cantine", {enfant: enfant_arr, type1:type1, type2:type2, classes: req.body.class_check}, (err, data)=>{
       pdf.create(data, {"format":"A4",
       "orientation":'landscape', "width": "3in", timeout: '100000'}).toFile("./rapport-cantine.pdf", (err, file)=>{
@@ -872,7 +1181,7 @@ app.post("/rapport-routine", AccessMiddleware.isLoggedIn, AccessMiddleware.isSup
       }));
       // res.render("templates/routine", {enfant:enfant_arr, classes: req.body.class_check, routine: rapport_arr});
       res.render("templates/routine", {enfant:enfant_arr, classes: req.body.class_check, routine: rapport_arr}, (err, data)=>{
-        pdf.create(data, {"format":"A3",
+        pdf.create(data, {"format":"A4",
         "orientation":'landscape', "width": "3in", timeout: '100000'}).toFile("./rapport-routine.pdf", (err, file)=>{
           res.download("rapport-routine.pdf", (err)=>{
             console.log(err);
@@ -1119,11 +1428,12 @@ let camp_promise = camp_eleve.find({camp: camp._id}, (err, camp_eleve)=>{
 
 app.get("/dashboard/camps", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
   camp.find({location: req.user.location}, (err, camps)=>{
+    console.log(req.user.location);
     camps.forEach((camp)=>{
       console.log(camp);
       Promise.all(camp_promise).then(()=>{
         console.log(image_arr);
-      });
+      }).catch(()=>{});
     }); 
     res.render("camps", {camps: camps});
   });
@@ -1136,7 +1446,7 @@ app.post("/add-camps", (req, res) => {
   let camp_obj = {
     nom: req.body.nom,
     nbr_jrs: Number.parseInt(req.body.nbr_jrs),
-    location: 'kipina1',
+    location: req.user.location,
     type_camp: Number.parseInt(req.body.type)
   };
   camp.create(camp_obj, (err, camp)=>{
@@ -1239,6 +1549,7 @@ app.get("/dashboard/english-after-school", AccessMiddleware.isLoggedIn, AccessMi
   english.findOne({location: req.user.location}, async(err, english_af)=>{
     if(english_af != null){
       console.log("not empty!");
+      console.log(english_af);
       await Promise.all(english_af.eleve.map(async (id)=>{
         console.log(id);
         await enfant.findById(id, (err, enfant)=>{
@@ -1259,11 +1570,17 @@ app.get("/dashboard/english-after-school", AccessMiddleware.isLoggedIn, AccessMi
 app.get("/dashboard/english-after-school/add", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
   let enfant_arr = [];
   enfant.find({location: req.user.location}, (err, allEnfant)=>{
+    if(!Array.isArray(allEnfant)){
+      allEnfant = [allEnfant];
+      console.log(allEnfant);
+    }
       english.findOne({location: req.user.location}, (err, english_af)=>{
         if(!english_af){
           res.render("add-enfant-english", {enfant:allEnfant});
         }else{
+          console.log("english after school:"+english_af);
         allEnfant.forEach((enfant)=>{
+          console.log("enfant:"+enfant);
             if(!english_af.eleve.includes(enfant._id)){
               enfant_arr.push(enfant);
             }
@@ -1275,18 +1592,26 @@ app.get("/dashboard/english-after-school/add", AccessMiddleware.isLoggedIn, Acce
 });
 
 app.post("/english-after-school/add", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
+
   if(!Array.isArray(req.body.enfant_check)){
-    english.create({location: req.user.location, eleve: [req.body.class_check]},(err, enfant)=>{
-      console.log(enfant)
+    english.findOne({location: req.user.location},(err, eas)=>{
+      let arr = eas.eleve;
+      console.log(arr);
+      arr.push(req.body.enfant_check);
+      eas.eleve = arr;
+      console.log(eas.eleve);
+      eas.save((err)=>{});
       res.redirect("/dashboard/english-after-school");
     });
   }else{
-    req.body.enfant_check.forEach((item)=>{
-      english_after_school.create({location: req.user.location,eleve: req.body.class_check},(err, enfant)=>{
-        console.log(enfant);
-      });
+    english.findOne({location: req.user.location},(err, eas)=>{
+      let arr = eas.eleve;
+      arr.concat(req.body.enfant_check);
+      eas.eleve = arr;
+      console.log(arr);
+      eas.save((err)=>{});
+      res.redirect("/dashboard/english-after-school");
     });
-    res.redirect("/dashboard/english-after-school");
   }
 });
 
@@ -1342,6 +1667,7 @@ app.get("/dashboard/finance/facture", AccessMiddleware.isLoggedIn, AccessMiddlew
 });
 
 app.post("/facture", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
+  let pere_, mere_, remise;
   enfant.findById(req.body.class_check, (err, enfant)=>{
     if(err || !enfant)
     res.redirect("/dashboard/finance/facture");
@@ -1349,12 +1675,16 @@ app.post("/facture", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req
       if(err || !impaye)
         res.redirect("/dashboard/finance/facture");
       else{
-        prix.findOne({location: req.user.location}, (err, prix)=>{
-          res.render("templates/facture", {prix:prix, enfant:enfant, impaye:impaye, trajet_unitaire: req.body.trajet_unitaire, cantine_unitaire: req.body.cantine_unitaire,
+        prix.findOne({location: req.user.location}, async (err, prix)=>{
+          await personne.findById(enfant.pere, (err, pere__)=>{pere_ = pere__;console.log(pere_);});
+          await personne.findById(enfant.mere, (err, mere__)=>{mere_ = mere__;console.log(mere_);});
+          if(req.body.remise)
+            remise = true;
+          res.render("templates/facture", {remise: remise, month: req.body.month, prix:prix, enfant:enfant, pere: pere_, mere: mere_, impaye:impaye, trajet_unitaire: req.body.trajet_unitaire, cantine_unitaire: req.body.cantine_unitaire,
             mercredi_unitaire: req.body.mercredi_unitaire,
             retart_garde: req.body.retart_garde,
             retart_paiement: req.body.retart_paiement}, (err, data)=>{
-              pdf.create(data, {"format":"A1",
+              pdf.create(data, {"format":"A4",
               "orientation":'landscape', "width": "3in", timeout: '100000'}).toFile("./facture-"+enfant._id+".pdf", (err, file)=>{
                 res.download("facture-"+enfant._id+".pdf", (err)=>{
                   console.log(err);
@@ -1418,82 +1748,52 @@ app.post("/add-routine", AccessMiddleware.isLoggedIn, AccessMiddleware.isEducatr
 });
 app.get("/dashboard/competence", AccessMiddleware.isLoggedIn, AccessMiddleware.isEducatrice, (req, res)=>{
   enfant.find({location:req.user.location}, (err, enfant)=>{
-    res.render("competence", {enfant:enfant});
+    sous_competence.find({location: req.user.location}, (err, sous_competence)=>{
+      res.render("competence", {enfant:enfant, sous_competence:sous_competence});
+    });
   });
 });
 
 const competence_stockage = multer.diskStorage({
-  destination: "public/files/competence/"
+  destination: "public/competence/"
 });
-const upload_competence = multer({storage: competence_stockage}).fields([
-{name:"img1"},
-{name:"img2"},
-{name:"img3"},
-{name:"img4"},
-{name:"img5"},
-{name:"img6"},
-{name:"img"}
-]);
+const upload_competence = multer({storage: competence_stockage});
 
 
-app.post("/comptence", AccessMiddleware.isLoggedIn, AccessMiddleware.isEducatrice, upload_competence,(req, res)=>{
-  const obj = {};
-    try{
-      obj.enfant = req.files.img[0].filename;
-    obj.img1 = []
-    console.log("=>"+req.body.eleve);
-    req.files.img1.forEach((name)=>{
-      obj.img1.push(name.filename);
+app.post("/competence", AccessMiddleware.isLoggedIn, AccessMiddleware.isEducatrice, upload_competence.single("image_competence"),(req, res)=>{
+  let obj = {};
+  if(req.body.enfant){
+    obj.eleve = req.body.enfant
+    if(req.file){
+      obj.image_competence = req.file.filename;
+    }
+    if(req.body.domaine_competence){
+      obj.domaine_competence = Number.parseInt(req.body.domaine_competence);
+    }
+    if(req.body.competence){
+      obj.competence = req.body.competence;
+    }
+    if(req.body.sous_domaine){
+      if(req.body.sous_domaine == 'ajouter'){
+        sous_competence.create({location: req.user.location, nom: req.body.nv_competence}, (err, sd)=>{});
+        obj.sous_domaine = req.body.nv_competence;
+      }else{
+        sous_competence.create({location: req.user.location, nom: req.body.sous_domaine}, (err, sd)=>{});
+        obj.sous_domaine = req.body.sous_domaine;
+      }
+    }
+    competence.create(obj, (err, result)=>{
+      console.log("competence");
+      if(err){
+        console.log(err);
+      }else{
+        res.redirect("/dashboard");
+        console.log(result);
+      }
     });
-    obj.non_img1 = req.body.d1_1;
-    obj.description1 = req.body.d1_2;
-    //
-    obj.img2 = [];
-    req.files.img2.forEach((name)=>{
-      obj.img2.push(name.filename);
-    });
-    obj.non_img2 = req.body.d2_1;
-    obj.description2 = req.body.d2_2;
-    //
-    obj.img3 = [];
-    req.files.img3.forEach((name)=>{
-      obj.img3.push(name.filename);
-    });
-    obj.non_img3 = req.body.d3_1;
-    obj.description3 = req.body.d3_2;
-    //
-    obj.img4 = [];
-    req.files.img4.forEach((name)=>{
-      obj.img4.push(name.filename);
-    });
-    obj.non_img4 = req.body.d4_1;
-    obj.description4 = req.body.d4_2;
-    //
-    obj.img5 = [];
-    req.files.img5.forEach((name)=>{
-      obj.img5.push(name.filename);
-    });
-    obj.non_img5 = [];
-    req.files.img5.forEach((name)=>{
-      obj.img5.push(name.filename);
-    });
-    obj.description5 = req.body.d5_2;
-    //
-    obj.img6 = [];
-    req.files.img6.forEach((name)=>{
-      obj.img6.push(name.filename);
-    });
-    obj.non_img6 = req.body.d6_1;
-    obj.description6 = req.body.d6_2;
-    //
-    obj.eleve = req.body.eleve;
-    competence.create(obj, (err, competence)=>{
-      res.redirect("/dashboard");
-  });
-    }catch(err){
-      console.log(err);
-      res.redirect("/dashboard/competence");
-    };
+  }else{
+    res.redirect("/dashboard/competence");
+  }
 });
 
 app.get("/dashboard/list-competence", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
@@ -1517,12 +1817,11 @@ app.get("/dashboard/list-competence", AccessMiddleware.isLoggedIn, AccessMiddlew
 
 
 app.post("/list-competence", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
-  competence.findOne({eleve: req.body.enfant}, (err, competence_)=>{
+  competence.find({eleve: req.body.enfant}, (err, competence_)=>{
     console.log(competence_);
     enfant.findById(req.body.enfant, (err, enfant_)=>{
-      res.render("templates/competence", {enfant: enfant_, competence: competence_}
-      , (err, data)=>{
-        pdf.create(data, {"format":"A2",
+      res.render("templates/competence", {enfant: enfant_, competence: competence_}, (err, data)=>{
+        pdf.create(data, {"format":"A4",
       "orientation":'landscape', "width": "3in", timeout: '100000'}).toFile("./competence.pdf", (err, file)=>{
         res.download("competence.pdf", (err)=>{
         });
@@ -1635,7 +1934,18 @@ app.get("/dashboard/kipinas/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.
 app.post("/modify-kipina/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.isDirector, (req, res)=>{
   const obj = {
     nom: req.body.nom
-  }
+  };
+  const obj_mod = {
+    location: req.body.nom
+  } 
+  kipina.findById(req.params.id, (err, kipina_)=>{
+    camp.updateMany({location:kipina_.nom}, obj_mod, (err, camp_)=>{
+    });
+    enfant.updateMany({location: kipina_.nom}, obj_mod, (err, enfant)=>{});
+    english.updateMany({location: kipina_.nom}, obj_mod, (err, english)=>{});
+    prix.updateMany({location: kipina_.nom}, obj_mod, (err, prix)=>{});
+    user.updateMany({location: kipina_.nom}, obj_mod, (err, user)=>{});
+  });
   kipina.findByIdAndUpdate(req.params.id, obj, (err, kipina)=>{
     res.redirect("/dashboard");
   });
@@ -1645,7 +1955,7 @@ app.get("/dashboard/finance/gestion", AccessMiddleware.isLoggedIn,  AccessMiddle
   res.render("gestion-finance");
 });
 app.get("/dashboard/paye", AccessMiddleware.isLoggedIn,  AccessMiddleware.isSuper,(req, res)=>{
-  enfant.find({location: req.user.location}, (err, enfant)=>{
+  enfant.find({location: req.user.location, payement:false}, (err, enfant)=>{
     res.render("paye", {enfant:enfant});
   });
 });
@@ -1726,7 +2036,6 @@ app.get("/dashboard/finance/facture/modifier-prix", AccessMiddleware.isLoggedIn,
     res.render("prix", {prix:prix});
   });
 });
-
 app.post("/modify-price/:nom", AccessMiddleware.isLoggedIn, AccessMiddleware.isDirector, (req, res)=>{
   const prix_obj = {
     inscription: req.body.inscription,
@@ -1740,7 +2049,8 @@ app.post("/modify-price/:nom", AccessMiddleware.isLoggedIn, AccessMiddleware.isD
     mercredi_unitaire: req.body.mercredi_unitaire,
     aller_retour: req.body.aller_retour,
     trajet: req.body.trajet,
-    trajet_unitaire: req.body.trajet_unitaire
+    trajet_unitaire: req.body.trajet_unitaire,
+    remise: req.body.remiseremise
   };
   prix.findOneAndUpdate({location: req.params.nom}, prix_obj, (err, prix)=>{
     res.redirect("/dashboard/finance/facture");

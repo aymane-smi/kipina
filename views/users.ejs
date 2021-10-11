@@ -132,8 +132,8 @@ container content
             <img class="rounded-circle" src="../img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
           </div>
           <div style="margin-left: 30px;flex-shrink:0">
-              <span class="bjr1-span ">Bonjour </span>
-              <span class="bjr2-spanp">,<%=user.username%></span>
+              <span class="bjr1-span ">Bonjour</span>
+              <span class="bjr2-span">, <%=user.nom%></span>
           </div>
         </div>
         <div class="col-lg col-sm-12">
@@ -146,12 +146,12 @@ container content
                 </div>
               </div>
             </div>
-              <div class="col-1 mt-4" style="flex: 1; margin-left: 50px; flex-grow: 0;flex-shrink:0">
+              <div class="col-1 mt-4" style="flex: 1; margin-left: 50px; flex-grow: 0;flex-shrink:0; transform: translateX(18px);">
                 <a href="/dashboard/settings">
                   <img src="../img/icons/settings.png" id="settings-image">
                 </a>
               </div>
-              <div class="col-1" style="flex: 1; margin-left: 14px; flex-grow: 0;flex-shrink:0;margin-top:25px;">
+              <div class="col-1" style="flex: 1; margin-left: 14px; flex-grow: 0;flex-shrink:0;margin-top:26px;">
                 <form action="/logout" method="post">
                   <button style="border: none; background: none;">
                     <img src="../img/icons/logout.png">
@@ -163,6 +163,7 @@ container content
           </div>
         </div> 
       </div>
+      <%if(user.role == "directrice"){%><a href="/dashboard/add-user" class="btn btn-md btn-success" style="margin-top: 20px; margin-left: 50px;">Ajouter un utilisateur</a><%}%>
       <div class="mt-5 ml-5">
         <center>
         <table class="table table-striped" style="width: 80%;">
