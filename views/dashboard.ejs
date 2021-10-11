@@ -170,7 +170,7 @@ container content
         </div> 
       </div>
     <div class="mt-5" style="margin-left: 20px;">
-      <%if((user.role == 'directrice') && (user.role == 'administrateur')){%>
+      <%if((user.role == 'directrice') || (user.role == 'administrateur')){%>
         <div class="row flex-nowrap" style="width: 100%; overflow-x: scroll; scrollbar-width: none; align-items: center;">
           <div class="col">
             <div class="card-info shadow" style="margin-right: 10px; display: flex;">

@@ -215,7 +215,8 @@
                   </div>
                   <div class="form-group w-75" style="margin-top: 40px; margin-left: 10px;">
                     <label for="ancien" style="display: block;" class="big-medium">Enfant ancien</label>
-                    <input type="checkbox" id="ancien" name="ancien" <%if(enfant.type_scolarite == 1){%>checked<%}%> > Oui
+                    <input type="radio"  id="ancien" name="ancien"  value="oui"<%if(enfant.type_scolarite == 1){%>checked<%}%> > Oui
+                    <input type="radio" id="ancien" style="margin-left: 10px;" name="ancien" value="non" <%if(enfant.type_scolarite == 2){%>checked<%}%> > non
                   </div>
                   </div>
                 </div>

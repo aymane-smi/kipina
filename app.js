@@ -26,12 +26,14 @@ const express = require("express"),
   payement = require("./models/payement"),
   kipina = require("./models/kipina"),
   english = require("./models/english"),
+  pdfcrowd = require("pdfcrowd"),
   impaye =require("./models/impaye"),
   plan = require("./models/plan"),
   sous_competence = require("./models/sous_competence"),
   pdf = require("html-pdf"),
   prix = require("./models/prix"),
   flash = require("connect-flash"),
+  client = new pdfcrowd.HtmlToPdfClient("demo", "ce544b6ea52a5621fb9d55f8b542d14d"),
   AccessMiddleware = require("./middleware/index"),
   mongo_url =
     "mongodb+srv://tester:p7dJ3dFR3xBXvOWI@cluster0.b4bpq.mongodb.net/test?retryWrites=true";
@@ -873,9 +875,9 @@ app.post(
       langue_maternelle: req.body.e_maternelle,
       langues_parlees: req.body.e_parlees,
     };
-    if(req.body.ancien_oui)
+    if(req.body.ancien == "oui")
       enfant_obj.type_scolarite = 1;
-    if(req.body.ancien_non)
+    if(req.body.ancien == "non")
       enfant_obj.type_scolarite = 2;
     if(req.body.sm == 'oui')
       enfant_obj.sm = true;
@@ -1591,11 +1593,11 @@ app.get("/dashboard/english-after-school/add", AccessMiddleware.isLoggedIn, Acce
 
 app.post("/english-after-school/add", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
 
-  if(!Array.isArray(req.body.enfant_check)){
+  if(!Array.isArray(req.body.class_check)){
     english.findOne({location: req.user.location},(err, eas)=>{
       let arr = eas.eleve;
       console.log(arr);
-      arr.push(req.body.enfant_check);
+      arr.push(req.body.class_check);
       eas.eleve = arr;
       console.log(eas.eleve);
       eas.save((err)=>{});
@@ -1604,7 +1606,7 @@ app.post("/english-after-school/add", AccessMiddleware.isLoggedIn, AccessMiddlew
   }else{
     english.findOne({location: req.user.location},(err, eas)=>{
       let arr = eas.eleve;
-      arr.concat(req.body.enfant_check);
+      arr.concat(req.body.class_check);
       eas.eleve = arr;
       console.log(arr);
       eas.save((err)=>{});
