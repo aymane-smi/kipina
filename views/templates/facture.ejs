@@ -311,6 +311,7 @@
                         <%total += tmp.length*50;%>
                     <%}%>
                 </tr>
+                <%if(enfant.inscription)%>
                 <tr>
                     <td>Inscription</td>
                     <td><%=prix.inscription%></td>
@@ -319,6 +320,7 @@
                     <td></td>
                     <%total += prix.inscription%>
                 </tr>
+                <%}%>
                 <%}%>
                 <%})%>
             </table>
