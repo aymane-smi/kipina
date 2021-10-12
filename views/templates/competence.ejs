@@ -103,10 +103,10 @@
         .card-img img{
             width: 170px;
             height: 170px;
-            margin-left: -50px;
+            margin-left: -45px;
             /* flex: 50%; */
-            transform: translateX(-50px);
-            margin-top: -3px;
+            /* transform: translateX(-50px); */
+            margin-top: -15px;
             border-radius: 50%;
         }
         .clear {
@@ -162,7 +162,7 @@
             <p class="title">Rapport de compétence</p>
             <div class="card">
                 <div class="card-img">
-                    <img src="http://localhost:3000/files/avatar/<%=enfant.image%>">
+                    <img src="http://localhost:3000/files/avatar/<%=//enfant.image%>">
                 </div> 
                 <div class="card-text">
                     <p class="big"><%=enfant.nom%></p>
@@ -198,12 +198,14 @@
                 <%for(let j=0;j<competence.length;j++){%>
                     <%if(competence[j].domaine_competence == i){%>
                     <div class="card2">
-                        <%if(competence[j].competence_image){%>
+                        <%if(competence[j].image_competence){%>
                         <img src="http://localhost:3000/competence/<%=competence[j].image_competence%>" style="width: 100%;">
                         <%}%>
                         <div class="container3">
                             <h3><%=competence[j].sous_domaine%></h3>
-                            <p><%=competence[j].competence%></p>
+                            <p>
+                                <%=competence[j].competence%>
+                            </p>
                     </div>
                     </div>
                     <%}%>
