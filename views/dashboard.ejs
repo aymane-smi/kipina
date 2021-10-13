@@ -62,7 +62,7 @@
         <p class="title" style="margin-left: 20px;">Camps</p>
       </li>
       <%}%>
-      <%if(user.role == 'educatrice'){%>
+      <%if(user.role == 'educatrice' || user.role == 'directrice'){%>
       <li class="li-h"  title="ajouter compétence">
         <a href="/dashboard/competence" style="margin-left: 25px; margin-top:50px;" title="ajouter compétence">
           <img src="/img/icons/competence.png">

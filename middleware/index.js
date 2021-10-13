@@ -30,4 +30,10 @@ AccessMiddleware.isLoggedIn = function(req, res, next){
     req.flash("error", "Mot de passe ou nom d'utilisateur est incorrecte!");
     res.redirect("/");
 };
+AccessMiddleware.isCompetence = function(req, res, next){
+    if(req.user.role == 'educatrice' || req.user.role == 'directrice')
+        next();
+    else
+        res.redirect("/dashboard");
+};
 module.exports = AccessMiddleware;

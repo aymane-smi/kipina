@@ -64,7 +64,7 @@
         <p class="title" style="margin-left: 20px;">Camps</p>
       </li>
       <%}%>
-      <%if(user.role == 'educatrice'){%>
+      <%if(user.role == 'educatrice' || user.role == 'directrice'){%>
       <li class="li-h"  title="ajouter compétence">
         <a href="/dashboard/competence" style="margin-left: 25px; margin-top:50px;" title="ajouter compétence">
           <img src="/img/icons/competence.png">
@@ -314,7 +314,7 @@ container content
         current = moment(new Date());
               tmp     = moment("<%=camps[i].date_creation%>");
         text[<%=i%>].innerText = (<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days'))+" jours restants";
-        console.log(<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days'));
+        console.log(<%=camps[i].nbr_jrs%>);
         if(<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days') <= 0){
           text[<%=i%>].style.display = "none";
           progress[<%=i%>].parentNode.style.display = "none";

@@ -1744,7 +1744,7 @@ app.post("/add-routine", AccessMiddleware.isLoggedIn, AccessMiddleware.isEducatr
     res.redirect("/dashboard/routine");
   });
 });
-app.get("/dashboard/competence", AccessMiddleware.isLoggedIn, AccessMiddleware.isEducatrice, (req, res)=>{
+app.get("/dashboard/competence", AccessMiddleware.isLoggedIn, AccessMiddleware.isCompetence, (req, res)=>{
   enfant.find({location:req.user.location}, (err, enfant)=>{
     sous_competence.find({location: req.user.location}, (err, sous_competence)=>{
       res.render("competence", {enfant:enfant, sous_competence:sous_competence});
@@ -1758,7 +1758,7 @@ const competence_stockage = multer.diskStorage({
 const upload_competence = multer({storage: competence_stockage});
 
 
-app.post("/competence", AccessMiddleware.isLoggedIn, AccessMiddleware.isEducatrice, upload_competence.single("image_competence"),(req, res)=>{
+app.post("/competence", AccessMiddleware.isLoggedIn, AccessMiddleware.isCompetence, upload_competence.single("image_competence"),(req, res)=>{
   let obj = {};
   if(req.body.enfant){
     obj.eleve = req.body.enfant
