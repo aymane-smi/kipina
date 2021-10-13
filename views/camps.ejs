@@ -314,6 +314,11 @@ container content
         current = moment(new Date());
               tmp     = moment("<%=camps[i].date_creation%>");
         text[<%=i%>].innerText = (<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days'))+" jours restants";
+        console.log(<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days'));
+        if(<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days') <= 0){
+          text[<%=i%>].style.display = "none";
+          progress[<%=i%>].parentNode.style.display = "none";
+        }
       }else{
         progress[<%=i%>].style.width = "100%";
         text[<%=i%>].innerText = "0 jour";
