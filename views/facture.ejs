@@ -7,6 +7,10 @@
      <link href='/styles/nav.css' rel='stylesheet'>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
      <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+     <style>
+      @import url(https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css);
+
+    </style>
      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
@@ -172,18 +176,18 @@
       <%if(user.role == 'directrice'){%><a href="/dashboard/finance/facture/modifier-prix" class="btn btn-md btn-warning" style="margin-left: 50px; margin-top: 20px;">modifier les prix</a><%}%>
       <div class="container" style="margin-top:-150px;">
         <div class="jumbotron modified-jumbotron">
-          <p style="color: grey; font-size: 14px;">*pour ajouter plusieurs dates:(exemple) 01/01/2021,02/02/2021,03/03/2021...</p>
-          <p style="color: grey; font-size: 14px;">*pour ajouter une seule date:(exemple) 01/01/2021</p>
             <p class="big-font" style="font-size:40px;">
                 Générer facture pour:
             </p>
+            <p style="color: grey; font-size: 14px;">*pour ajouter plusieurs dates:(exemple) 01/01/2021,02/02/2021,03/03/2021...</p>
+          <p style="color: grey; font-size: 14px;">*pour ajouter une seule date:(exemple) 01/01/2021</p>
             <form action="/facture" method="post">
               <div style="margin-left: 35%;">
-                <span style="margin-left: -5%;" class="big-font">
-                  choisissez Enfant:
+                <span style="margin-left: -3%;" class="big-font">
+                  choisissez un enfant
                 </span>
                 <br>
-                <select name="class_check">
+                <select name="class_check" style="width: 150px;">
                   <%enfant.forEach((enfant)=>{%>
                     <option value="<%=enfant._id%>">
                       <%=enfant.nom+" "%> <%=enfant.prenom%>
@@ -191,45 +195,46 @@
                   <%})%>
               </select>
               <br>
-              <br>
               <input name="trajet_unitaire" class="form-control" placeholder="Les dates des trajets uniatires" style="margin-left: -110px; margin-top: 10px;">
               <input name="cantine_unitaire" class="form-control" placeholder="Les dates des repas dans la cantine" style="margin-left: -110px; margin-top: 10px;">
               <input name="mercredi_unitaire" class="form-control" placeholder="Les dates de service de garde mercredi" style="margin-left: -110px; margin-top: 10px;">
               <input name="retart_garde" class="form-control" placeholder="Les dates des retards de garde" style="margin-left: -110px; margin-top: 10px;">
               <input name="retart_paiement" class="form-control" placeholder="Les dates de retards de paiement" style="margin-left: -110px; margin-top: 10px;">
+              <input name="remise" class="form-control" placeholder="Remise" style="margin-left: -110px; margin-top: 10px;">
               <br>
             <div class="form-group w-50" style="margin-left: -28px; margin-top: 10px;">
-              <p style="margin-left: 9px;">choisissez le mois</p>
+              <p style="margin-left: 9px;">Choisissez le mois</p>
               <input type="month" name="month" class="form-control">
             </div>
             <div style="margin-top: 20px; margin-left: 6px;">
-              <span >Remise</span>
-            <input type="checkbox" name="remise" style="margin-left: 10px;">
+            <select name="type" style="margin-top: 20px;margin-bottom:10px;">
+              <option value="cheque">cheque</option>
+              <option value="cash">cash</option>
+              <option value="virement">virement</option>
+          </select>
             </div>
+                  <div style="margin-left: -60px; margin-top: 10px;">
+                    <input type="checkbox" name="inscription" ><span class="big-font ml-2">a payé les frais d'inscription: </span>
+                  </div>
+                  <!-- <div style="margin-left: -60px;">
+                    <input type="checkbox" name="final" id="final"><span class="big-font ml-2">a payé tous les mois: </span>
+                  </div> -->
+
             </div>
                 <br>
-                <button type="submit" class="btn btn-primary" style="margin-left:35%; margin-top: 20px; margin-left: 163px;">Générer facture!</button>
+                <button type="submit" class="btn btn-primary" style="margin-left:35%; margin-top: 20px; margin-left: 163px; background: #8ce647; border: 0;">Générer facture!</button>
               </form>
         </div>
       </div>
       <br>
   </section>
   <script src="/scripts/dashboard.js"></script>
-  <!-- <script>
-    $(document).ready(function() {
-    $('#datepicker').datepicker({
-        startDate: new Date(),
-        multidate: true,
-        format: "dd/mm/yyyy",
-        daysOfWeekHighlighted: "5,6",
-        datesDisabled: ['31/08/2017'],
-        language: 'en'
-    }).on('changeDate', function(e) {
-        // `e` here contains the extra attributes
-        $(this).find('.input-group-addon .count').text(' ' + e.dates.length);
-    });
-});
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js"></script>
 
-  </script> -->
+  <script>
+    $(function () {
+  $("select[name='class_check']").select2();
+});
+  </script>
 </body>
 </html>

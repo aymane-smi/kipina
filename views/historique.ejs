@@ -8,6 +8,7 @@
      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
      <link href='/styles/nav.css' rel='stylesheet'>
      <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    </head>
 <body>
@@ -121,71 +122,85 @@
       <%}%>
     </ul>
   </div>
-
-<!--
-container content
--->
-  <section class="home-content" >
+  <section class="home-content">
     <div style="margin-top: 30px; margin-left: 20px;">
-      <div class="row">
-        <div class="col-lg-7 col-sm-12 text-nowarp flex-nowrap" style="display: flex; align-items: center;">
-          <div style="flex-shrink:0;display:inline-block; width: 70px; height: 70px; border-radius: 50%;position: relative;background: linear-gradient(-30deg, #839000, #BCCF00);">
-            <img class="rounded-circle" src="/img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
+        <div class="row">
+          <div class="col-lg-7 col-sm-12 text-nowarp flex-nowrap" style="display: flex; align-items: center;">
+            <div style="flex-shrink:0;display:inline-block; width: 70px; height: 70px; border-radius: 50%;position: relative;background: linear-gradient(-30deg, #839000, #BCCF00);">
+              <img class="rounded-circle" src="/img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
+            </div>
+            <div style="margin-left: 30px;flex-shrink:0">
+                <span class="bjr1-span ">Bonjour</span>
+                <span class="bjr2-span">, <%=user.nom%></span>
+            </div>
           </div>
-          <div style="margin-left: 30px;flex-shrink:0">
-              <span class="bjr1-span ">Bonjour</span>
-              <span class="bjr2-span">, <%=user.nom%></span>
-          </div>
-        </div>
-        <div class="col-lg col-sm-12">
-          <div class="row">
-            <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
-              <div class="input-group rounded-pill search shadow" style="background: white; overflow: hidden; border: 0 none; width: 300px; display: inline-block; height: 50px;flex-shrink:0" >
-                <div class="input-group-prepend border-0">
-                  <button  type="button" id="search-button" style="margin-left: 10px; margin-top: 18px;background: url(/img/icons/search-icon.png) no-repeat center/70%;"class="btn search-enfant"></button>
-                  <input type="search" placeholder="search" id="search-input"style="margin-left: 10px; margin-top: 10px;" class="border-0">
+          <div class="col-lg col-sm-12">
+            <div class="row">
+              <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
+                <div class="input-group rounded-pill search shadow" style="background: white; overflow: hidden; border: 0 none; width: 300px; display: inline-block; height: 50px;flex-shrink:0" >
+                  <div class="input-group-prepend border-0">
+                    <button  type="button" id="search-button" style="margin-left: 10px; margin-top: 18px;background: url(/img/icons/search-icon.png) no-repeat center/70%;"class="btn search-enfant"></button>
+                    <input type="search" placeholder="search" id="search-input"style="margin-left: 10px; margin-top: 10px;" class="border-0">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm12 col-lg" style="display: flex; margin-top: 25px; margin-left:30px;">
+                <!-- <div class="col-1" style="flex: 1; flex-grow: 0; flex-shrink:0">
+                  <img src="../img/icons/notification.png" id="notification-image">
+                </div> -->
+                <div class="col-1" style="flex: 1; margin-left: 14px; flex-grow: 0;flex-shrink:0;margin-top:-4px;">
+                  <a href="/dashboard/settings">
+                    <img src="/img/icons/settings.png" id="settings-image">
+                  </a>
+                </div>
+                <div class="col-1" style="flex: 1; margin-left: -30px; flex-grow: 0;flex-shrink:0;margin-top:-21px;">
+                  <form action="/logout" method="post">
+                    <button style="border: none; background: none;">
+                      <img src="/img/icons/logout.png">
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
-            <div class="col-sm12 col-lg" style="display: flex; margin-top: 25px; margin-left:30px;">
-              <!-- <div class="col-1" style="flex: 1; flex-grow: 0; flex-shrink:0">
-                <img src="../img/icons/notification.png" id="notification-image">
-              </div> -->
-              <div class="col-1" style="flex: 1; margin-left: 14px; flex-grow: 0;flex-shrink:0;margin-top:-4px;">
-                <a href="/dashboard/settings">
-                  <img src="/img/icons/settings.png" id="settings-image">
-                </a>
-              </div>
-              <div class="col-1" style="flex: 1; margin-left: -30px; flex-grow: 0;flex-shrink:0;margin-top:-21px;">
-                <form action="/logout" method="post">
-                  <button style="border: none; background: none;">
-                    <img src="/img/icons/logout.png">
-                  </button>
-                </form>
-              </div>
             </div>
-          </div>
-          </div>
-        </div> 
-      </div>
-      <div class="container">
-        <div class="jumbotron modified-jumbotron">
-            <center>
-            <p class="big-font" style="font-size:40px;">
-                    modifier l'utilisateur
-            </p>
-            </center>
-            <form action="/modify-kipina/<%=id%>" method="post">
-                <div class="form-group">
-                  <label for="exampleInputPassword1"></label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nom" name="nom" value="<%=kipina.nom%>">
-                </div>
-                <button type="submit" class="btn btn-warning" style="margin-left:42%; margin-top: 30px; color: white;">modifier!</button>
-              </form>
-            </div>
+          </div> 
         </div>
-      </div>
-  </section>
-  <script src="/scripts/dashboard.js"></script>
+    <table class="table" style="width: 80%; margin: 0 auto; margin-top: 40px; background: white;">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Date inscription</th>
+            <th scope="col">Date désinscription</th>
+            <th scope="col">Cause de désinscription</th>
+          </tr>
+        </thead>
+        <tbody style="font-size: 16px; font-weight: 500;">
+            <%enfant.forEach((enfant)=>{%>
+          <tr>
+            <td><%=enfant.nom%></td>
+            <td><%=enfant.prenom%></td>
+            <td><%if(enfant.date_inscription){%><%=enfant.date_inscription.toISOString().slice(0,10)%><%}%></td>
+            <td><%if(enfant.date_quitte){%><%=enfant.date_quitte.toISOString().slice(0,10)%><%}%></td>
+            <td>
+                <%if(enfant.choix && enfant.choix.includes("maladie")){%>
+                    Maladie<br>
+                <%}%>
+                <%if(enfant.choix && enfant.choix.includes("insatisfaction")){%>
+                    Insatisfaction<br>
+                <%}%>
+                <%if(enfant.choix && enfant.choix.includes("déménagement")){%>
+                    Déménagement<br>
+                <%}%>
+                <%if(enfant.autre){%>
+                    <%=enfant.autre%>
+                <%}%>
+            </td>
+          </tr>
+          <%});%>
+        </tbody>
+      </table>
+</section>
+<script src="/scripts/dashboard.js"></script>
 </body>
 </html>

@@ -214,3 +214,7 @@ form{
 .text-time{
     font-size: 12px;
 }
+.btn{
+    background: #8ce647;
+    border: 0;
+}

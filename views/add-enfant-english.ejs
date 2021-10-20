@@ -7,6 +7,10 @@
      <link href="/styles/rapport.css" rel="stylesheet">
      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
      <link href='/styles/nav.css' rel='stylesheet'>
+     <style>
+      @import url(https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css);
+
+    </style>
      <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    </head>
@@ -177,22 +181,21 @@ container content
             </p>
             <form action="/english-after-school/add" method="post">
                 <div class="form-group mt-4">
-                  <label for="exampleInputPassword1" class="big-font">choisissez Enfant(s):</label>
+                  <label for="exampleInputPassword1" class="big-font">choisissez Enfant(s)</label>
+                  <br>
+                  <select name="class_check" style="width: 200px;" multiple>
                   <%enfant.forEach((enfant)=>{%>
-                    <div>
-                      <label for="check"></label>
-                    <input id="check" type="checkbox" name="class_check" value="<%=enfant._id%>"/>
-                    <span class="ml-2"><%=enfant.nom+" "%> <%=enfant.prenom%></span>
-                    </div>
+                    <option value="<%=enfant._id%>"><%=enfant.nom+" "%> <%=enfant.prenom%></option>
                   <%})%>
+                </select>
                 </div>
                 <%if(enfant.length != 0){%>
-                <button type="submit" class="btn btn-primary" style=" margin-top: 30px;">ajouter!</button>
+                <button type="submit" class="btn btn-primary" style=" margin-top: 30px; background: #8ce647; border: 0;">ajouter!</button>
                 <%}%>
               </form>
             <%}else{%>
               <p class="big-font">Aucun enfant n'existe pour ajouter</p>
-              <a class="btn btn-md btn-primary" href="/dashboard/modification">ajouter un enfant</a>
+              <a class="btn btn-md" href="/dashboard/modification" style="background: #8ce647; color: white;">ajouter un enfant</a>
             <%}%>
           </center>
             </div>
@@ -200,5 +203,12 @@ container content
       </div>
   </section>
   <script src="/scripts/dashboard.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js"></script>
+
+  <script>
+    $(function () {
+  $("select").select2();
+});
+  </script>
 </body>
 </html>

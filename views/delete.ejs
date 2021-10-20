@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="/styles/rapport.css" rel="stylesheet">
      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-     <link href='/styles/nav.css' rel='stylesheet'>
+     <link href='../styles/nav.css' rel='stylesheet'>
      <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    </head>
@@ -63,7 +62,7 @@
         <p class="title" style="margin-left: 20px;">Camps</p>
       </li>
       <%}%>
-      <%if(user.role == 'educatrice' || user.role == 'directrice'){%>
+      <%if(user.role == 'educatrice'){%>
       <li class="li-h"  title="ajouter compétence">
         <a href="/dashboard/competence" style="margin-left: 25px; margin-top:50px;" title="ajouter compétence">
           <img src="/img/icons/competence.png">
@@ -80,11 +79,11 @@
       </li>
       <%}%>
       <%if(user.role == 'directrice'){%>
-      <li class="li-h" title="liste utilisateurs">
+      <li class="li-h" title="liste des utilisateurs">
         <a href="/dashboard/users" style="margin-left: 20px; margin-top:50px;" title="liste des utilisateurs">
           <img src="/img/icons/gestion-users.png" style="width: 35px; margin-left: 5px;">
         </a>
-        <p class="title"><span style="margin-left: 11px;">Liste</span><br><span>utilisateurs</span></p>
+        <p class="title"><span style="margin-left: 11px;">Liste</span><br><span>utilisateur</span></p>
       </li>
       <%}%>
       <%if(user.role == 'directrice'){%>
@@ -108,7 +107,7 @@
         <a href="/dashboard/list-plan" style="margin-left: 25px; margin-top:50px;" title="liste des plans">
           <img src="/img/icons/liste-plans.png" style="width: 40px; margin-left:-3px;">
         </a>
-        <p class="title" style="margin-left:24px;"><span style="margin-left: 2px;">Liste</span><br><span style="margin-left:4px;">des</span><br><span style="margin-left: 2px;">plans</span></p>
+        <p class="title" style="margin-left:24px;"><span style="margin-left: 2px;">Liste</span><br><span style="margin-left: 2px;">plans</span></p>
       </li>
       <%}%>
       <li class="li-h" title="liste des compétences">
@@ -116,7 +115,7 @@
         <a href="/dashboard/list-competence" style="margin-left: 25px; margin-top:50px;" title="liste des compétences">
           <img src="/img/icons/liste-competences.png" style="width: 40px; margin-left:-3px;">
         </a>
-        <p class="title" style="margin-left:24px;"><span style="margin-left: 2px;">Liste</span><br><span style="margin-left:4px;">des</span><br><span style="margin-left: -15px;">compétences</span></p>
+        <p class="title" style="margin-left:24px;"><span style="margin-left: 2px;">Liste</span><br><span style="margin-left: -15px;">compétences</span></p>
       </li>
       <%}%>
     </ul>
@@ -126,66 +125,6 @@
 container content
 -->
   <section class="home-content" >
-    <div style="margin-top: 30px; margin-left: 20px;">
-      <div class="row">
-        <div class="col-lg-7 col-sm-12 text-nowarp flex-nowrap" style="display: flex; align-items: center;">
-          <div style="flex-shrink:0;display:inline-block; width: 70px; height: 70px; border-radius: 50%;position: relative;background: linear-gradient(-30deg, #839000, #BCCF00);">
-            <img class="rounded-circle" src="/img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
-          </div>
-          <div style="margin-left: 30px;flex-shrink:0">
-              <span class="bjr1-span ">Bonjour</span>
-              <span class="bjr2-span">, <%=user.nom%></span>
-          </div>
-        </div>
-        <div class="col-lg col-sm-12">
-          <div class="row">
-            <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
-              <div class="input-group rounded-pill search shadow" style="background: white; overflow: hidden; border: 0 none; width: 300px; display: inline-block; height: 50px;flex-shrink:0" >
-                <div class="input-group-prepend border-0">
-                  <button  type="button" id="search-button" style="margin-left: 10px; margin-top: 18px;background: url(/img/icons/search-icon.png) no-repeat center/70%;"class="btn search-enfant"></button>
-                  <input type="search" placeholder="search" id="search-input"style="margin-left: 10px; margin-top: 10px;" class="border-0">
-                </div>
-              </div>
-            </div>
-            <div class="col-sm12 col-lg" style="display: flex; margin-top: 25px; margin-left:30px;">
-              <!-- <div class="col-1" style="flex: 1; flex-grow: 0; flex-shrink:0">
-                <img src="../img/icons/notification.png" id="notification-image">
-              </div> -->
-              <div class="col-1" style="flex: 1; margin-left: 14px; flex-grow: 0;flex-shrink:0;margin-top:-4px;">
-                <a href="/dashboard/settings">
-                  <img src="/img/icons/settings.png" id="settings-image">
-                </a>
-              </div>
-              <div class="col-1" style="flex: 1; margin-left: -30px; flex-grow: 0;flex-shrink:0;margin-top:-21px;">
-                <form action="/logout" method="post">
-                  <button style="border: none; background: none;">
-                    <img src="/img/icons/logout.png">
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-          </div>
-        </div> 
-      </div>
-      <div class="container">
-        <div class="jumbotron modified-jumbotron">
-            <center>
-            <p class="big-font" style="font-size:40px;">
-                    modifier l'utilisateur
-            </p>
-            </center>
-            <form action="/modify-kipina/<%=id%>" method="post">
-                <div class="form-group">
-                  <label for="exampleInputPassword1"></label>
-                  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Nom" name="nom" value="<%=kipina.nom%>">
-                </div>
-                <button type="submit" class="btn btn-warning" style="margin-left:42%; margin-top: 30px; color: white;">modifier!</button>
-              </form>
-            </div>
-        </div>
-      </div>
-  </section>
-  <script src="/scripts/dashboard.js"></script>
+</section>
 </body>
 </html>

@@ -171,16 +171,27 @@ container content
       </div>
 
     <div class="big-container-rapport">
-      <h3 class="title-rapport">Camps Actuel</h3>
-      <a href="/dashboard/add-camps" class="add-camp-button">
-        Créer Un Camp
-      </a>
+      <%if(key){%>
+        <h3 class="title-rapport">Camps Actuel</h3>
+        <a href="/dashboard/add-camps" class="add-camp-button">
+          Créer Un Camp
+        </a>
+        <a href="/dashboard/historique-camps" class="add-camp-button ml-2">
+          Historique des camps
+        </a>
+      <%}else{%>
+        <h3 class="title-rapport">Historique des camps</h3>
+      <%}%>
       <div class="inner-container-camps">
 
         <%for(let i=0;i<camps.length;i++){%>
         <div class="medium-container-camps">
           <div class="element-camp">
+            <%if(key){%>
                 <a href="/dashboard/camps/<%=camps[i]._id%>">
+            <%}else{%>
+              <a href="/dashboard/camps-historique/<%=camps[i]._id%>">
+            <%}%>
                     <%if(camps[i].type_camp == 1){%>
                       <img src="/img/Camps/automne.png" alt="automne-logo" />
                     <%}%>
@@ -199,7 +210,7 @@ container content
           <div class="time-remaining">
               <div class="progress-bar-loading">
                   <div class="back-loading">
-                    <div class="front-loading" style="width: 90%;"></div>
+                    <div class="front-loading"></div>
                   </div>
               </div>
               <div class="text-time"> 3 semaines</div>
@@ -302,6 +313,16 @@ container content
     </section>
     <script src="/scripts/dashboard.js" type="text/javascript"></script>
     <script>
+    setInterval( ()=>{
+      document.querySelectorAll(".medium-container-camps").forEach((camp)=>{
+        if(camp.childNodes[1].childNodes[1].childNodes[3].textContent.includes(document.querySelector("#search-input").value))
+        camp.style.display = "flex";
+        if(!camp.childNodes[1].childNodes[1].childNodes[3].textContent.includes(document.querySelector("#search-input").value))
+          camp.style.display = "none";
+        if(document.querySelector("#search-input").value === '')
+          camp.style.display = "flex";
+      });
+    }, 100);
       const progress = document.querySelectorAll(".front-loading");
       const text = document.querySelectorAll(".text-time");
       let current, tmp;
@@ -310,11 +331,11 @@ container content
           current = moment(new Date());
         if(<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days')>0){
         tmp  = moment("<%=camps[i].date_creation%>");
+        console.log(100*current.diff(tmp, 'days')/<%=camps[i].nbr_jrs%>);
         progress[<%=i%>].style.width = (100*current.diff(tmp, 'days')/<%=camps[i].nbr_jrs%>)+"%";
         current = moment(new Date());
               tmp     = moment("<%=camps[i].date_creation%>");
         text[<%=i%>].innerText = (<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days'))+" jours restants";
-        console.log(<%=camps[i].nbr_jrs%>);
         if(<%=camps[i].nbr_jrs%>-current.diff(tmp, 'days') <= 0){
           text[<%=i%>].style.display = "none";
           progress[<%=i%>].parentNode.style.display = "none";

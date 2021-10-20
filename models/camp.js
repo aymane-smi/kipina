@@ -4,6 +4,10 @@ const mongoose = require("mongoose"),
         nbr_jrs: Number,
         location: String,
         type_camp: String,
+        fini:{
+            type: Boolean,
+            default: false
+        },
         date_creation:{
             type: Date,
             default: Date.now

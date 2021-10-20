@@ -7,6 +7,10 @@
      <link href="/styles/rapport.css" rel="stylesheet">
      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
      <link href='/styles/nav.css' rel='stylesheet'>
+     <style>
+      @import url(https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css);
+
+    </style>
      <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    </head>
@@ -172,13 +176,15 @@ container content
         <div class="jumbotron modified-jumbotron">
             <center>
                 <%if(arr.length>0){%>
+                  <p class="big-font ml-4">choisissez un enfant</p>
                   <form action="/list-competence" method="post">
+                    <select name="enfant" style="width: 130px;">
                     <%arr.forEach((enfant)=>{%>
-                        <label for="radio"><%=enfant.nom+" "+enfant.prenom%></label>
-                        <input id="radio" type="radio" name="enfant" value="<%=enfant._id%>">
-                        <br>
+                        <option value="<%=enfant._id%>"><%=enfant.nom+" "+enfant.prenom%></option>
                     <%})%>
-                    <button class="btn btn-md btn-primary">Générer</button>
+                  </select>
+                  <br>
+                    <button class="btn btn-md btn-primary mt-3" style="background: #8ce647; border: 0;">Générer</button>
                     </form>
                   <%}else{%>
                     <p class="big-font">Aucun rapport de compétence n'est encore générer</p>
@@ -189,5 +195,12 @@ container content
       </div>
   </section>
   <script src="/scripts/dashboard.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.min.js"></script>
+
+  <script>
+    $(function () {
+  $("select").select2();
+});
+  </script>
 </body>
 </html>

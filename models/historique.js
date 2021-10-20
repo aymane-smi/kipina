@@ -3,6 +3,8 @@ const mongoose         = require("mongoose"),
           nom: String,
           prenom: String,
           date_inscription: Date,
-          date_quitte: Date
+          date_quitte: Date,
+          choix: [String],
+          autre: String
       });
 module.exports = mongoose.model("Historique", historiqueSchema);

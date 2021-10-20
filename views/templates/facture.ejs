@@ -48,7 +48,7 @@
             position: fixed;
             top:0;
             left: 0;
-            width: 70px;
+            width: 30px;
             height: 900vh;
             background: #ED7D27;
         }
@@ -58,7 +58,7 @@
         .title{
             color: #ED7D27;
             font-weight: 700;
-            font-size: 12px;
+            font-size: 28px;
         }
         .table{
             margin-left: 80px;
@@ -104,7 +104,7 @@
         <div id="logo">
             <p class="title">Facture</p>
             <div class="card">
-                <p>Père: <span class="number"><%=pere.nom+" "+pere.prenom%></span></p>
+                <p>Père: <span class="number"><%if(pere){%><%=pere.nom+" "+pere.prenom%><%}%></span></p>
                 <p>Mère: <span class="number"><%if(mere){%><%=mere.nom+" "+mere.prenom%><%}%></span></p>
                 <br>
                 <p>enfant: <span class="number"> <%=enfant.nom+" "+enfant.prenom%></span></p>
@@ -311,7 +311,8 @@
                         <%total += tmp.length*50;%>
                     <%}%>
                 </tr>
-                <%if(enfant.inscription)%>
+                <%if(enfant.inscription){%>
+                    <%if(inscription){%>
                 <tr>
                     <td>Inscription</td>
                     <td><%=prix.inscription%></td>
@@ -320,6 +321,7 @@
                     <td></td>
                     <%total += prix.inscription%>
                 </tr>
+                <%}%>
                 <%}%>
                 <%}%>
                 <%})%>
@@ -332,12 +334,12 @@
                 </tr>
                 <tr>
                     <th>Remise</th>
-                    <td><%=prix.remise%>%</td>
+                    <td><%=remise%>%</td>
                 </tr>
                 <%if(remise){%>
                 <tr>
                     <th>Total</th>
-                    <td><%=total-(total*(prix.remise/100))%></td>
+                    <td><%=total-(total*(remise/100))%></td>
                 </tr>
                 <%}%>
             </table>
