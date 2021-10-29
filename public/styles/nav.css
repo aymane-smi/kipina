@@ -347,3 +347,24 @@ body{
   font-weight: 200;
   font-size: 30px;
 }
+.class-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
+}
+.info-col{
+  margin-top: 10px;
+  width: 350px;
+  border-radius: 10px;
+  margin-left: 20px;
+}
+.global{
+  background: #BCCF00;
+  border: 0;
+  color:white;
+  font-weight: bold;
+}
+.global:hover{
+  color:white;
+}

@@ -154,24 +154,643 @@
                 <!-- sexe -->
                 <div class="form-group w-75" style="margin-top: 40px; margin-left:50px;">
                   <label for="sex" style="display: block;" class="text-500">Sexe</label>
-                  <input type="checkbox" id="sexe" name="e_garcon" <%if(enfant.sexe === 1){%> <%= 'checked'%> <%}%> > Garçon
-                  <input type="checkbox" id="sexe" name="e_fille" style="margin-left: 10px;" <%if(enfant.sexe === 0){%> <%= 'checked'%> <%}%>> Fille
+                  <input type="radio" id="sexe" name="enfant" value="1"<%if(enfant.sexe === 1){%> <%= 'checked'%> <%}%> > Garçon
+                  <input type="radio" id="sexe" name="enfant" style="margin-left: 10px;" value="2" <%if(enfant.sexe === 0){%> <%= 'checked'%> <%}%>> Fille
                 </div>
                 <!-- nationnalité -->
                 <center>
                 <div class="form-group w-75">
                   <label for="nationnalite"></label>
-                  <input type="text" name="e_nationnalite" class="form-control shadow shadow" id="nationnalite" placeholder="Nationnalité" value="<%=enfant.nationnalite%>">
+                  <select name="e_nationnalite" class="w-75 json">
+                    <option value="Afghanistan" <%if(enfant.nationnalite == "Afghanistan"){%>selected<%}%> >Afghanistan</option>
+                    <option value="Afrique du Sud" <%if(enfant.nationnalite == "Afrique du Sud"){%>selected<%}%> >Afrique du Sud</option>
+                    <option value="Albanie" <%if(enfant.nationnalite == "Albanie"){%>selected<%}%> >Albanie</option>
+                    <option value="Algérie" <%if(enfant.nationnalite == "Algérie"){%>selected<%}%> >Algérie</option>
+                    <option value="Allemagne" <%if(enfant.nationnalite == "Allemagne"){%>selected<%}%> >Allemagne</option>
+                    <option value="Andorre" <%if(enfant.nationnalite == "Andorre"){%>selected<%}%> >Andorre</option>
+                    <option value="Angola" <%if(enfant.nationnalite == "Angola"){%>selected<%}%> >Angola</option>
+                    <option value="Antiga Barbuda" <%if(enfant.nationnalite == "Antiga Barbuda"){%>selected<%}%> >Antiga Barbuda</option>
+                    <option value="Arabie Saoudite" <%if(enfant.nationnalite == "Arabie Saoudite"){%>selected<%}%> >Arabie Saoudite</option>
+                    <option value="Argentine" <%if(enfant.nationnalite == "Argentine"){%>selected<%}%> >Argentine</option>
+                    <option value="Arménie" <%if(enfant.nationnalite == "Arménie"){%>selected<%}%> >Arménie</option>
+                    <option value="Australie" <%if(enfant.nationnalite == "Australie"){%>selected<%}%> >Australie</option>
+                    <option value="Autriche" <%if(enfant.nationnalite == "Autriche"){%>selected<%}%> >Autriche</option>
+                    <option value="Azerbaidjan" <%if(enfant.nationnalite == "Azerbaidjan"){%>selected<%}%> >Azerbaidjan</option>
+                    <option value="Bahreïn" <%if(enfant.nationnalite == "Bahreïn"){%>selected<%}%> >Bahreïn</option>
+                    <option value="Bangladesh" <%if(enfant.nationnalite == "Bangladesh"){%>selected<%}%> >Bangladesh</option>
+                    <option value="Barbados" <%if(enfant.nationnalite == "Barbados"){%>selected<%}%> >Barbados</option>
+                    <option value="Bélarussie" <%if(enfant.nationnalite == "Bélarussie"){%>selected<%}%> >Bélarussie</option>
+                    <option value="Belgique" <%if(enfant.nationnalite == "Belgique"){%>selected<%}%> >Belgique</option>
+                    <option value="Belize" <%if(enfant.nationnalite == "Belize"){%>selected<%}%> >Belize</option>
+                    <option value="Bénin" <%if(enfant.nationnalite == "Bénin"){%>selected<%}%> >Bénin</option>
+                    <option value="Birmanie" <%if(enfant.nationnalite == "Birmanie"){%>selected<%}%> >Birmanie</option>
+                    <option value="Bolivie" <%if(enfant.nationnalite == "Bolivie"){%>selected<%}%> >Bolivie</option>
+                    <option value="Bosnie-Herzégovine" <%if(enfant.nationnalite == "Bosnie-Herzégovine"){%>selected<%}%> >Bosnie-Herzégovine</option>
+                    <option value="Botswana" <%if(enfant.nationnalite == "Botswana"){%>selected<%}%> >Botswana</option>
+                    <option value="Brésil" <%if(enfant.nationnalite == "Brésil"){%>selected<%}%> >Brésil</option>
+                    <option value="Brunei" <%if(enfant.nationnalite == "Brunei"){%>selected<%}%> >Brunei</option>
+                    <option value="Bulgarie" <%if(enfant.nationnalite == "Bulgarie"){%>selected<%}%> >Bulgarie</option>
+                    <option value="Burkina Faso" <%if(enfant.nationnalite == "Burkina Faso"){%>selected<%}%> >Burkina Faso</option>
+                    <option value="Burundi" <%if(enfant.nationnalite == "Burundi"){%>selected<%}%> >Burundi</option>
+                    <option value="Cambodge" <%if(enfant.nationnalite == "Cambodge"){%>selected<%}%> >Cambodge</option>
+                    <option value="Caméroun" <%if(enfant.nationnalite == "Caméroun"){%>selected<%}%> >Caméroun</option>
+                    <option value="Canada" <%if(enfant.nationnalite == "Canada"){%>selected<%}%> >Canada</option>
+                    <option value="Cape Verde" <%if(enfant.nationnalite == "Cape Verde"){%>selected<%}%> >Cape Verde</option>
+                    <option value="Chili" <%if(enfant.nationnalite == "Chili"){%>selected<%}%> >Chili</option>
+                    <option value="Chine" <%if(enfant.nationnalite == "Chine"){%>selected<%}%> >Chine</option>
+                    <option value="Chypre" <%if(enfant.nationnalite == "Chypre"){%>selected<%}%> >Chypre</option>
+                    <option value="Colombie" <%if(enfant.nationnalite == "Colombie"){%>selected<%}%> >Colombie</option>
+                    <option value="Comoros" <%if(enfant.nationnalite == "Comoros"){%>selected<%}%> >Comoros</option>
+                    <option value="Congo" <%if(enfant.nationnalite == "Congo"){%>selected<%}%> >Congo</option>
+                    <option value="Corée du Nord" <%if(enfant.nationnalite == "Corée du Nord"){%>selected<%}%> >Corée du Nord</option>
+                    <option value="Corée du sud" <%if(enfant.nationnalite == "Corée du sud"){%>selected<%}%> >Corée du sud</option>
+                    <option value="Costa Rica" <%if(enfant.nationnalite == "Costa Rica"){%>selected<%}%> >Costa Rica</option>
+                    <option value="Côte-d'Ivoire" <%if(enfant.nationnalite == "Côte-d'Ivoire"){%>selected<%}%> >Côte-d'Ivoire</option>
+                    <option value="Croatie" <%if(enfant.nationnalite == "Croatie"){%>selected<%}%> >Croatie</option>
+                    <option value="Cuba" <%if(enfant.nationnalite == "Cuba"){%>selected<%}%> >Cuba</option>
+                    <option value="Danemark" <%if(enfant.nationnalite == "Danemark"){%>selected<%}%> >Danemark</option>
+                    <option value="Djibouti" <%if(enfant.nationnalite == "Djibouti"){%>selected<%}%> >Djibouti</option>
+                    <option value="Dominica" <%if(enfant.nationnalite == "Dominica"){%>selected<%}%> >Dominica</option>
+                    <option value="East Timor" <%if(enfant.nationnalite == "East Timor"){%>selected<%}%> >East Timor</option>
+                    <option value="Egypte" <%if(enfant.nationnalite == "Egypte"){%>selected<%}%> >Egypte</option>
+                    <option value="El Salvador" <%if(enfant.nationnalite == "El Salvador"){%>selected<%}%> >El Salvador</option>
+                    <option value="Emirats Arabes Unis" <%if(enfant.nationnalite == "Emirats Arabes Unis"){%>selected<%}%> >Emirats Arabes Unis</option>
+                    <option value="Equateral Guine" <%if(enfant.nationnalite == "Equateral Guine"){%>selected<%}%> >Equateral Guine</option>
+                    <option value="Equateur" <%if(enfant.nationnalite == "Equateur"){%>selected<%}%> >Equateur</option>
+                    <option value="Espagne" <%if(enfant.nationnalite == "Espagne"){%>selected<%}%> >Espagne</option>
+                    <option value="Estonie" <%if(enfant.nationnalite == "Estonie"){%>selected<%}%> >Estonie</option>
+                    <option value="Etats-Unis" <%if(enfant.nationnalite == "Etats-Unis"){%>selected<%}%> >Etats-Unis</option>
+                    <option value="Ethiopie" <%if(enfant.nationnalite == "Ethiopie"){%>selected<%}%> >Ethiopie</option>
+                    <option value="Finlande" <%if(enfant.nationnalite == "Finlande"){%>selected<%}%> >Finlande</option>
+                    <option value="France" <%if(enfant.nationnalite == "France"){%>selected<%}%> >France</option>
+                    <option value="French Guiana" <%if(enfant.nationnalite == "French Guiana"){%>selected<%}%> >French Guiana</option>
+                    <option value="Gabon" <%if(enfant.nationnalite == "Gabon"){%>selected<%}%> >Gabon</option>
+                    <option value="Gambie" <%if(enfant.nationnalite == "Gambie"){%>selected<%}%> >Gambie</option>
+                    <option value="Géorgie" <%if(enfant.nationnalite == "Géorgie"){%>selected<%}%> >Géorgie</option>
+                    <option value="Ghana" <%if(enfant.nationnalite == "Ghana"){%>selected<%}%> >Ghana</option>
+                    <option value="Grande-Bretagne" <%if(enfant.nationnalite == "Grande-Bretagne"){%>selected<%}%> >Grande-Bretagne</option>
+                    <option value="Grèce" <%if(enfant.nationnalite == "Grèce"){%>selected<%}%> >Grèce</option>
+                    <option value="Grenada" <%if(enfant.nationnalite == "Grenada"){%>selected<%}%> >Grenada</option>
+                    <option value="Groenland" <%if(enfant.nationnalite == "Groenland"){%>selected<%}%> >Groenland</option>
+                    <option value="Guatemala" <%if(enfant.nationnalite == "Guatemala"){%>selected<%}%> >Guatemala</option>
+                    <option value="Guinée" <%if(enfant.nationnalite == "Guinée"){%>selected<%}%> >Guinée</option>
+                    <option value="Guinée-Bissau" <%if(enfant.nationnalite == "Guinée-Bissau"){%>selected<%}%> >Guinée-Bissau</option>
+                    <option value="Guyane" <%if(enfant.nationnalite == "Guyane"){%>selected<%}%> >Guyane</option>
+                    <option value="Haïti" <%if(enfant.nationnalite == "Haïti"){%>selected<%}%> >Haïti</option>
+                    <option value="Honduras" <%if(enfant.nationnalite == "Honduras"){%>selected<%}%> >Honduras</option>
+                    <option value="Hongrie" <%if(enfant.nationnalite == "Hongrie"){%>selected<%}%> >Hongrie</option>
+                    <option value="Îles Cook" <%if(enfant.nationnalite == "Îles Cook"){%>selected<%}%> >Îles Cook</option>
+                    <option value="Iles Fidji" <%if(enfant.nationnalite == "Iles Fidji"){%>selected<%}%> >Iles Fidji</option>
+                    <option value="Iles Maurice" <%if(enfant.nationnalite == "Iles Maurice"){%>selected<%}%> >Iles Maurice</option>
+                    <option value="Îles Paracels" <%if(enfant.nationnalite == "Îles Paracels"){%>selected<%}%> >Îles Paracels</option>
+                    <option value="Inde" <%if(enfant.nationnalite == "Inde"){%>selected<%}%> >Inde</option>
+                    <option value="Indonésie" <%if(enfant.nationnalite == "Indonésie"){%>selected<%}%> >Indonésie</option>
+                    <option value="Irak" <%if(enfant.nationnalite == "Irak"){%>selected<%}%> >Irak</option>
+                    <option value="Iran" <%if(enfant.nationnalite == "Iran"){%>selected<%}%> >Iran</option>
+                    <option value="Irlande" <%if(enfant.nationnalite == "Irlande"){%>selected<%}%> >Irlande</option>
+                    <option value="Islande" <%if(enfant.nationnalite == "Islande"){%>selected<%}%> >Islande</option>
+                    <option value="Israël" <%if(enfant.nationnalite == "Israël"){%>selected<%}%> >Israël</option>
+                    <option value="Italie" <%if(enfant.nationnalite == "Italie"){%>selected<%}%> >Italie</option>
+                    <option value="Jamaïque" <%if(enfant.nationnalite == "Jamaïque"){%>selected<%}%> >Jamaïque</option>
+                    <option value="Japon" <%if(enfant.nationnalite == "Japon"){%>selected<%}%> >Japon</option>
+                    <option value="Jordanie" <%if(enfant.nationnalite == "Jordanie"){%>selected<%}%> >Jordanie</option>
+                    <option value="Kazakhstan" <%if(enfant.nationnalite == "Kazakhstan"){%>selected<%}%> >Kazakhstan</option>
+                    <option value="Kenya" <%if(enfant.nationnalite == "Kenya"){%>selected<%}%> >Kenya</option>
+                    <option value="Kirgistan" <%if(enfant.nationnalite == "Kirgistan"){%>selected<%}%> >Kirgistan</option>
+                    <option value="Kiribati" <%if(enfant.nationnalite == "Kiribati"){%>selected<%}%> >Kiribati</option>
+                    <option value="Kosovo" <%if(enfant.nationnalite == "Kosovo"){%>selected<%}%> >Kosovo</option>
+                    <option value="Koweit" <%if(enfant.nationnalite == "Koweit"){%>selected<%}%> >Koweit</option>
+                    <option value="L'Erythrée" <%if(enfant.nationnalite == "L'Erythrée"){%>selected<%}%> >L'Erythrée</option>
+                    <option value="La Réunion" <%if(enfant.nationnalite == "La Réunion"){%>selected<%}%> >La Réunion</option>
+                    <option value="Laos" <%if(enfant.nationnalite == "Laos"){%>selected<%}%> >Laos</option>
+                    <option value="Les Bahamas" <%if(enfant.nationnalite == "Les Bahamas"){%>selected<%}%> >Les Bahamas</option>
+                    <option value="Lesotho" <%if(enfant.nationnalite == "Lesotho"){%>selected<%}%> >Lesotho</option>
+                    <option value="Lettonie" <%if(enfant.nationnalite == "Lettonie"){%>selected<%}%> >Lettonie</option>
+                    <option value="Liban" <%if(enfant.nationnalite == "Liban"){%>selected<%}%> >Liban</option>
+                    <option value="Libéria" <%if(enfant.nationnalite == "Libéria"){%>selected<%}%> >Libéria</option>
+                    <option value="Libye" <%if(enfant.nationnalite == "Libye"){%>selected<%}%> >Libye</option>
+                    <option value="Liechtenstein" <%if(enfant.nationnalite == "Liechtenstein"){%>selected<%}%> >Liechtenstein</option>
+                    <option value="Lituanie" <%if(enfant.nationnalite == "Lituanie"){%>selected<%}%> >Lituanie</option>
+                    <option value="Luxembourg" <%if(enfant.nationnalite == "Luxembourg"){%>selected<%}%> >Luxembourg</option>
+                    <option value="Macédoine" <%if(enfant.nationnalite == "Macédoine"){%>selected<%}%> >Macédoine</option>
+                    <option value="Madagascar" <%if(enfant.nationnalite == "Madagascar"){%>selected<%}%> >Madagascar</option>
+                    <option value="Malaisie" <%if(enfant.nationnalite == "Malaisie"){%>selected<%}%> >Malaisie</option>
+                    <option value="Malawi" <%if(enfant.nationnalite == "Malawi"){%>selected<%}%> >Malawi</option>
+                    <option value="Maldives" <%if(enfant.nationnalite == "Maldives"){%>selected<%}%> >Maldives</option>
+                    <option value="Mali" <%if(enfant.nationnalite == "Mali"){%>selected<%}%> >Mali</option>
+                    <option value="Malte" <%if(enfant.nationnalite == "Malte"){%>selected<%}%> >Malte</option>
+                    <option value="Maroc" <%if(enfant.nationnalite == "Maroc"){%>selected<%}%> >Maroc</option>
+                    <option value="Marshall Islands" <%if(enfant.nationnalite == "Marshall Islands"){%>selected<%}%> >Marshall Islands</option>
+                    <option value="Mauritanie" <%if(enfant.nationnalite == "Mauritanie"){%>selected<%}%> >Mauritanie</option>
+                    <option value="Mexique" <%if(enfant.nationnalite == "Mexique"){%>selected<%}%> >Mexique</option>
+                    <option value="Micronesia" <%if(enfant.nationnalite == "Micronesia"){%>selected<%}%> >Micronesia</option>
+                    <option value="Moldavie" <%if(enfant.nationnalite == "Moldavie"){%>selected<%}%> >Moldavie</option>
+                    <option value="Monaco" <%if(enfant.nationnalite == "Monaco"){%>selected<%}%> >Monaco</option>
+                    <option value="Mongolie" <%if(enfant.nationnalite == "Mongolie"){%>selected<%}%> >Mongolie</option>
+                    <option value="Monténégro" <%if(enfant.nationnalite == "Monténégro"){%>selected<%}%> >Monténégro</option>
+                    <option value="Mozambique" <%if(enfant.nationnalite == "Mozambique"){%>selected<%}%> >Mozambique</option>
+                    <option value="Namibie" <%if(enfant.nationnalite == "Namibie"){%>selected<%}%> >Namibie</option>
+                    <option value="Nauru" <%if(enfant.nationnalite == "Nauru"){%>selected<%}%> >Nauru</option>
+                    <option value="Nepal" <%if(enfant.nationnalite == "Nepal"){%>selected<%}%> >Nepal</option>
+                    <option value="Nicaragua" <%if(enfant.nationnalite == "Nicaragua"){%>selected<%}%> >Nicaragua</option>
+                    <option value="Niger" <%if(enfant.nationnalite == "Niger"){%>selected<%}%> >Niger</option>
+                    <option value="Nigeria" <%if(enfant.nationnalite == "Nigeria"){%>selected<%}%> >Nigeria</option>
+                    <option value="Norvège" <%if(enfant.nationnalite == "Norvège"){%>selected<%}%> >Norvège</option>
+                    <option value="Nouvelle Zélande" <%if(enfant.nationnalite == "Nouvelle Zélande"){%>selected<%}%> >Nouvelle Zélande</option>
+                    <option value="Oman" <%if(enfant.nationnalite == "Oman"){%>selected<%}%> >Oman</option>
+                    <option value="Ouganda" <%if(enfant.nationnalite == "Ouganda"){%>selected<%}%> >Ouganda</option>
+                    <option value="Ouzbékistan" <%if(enfant.nationnalite == "Ouzbékistan"){%>selected<%}%> >Ouzbékistan</option>
+                    <option value="Pakistan" <%if(enfant.nationnalite == "Pakistan"){%>selected<%}%> >Pakistan</option>
+                    <option value="Palaos" <%if(enfant.nationnalite == "Palaos"){%>selected<%}%> >Palaos</option>
+                    <option value="Palestine" <%if(enfant.nationnalite == "Palestine"){%>selected<%}%> >Palestine</option>
+                    <option value="Panama" <%if(enfant.nationnalite == "Panama"){%>selected<%}%> >Panama</option>
+                    <option value="Papouasie Nouvelle-Guinée" <%if(enfant.nationnalite == "Papouasie Nouvelle-Guinée"){%>selected<%}%> >Papouasie Nouvelle-Guinée</option>
+                    <option value="Paraguay" <%if(enfant.nationnalite == "Paraguay"){%>selected<%}%> >Paraguay</option>
+                    <option value="Pays-bas" <%if(enfant.nationnalite == "Pays-bas"){%>selected<%}%> >Pays-bas</option>
+                    <option value="Pérou" <%if(enfant.nationnalite == "Pérou"){%>selected<%}%> >Pérou</option>
+                    <option value="Philippines" <%if(enfant.nationnalite == "Philippines"){%>selected<%}%> >Philippines</option>
+                    <option value="Pologne" <%if(enfant.nationnalite == "Pologne"){%>selected<%}%> >Pologne</option>
+                    <option value="Porto Rico" <%if(enfant.nationnalite == "Porto Rico"){%>selected<%}%> >Porto Rico</option>
+                    <option value="Portugal" <%if(enfant.nationnalite == "Portugal"){%>selected<%}%> >Portugal</option>
+                    <option value="Qatar" <%if(enfant.nationnalite == "Qatar"){%>selected<%}%> >Qatar</option>
+                    <option value="République Centrafricaine" <%if(enfant.nationnalite == "République Centrafricaine"){%>selected<%}%> >République Centrafricaine</option>
+                    <option value="République Dominicaine" <%if(enfant.nationnalite == "République Dominicaine"){%>selected<%}%> >République Dominicaine</option>
+                    <option value="République Tchèque" <%if(enfant.nationnalite == "République Tchèque"){%>selected<%}%> >République Tchèque</option>
+                    <option value="Roumanie" <%if(enfant.nationnalite == "Roumanie"){%>selected<%}%> >Roumanie</option>
+                    <option value="Russie" <%if(enfant.nationnalite == "Russie"){%>selected<%}%> >Russie</option>
+                    <option value="Rwanda" <%if(enfant.nationnalite == "Rwanda"){%>selected<%}%> >Rwanda</option>
+                    <option value="Saint-Marin" <%if(enfant.nationnalite == "Saint-Marin"){%>selected<%}%> >Saint-Marin</option>
+                    <option value="Samoa" <%if(enfant.nationnalite == "Samoa"){%>selected<%}%> >Samoa</option>
+                    <option value="Sao Tome" <%if(enfant.nationnalite == "Sao Tome"){%>selected<%}%> >Sao Tome</option>
+                    <option value="Sénégal" <%if(enfant.nationnalite == "Sénégal"){%>selected<%}%> >Sénégal</option>
+                    <option value="Serbie" <%if(enfant.nationnalite == "Serbie"){%>selected<%}%> >Serbie</option>
+                    <option value="Seychelles" <%if(enfant.nationnalite == "Seychelles"){%>selected<%}%> >Seychelles</option>
+                    <option value="Sierra Leone" <%if(enfant.nationnalite == "Sierra Leone"){%>selected<%}%> >Sierra Leone</option>
+                    <option value="Singapour" <%if(enfant.nationnalite == "Singapour"){%>selected<%}%> >Singapour</option>
+                    <option value="Slovaquie" <%if(enfant.nationnalite == "Slovaquie"){%>selected<%}%> >Slovaquie</option>
+                    <option value="Solomon Islands" <%if(enfant.nationnalite == "Solomon Islands"){%>selected<%}%> >Solomon Islands</option>
+                    <option value="Solvénie" <%if(enfant.nationnalite == "Solvénie"){%>selected<%}%> >Solvénie</option>
+                    <option value="Somalie" <%if(enfant.nationnalite == "Somalie"){%>selected<%}%> >Somalie</option>
+                    <option value="Soudan" <%if(enfant.nationnalite == "Soudan"){%>selected<%}%> >Soudan</option>
+                    <option value="Soudan du Sud" <%if(enfant.nationnalite == "Soudan du Sud"){%>selected<%}%> >Soudan du Sud</option>
+                    <option value="Spratly Islands" <%if(enfant.nationnalite == "Spratly Islands"){%>selected<%}%> >Spratly Islands</option>
+                    <option value="Sri Lanka" <%if(enfant.nationnalite == "Sri Lanka"){%>selected<%}%> >Sri Lanka</option>
+                    <option value="St. Kitts/Nevis" <%if(enfant.nationnalite == "St. Kitts/Nevis"){%>selected<%}%> >St. Kitts/Nevis</option>
+                    <option value="St. Lucia" <%if(enfant.nationnalite == "St. Lucia"){%>selected<%}%> >St. Lucia</option>
+                    <option value="St. Vincent/the Grenadines" <%if(enfant.nationnalite == "St. Vincent/the Grenadines"){%>selected<%}%> >St. Vincent/the Grenadines</option>
+                    <option value="Suède" <%if(enfant.nationnalite == "Suède"){%>selected<%}%> >Suède</option>
+                    <option value="Suisse" <%if(enfant.nationnalite == "Suisse"){%>selected<%}%> >Suisse</option>
+                    <option value="Surinam" <%if(enfant.nationnalite == "Surinam"){%>selected<%}%> >Surinam</option>
+                    <option value="Swaziland" <%if(enfant.nationnalite == "Swaziland"){%>selected<%}%> >Swaziland</option>
+                    <option value="sychelles" <%if(enfant.nationnalite == "sychelles"){%>selected<%}%> >sychelles</option>
+                    <option value="Syrie" <%if(enfant.nationnalite == "Syrie"){%>selected<%}%> >Syrie</option>
+                    <option value="Tadjikistan" <%if(enfant.nationnalite == "Tadjikistan"){%>selected<%}%> >Tadjikistan</option>
+                    <option value="Taïwan" <%if(enfant.nationnalite == "Taïwan"){%>selected<%}%> >Taïwan</option>
+                    <option value="Tanzanie" <%if(enfant.nationnalite == "Tanzanie"){%>selected<%}%> >Tanzanie</option>
+                    <option value="Tchad" <%if(enfant.nationnalite == "Tchad"){%>selected<%}%> >Tchad</option>
+                    <option value="Thaïlande" <%if(enfant.nationnalite == "Thaïlande"){%>selected<%}%> >Thaïlande</option>
+                    <option value="Togo" <%if(enfant.nationnalite == "Togo"){%>selected<%}%> >Togo</option>
+                    <option value="Tonga" <%if(enfant.nationnalite == "Tonga"){%>selected<%}%> >Tonga</option>
+                    <option value="Trinidad/Tobago" <%if(enfant.nationnalite == "Trinidad/Tobago"){%>selected<%}%> >Trinidad/Tobago</option>
+                    <option value="Tunisie" <%if(enfant.nationnalite == "Tunisie"){%>selected<%}%> >Tunisie</option>
+                    <option value="Turkmenistan" <%if(enfant.nationnalite == "Turkmenistan"){%>selected<%}%> >Turkmenistan</option>
+                    <option value="Turquie" <%if(enfant.nationnalite == "Turquie"){%>selected<%}%> >Turquie</option>
+                    <option value="Tuvalu" <%if(enfant.nationnalite == "Tuvalu"){%>selected<%}%> >Tuvalu</option>
+                    <option value="Ukraine" <%if(enfant.nationnalite == "Ukraine"){%>selected<%}%> >Ukraine</option>
+                    <option value="Uruguay" <%if(enfant.nationnalite == "Uruguay"){%>selected<%}%> >Uruguay</option>
+                    <option value="Vanuatu" <%if(enfant.nationnalite == "Vanuatu"){%>selected<%}%> >Vanuatu</option>
+                    <option value="Vatican" <%if(enfant.nationnalite == "Vatican"){%>selected<%}%> >Vatican</option>
+                    <option value="Venezuela" <%if(enfant.nationnalite == "Venezuela"){%>selected<%}%> >Venezuela</option>
+                    <option value="Vietnam" <%if(enfant.nationnalite == "Vietnam"){%>selected<%}%> >Vietnam</option>
+                    <option value="West Bank" <%if(enfant.nationnalite == "West Bank"){%>selected<%}%> >West Bank</option>
+                    <option value="Yemen" <%if(enfant.nationnalite == "Yemen"){%>selected<%}%> >Yemen</option>
+                    <option value="Zambie" <%if(enfant.nationnalite == "Zambie"){%>selected<%}%> >Zambie</option>
+                    <option value="Zimbabwe" <%if(enfant.nationnalite == "Zimbabwe"){%>selected<%}%> >Zimbabwe</option>
+                </select>
                 </div>
                 <!-- langue maternelle -->
                 <div class="form-group w-75">
                   <label for="lang-maternelle"></label>
-                  <input type="text" name="e_maternelle" class="form-control shadow shadow" id="lang-maternelle" placeholder="Langue maternelle" value="<%=enfant.langue_maternelle%>">
+                  <select name="e_maternelle" class="w-75 json"><option value="Albanais" <%if(enfant.langue_maternelle == "Albanais"){%>selected<%}%> >Albanais</option>
+                    <option value="Allemand" <%if(enfant.langue_maternelle == "Allemand"){%>selected<%}%> >Allemand</option>
+                    <option value="Afrikaans" <%if(enfant.langue_maternelle == "Afrikaans"){%>selected<%}%> >Afrikaans</option>
+                    <option value="Araona" <%if(enfant.langue_maternelle == "Araona"){%>selected<%}%> >Araona</option>
+                    <option value="Azéri" <%if(enfant.langue_maternelle == "Azéri"){%>selected<%}%> >Azéri</option>
+                    <option value="Amazigh" <%if(enfant.langue_maternelle == "Amazigh"){%>selected<%}%> >Amazigh</option>
+                    <option value="Arménien" <%if(enfant.langue_maternelle == "Arménien"){%>selected<%}%> >Arménien</option>
+                    <option value="Aymara" <%if(enfant.langue_maternelle == "Aymara"){%>selected<%}%> >Aymara</option>
+                    <option value="Anglais" <%if(enfant.langue_maternelle == "Anglais"){%>selected<%}%> >Anglais</option>
+                    <option value="Arabe" <%if(enfant.langue_maternelle == "Arabe"){%>selected<%}%> >Arabe</option>
+                    <option value="Bengali" <%if(enfant.langue_maternelle == "Bengali"){%>selected<%}%> >Bengali</option>
+                    <option value="Bulgare" <%if(enfant.langue_maternelle == "Bulgare"){%>selected<%}%> >Bulgare</option>
+                    <option value="Bésiro" <%if(enfant.langue_maternelle == "Bésiro"){%>selected<%}%> >Bésiro</option>
+                    <option value="Bichelamar" <%if(enfant.langue_maternelle == "Bichelamar"){%>selected<%}%> >Bichelamar</option>
+                    <option value="Biélorusse" <%if(enfant.langue_maternelle == "Biélorusse"){%>selected<%}%> >Biélorusse</option>
+                    <option value="Birman" <%if(enfant.langue_maternelle == "Birman"){%>selected<%}%> >Birman</option>
+                    <option value="Catalan" <%if(enfant.langue_maternelle == "Catalan"){%>selected<%}%> >Catalan</option>
+                    <option value="Coréen" <%if(enfant.langue_maternelle == "Coréen"){%>selected<%}%> >Coréen</option>
+                    <option value="Croate" <%if(enfant.langue_maternelle == "Croate"){%>selected<%}%> >Croate</option>
+                    <option value="Cambodgien" <%if(enfant.langue_maternelle == "Cambodgien"){%>selected<%}%> >Cambodgien</option>
+                    <option value="Chinois" <%if(enfant.langue_maternelle == "Chinois"){%>selected<%}%> >Chinois</option>
+                    <option value="Danois" <%if(enfant.langue_maternelle == "Danois"){%>selected<%}%> >Danois</option>
+                    <option value="Espagnol" <%if(enfant.langue_maternelle == "Espagnol"){%>selected<%}%> >Espagnol</option>
+                    <option value="Finnois" <%if(enfant.langue_maternelle == "Finnois"){%>selected<%}%> >Finnois</option>
+                    <option value="Français" <%if(enfant.langue_maternelle == "Français"){%>selected<%}%> >Français</option>
+                    <option value="Japonais" <%if(enfant.langue_maternelle == "Japonais"){%>selected<%}%> >Japonais</option>
+                    <option value="Portugais" <%if(enfant.langue_maternelle == "Portugais"){%>selected<%}%> >Portugais</option>
+                    <option value="Russe" <%if(enfant.langue_maternelle == "Russe"){%>selected<%}%> >Russe</option>
+                    <option value="Guarani" <%if(enfant.langue_maternelle == "Guarani"){%>selected<%}%> >Guarani</option>
+                    <option value="Grec" <%if(enfant.langue_maternelle == "Grec"){%>selected<%}%> >Grec</option>
+                    <option value="Hongrois" <%if(enfant.langue_maternelle == "Hongrois"){%>selected<%}%> >Hongrois</option>
+                    <option value="Italien" <%if(enfant.langue_maternelle == "Italien"){%>selected<%}%> >Italien</option>
+                    <option value="Kikongo" <%if(enfant.langue_maternelle == "Kikongo"){%>selected<%}%> >Kikongo</option>
+                    <option value="Kiswahili" <%if(enfant.langue_maternelle == "Kiswahili"){%>selected<%}%> >Kiswahili</option>
+                    <option value="Lingala" <%if(enfant.langue_maternelle == "Lingala"){%>selected<%}%> >Lingala</option>
+                    <option value="Malais" <%if(enfant.langue_maternelle == "Malais"){%>selected<%}%> >Malais</option>
+                    <option value="Mongol" <%if(enfant.langue_maternelle == "Mongol"){%>selected<%}%> >Mongol</option>
+                    <option value="Néerlandais" <%if(enfant.langue_maternelle == "Néerlandais"){%>selected<%}%> >Néerlandais</option>
+                    <option value="Occitan" <%if(enfant.langue_maternelle == "Occitan"){%>selected<%}%> >Occitan</option>
+                    <option value="Ourdou" <%if(enfant.langue_maternelle == "Ourdou"){%>selected<%}%> >Ourdou</option>
+                    <option value="Persan" <%if(enfant.langue_maternelle == "Persan"){%>selected<%}%> >Persan</option>
+                    <option value="Quechua" <%if(enfant.langue_maternelle == "Quechua"){%>selected<%}%> >Quechua</option>
+                    <option value="Roumain" <%if(enfant.langue_maternelle == "Roumain"){%>selected<%}%> >Roumain</option>
+                    <option value="Samoan" <%if(enfant.langue_maternelle == "Samoan"){%>selected<%}%> >Samoan</option>
+                    <option value="Serbe" <%if(enfant.langue_maternelle == "Serbe"){%>selected<%}%> >Serbe</option>
+                    <option value="Sesotho" <%if(enfant.langue_maternelle == "Sesotho"){%>selected<%}%> >Sesotho</option>
+                    <option value="Slovaque" <%if(enfant.langue_maternelle == "Slovaque"){%>selected<%}%> >Slovaque</option>
+                    <option value="Slovène" <%if(enfant.langue_maternelle == "Slovène"){%>selected<%}%> >Slovène</option>
+                    <option value="Suédois" <%if(enfant.langue_maternelle == "Suédois"){%>selected<%}%> >Suédois</option>
+                    <option value="Tamoul" <%if(enfant.langue_maternelle == "Tamoul"){%>selected<%}%> >Tamoul</option>
+                    <option value="Turc" <%if(enfant.langue_maternelle == "Turc"){%>selected<%}%> >Turc</option>
+                    <option value="Canichana" <%if(enfant.langue_maternelle == "Canichana"){%>selected<%}%> >Canichana</option>
+                    <option value="Cavineña" <%if(enfant.langue_maternelle == "Cavineña"){%>selected<%}%> >Cavineña</option>
+                    <option value="Cayubaba" <%if(enfant.langue_maternelle == "Cayubaba"){%>selected<%}%> >Cayubaba</option>
+                    <option value="Chácobo" <%if(enfant.langue_maternelle == "Chácobo"){%>selected<%}%> >Chácobo</option>
+                    <option value="Chichewa" <%if(enfant.langue_maternelle == "Chichewa"){%>selected<%}%> >Chichewa</option>
+                    <option value="Chimane" <%if(enfant.langue_maternelle == "Chimane"){%>selected<%}%> >Chimane</option>
+                    <option value="Créole de Guinée-Bissau" <%if(enfant.langue_maternelle == "Créole de Guinée-Bissau"){%>selected<%}%> >Créole de Guinée-Bissau</option>
+                    <option value="Créole haïtien" <%if(enfant.langue_maternelle == "Créole haïtien"){%>selected<%}%> >Créole haïtien</option>
+                    <option value="Créole seychellois" <%if(enfant.langue_maternelle == "Créole seychellois"){%>selected<%}%> >Créole seychellois</option>
+                    <option value="Divehi" <%if(enfant.langue_maternelle == "Divehi"){%>selected<%}%> >Divehi</option>
+                    <option value="Dzongkha" <%if(enfant.langue_maternelle == "Dzongkha"){%>selected<%}%> >Dzongkha</option>
+                    <option value="Ese 'ejja" <%if(enfant.langue_maternelle == "Ese 'ejja"){%>selected<%}%> >Ese 'ejja</option>
+                    <option value="Estonien" <%if(enfant.langue_maternelle == "Estonien"){%>selected<%}%> >Estonien</option>
+                    <option value="Éwé" <%if(enfant.langue_maternelle == "Éwé"){%>selected<%}%> >Éwé</option>
+                    <option value="Fidjien" <%if(enfant.langue_maternelle == "Fidjien"){%>selected<%}%> >Fidjien</option>
+                    <option value="Filipino" <%if(enfant.langue_maternelle == "Filipino"){%>selected<%}%> >Filipino</option>
+                    <option value="Géorgien" <%if(enfant.langue_maternelle == "Géorgien"){%>selected<%}%> >Géorgien</option>
+                    <option value="Gilbertin" <%if(enfant.langue_maternelle == "Gilbertin"){%>selected<%}%> >Gilbertin</option>
+                    <option value="Guarasu'we" <%if(enfant.langue_maternelle == "Guarasu'we"){%>selected<%}%> >Guarasu'we</option>
+                    <option value="Guarayu" <%if(enfant.langue_maternelle == "Guarayu"){%>selected<%}%> >Guarayu</option>
+                    <option value="Hébreu" <%if(enfant.langue_maternelle == "Hébreu"){%>selected<%}%> >Hébreu</option>
+                    <option value="Hindi" <%if(enfant.langue_maternelle == "Hindi"){%>selected<%}%> >Hindi</option>
+                    <option value="Hindi des Fidji" <%if(enfant.langue_maternelle == "Hindi des Fidji"){%>selected<%}%> >Hindi des Fidji</option>
+                    <option value="Hiri motu" <%if(enfant.langue_maternelle == "Hiri motu"){%>selected<%}%> >Hiri motu</option>
+                    <option value="Indonésien" <%if(enfant.langue_maternelle == "Indonésien"){%>selected<%}%> >Indonésien</option>
+                    <option value="Irlandais" <%if(enfant.langue_maternelle == "Irlandais"){%>selected<%}%> >Irlandais</option>
+                    <option value="Islandais" <%if(enfant.langue_maternelle == "Islandais"){%>selected<%}%> >Islandais</option>
+                    <option value="Itonama" <%if(enfant.langue_maternelle == "Itonama"){%>selected<%}%> >Itonama</option>
+                    <option value="Kallawaya" <%if(enfant.langue_maternelle == "Kallawaya"){%>selected<%}%> >Kallawaya</option>
+                    <option value="Kabiyè" <%if(enfant.langue_maternelle == "Kabiyè"){%>selected<%}%> >Kabiyè</option>
+                    <option value="Kazakh" <%if(enfant.langue_maternelle == "Kazakh"){%>selected<%}%> >Kazakh</option>
+                    <option value="Khmer" <%if(enfant.langue_maternelle == "Khmer"){%>selected<%}%> >Khmer</option>
+                    <option value="Kirghiz" <%if(enfant.langue_maternelle == "Kirghiz"){%>selected<%}%> >Kirghiz</option>
+                    <option value="Kirundi" <%if(enfant.langue_maternelle == "Kirundi"){%>selected<%}%> >Kirundi</option>
+                    <option value="Lao" <%if(enfant.langue_maternelle == "Lao"){%>selected<%}%> >Lao</option>
+                    <option value="Néo-zélandaise" <%if(enfant.langue_maternelle == "Néo-zélandaise"){%>selected<%}%> >Néo-zélandaise</option>
+                    <option value="Papouasienne" <%if(enfant.langue_maternelle == "Papouasienne"){%>selected<%}%> >Papouasienne</option>
+                    <option value="Latin" <%if(enfant.langue_maternelle == "Latin"){%>selected<%}%> >Latin</option>
+                    <option value="Leko" <%if(enfant.langue_maternelle == "Leko"){%>selected<%}%> >Leko</option>
+                    <option value="Letton" <%if(enfant.langue_maternelle == "Letton"){%>selected<%}%> >Letton</option>
+                    <option value="Lituanien" <%if(enfant.langue_maternelle == "Lituanien"){%>selected<%}%> >Lituanien</option>
+                    <option value="Luxembourgeois" <%if(enfant.langue_maternelle == "Luxembourgeois"){%>selected<%}%> >Luxembourgeois</option>
+                    <option value="Macédonien" <%if(enfant.langue_maternelle == "Macédonien"){%>selected<%}%> >Macédonien</option>
+                    <option value="Machineri" <%if(enfant.langue_maternelle == "Machineri"){%>selected<%}%> >Machineri</option>
+                    <option value="Malgache" <%if(enfant.langue_maternelle == "Malgache"){%>selected<%}%> >Malgache</option>
+                    <option value="Maltais" <%if(enfant.langue_maternelle == "Maltais"){%>selected<%}%> >Maltais</option>
+                    <option value="Maori" <%if(enfant.langue_maternelle == "Maori"){%>selected<%}%> >Maori</option>
+                    <option value="Maori des Îles Cook" <%if(enfant.langue_maternelle == "Maori des Îles Cook"){%>selected<%}%> >Maori des Îles Cook</option>
+                    <option value="Maropa" <%if(enfant.langue_maternelle == "Maropa"){%>selected<%}%> >Maropa</option>
+                    <option value="Marshallais" <%if(enfant.langue_maternelle == "Marshallais"){%>selected<%}%> >Marshallais</option>
+                    <option value="Mirandais" <%if(enfant.langue_maternelle == "Mirandais"){%>selected<%}%> >Mirandais</option>
+                    <option value="Mojeño-Trinitario" <%if(enfant.langue_maternelle == "Mojeño-Trinitario"){%>selected<%}%> >Mojeño-Trinitario</option>
+                    <option value="Mojeño-Ignaciano" <%if(enfant.langue_maternelle == "Mojeño-Ignaciano"){%>selected<%}%> >Mojeño-Ignaciano</option>
+                    <option value="Monténégrin" <%if(enfant.langue_maternelle == "Monténégrin"){%>selected<%}%> >Monténégrin</option>
+                    <option value="Moré" <%if(enfant.langue_maternelle == "Moré"){%>selected<%}%> >Moré</option>
+                    <option value="Mosetén" <%if(enfant.langue_maternelle == "Mosetén"){%>selected<%}%> >Mosetén</option>
+                    <option value="Movima" <%if(enfant.langue_maternelle == "Movima"){%>selected<%}%> >Movima</option>
+                    <option value="Nauruan" <%if(enfant.langue_maternelle == "Nauruan"){%>selected<%}%> >Nauruan</option>
+                    <option value="Ndébélé du Transvaal" <%if(enfant.langue_maternelle == "Ndébélé du Transvaal"){%>selected<%}%> >Ndébélé du Transvaal</option>
+                    <option value="Népalais" <%if(enfant.langue_maternelle == "Népalais"){%>selected<%}%> >Népalais</option>
+                    <option value="Norvégien" <%if(enfant.langue_maternelle == "Norvégien"){%>selected<%}%> >Norvégien</option>
+                    <option value="Ouzbek" <%if(enfant.langue_maternelle == "Ouzbek"){%>selected<%}%> >Ouzbek</option>
+                    <option value="Pacahuara" <%if(enfant.langue_maternelle == "Pacahuara"){%>selected<%}%> >Pacahuara</option>
+                    <option value="Pachto" <%if(enfant.langue_maternelle == "Pachto"){%>selected<%}%> >Pachto</option>
+                    <option value="Paluan" <%if(enfant.langue_maternelle == "Paluan"){%>selected<%}%> >Paluan</option>
+                    <option value="Polonais" <%if(enfant.langue_maternelle == "Polonais"){%>selected<%}%> >Polonais</option>
+                    <option value="Puquina" <%if(enfant.langue_maternelle == "Puquina"){%>selected<%}%> >Puquina</option>
+                    <option value="Sango" <%if(enfant.langue_maternelle == "Sango"){%>selected<%}%> >Sango</option>
+                    <option value="Shikomor" <%if(enfant.langue_maternelle == "Shikomor"){%>selected<%}%> >Shikomor</option>
+                    <option value="Shona" <%if(enfant.langue_maternelle == "Shona"){%>selected<%}%> >Shona</option>
+                    <option value="Shuar" <%if(enfant.langue_maternelle == "Shuar"){%>selected<%}%> >Shuar</option>
+                    <option value="Sindebele" <%if(enfant.langue_maternelle == "Sindebele"){%>selected<%}%> >Sindebele</option>
+                    <option value="Singhalais" <%if(enfant.langue_maternelle == "Singhalais"){%>selected<%}%> >Singhalais</option>
+                    <option value="Sirionó" <%if(enfant.langue_maternelle == "Sirionó"){%>selected<%}%> >Sirionó</option>
+                    <option value="Somali" <%if(enfant.langue_maternelle == "Somali"){%>selected<%}%> >Somali</option>
+                    <option value="Sotho du Nord" <%if(enfant.langue_maternelle == "Sotho du Nord"){%>selected<%}%> >Sotho du Nord</option>
+                    <option value="Sotho du Sud" <%if(enfant.langue_maternelle == "Sotho du Sud"){%>selected<%}%> >Sotho du Sud</option>
+                    <option value="Tacana" <%if(enfant.langue_maternelle == "Tacana"){%>selected<%}%> >Tacana</option>
+                    <option value="Tadjik" <%if(enfant.langue_maternelle == "Tadjik"){%>selected<%}%> >Tadjik</option>
+                    <option value="Tamazight" <%if(enfant.langue_maternelle == "Tamazight"){%>selected<%}%> >Tamazight</option>
+                    <option value="Tapiete" <%if(enfant.langue_maternelle == "Tapiete"){%>selected<%}%> >Tapiete</option>
+                    <option value="Tchèque" <%if(enfant.langue_maternelle == "Tchèque"){%>selected<%}%> >Tchèque</option>
+                    <option value="Tétoum" <%if(enfant.langue_maternelle == "Tétoum"){%>selected<%}%> >Tétoum</option>
+                    <option value="Tigrinya" <%if(enfant.langue_maternelle == "Tigrinya"){%>selected<%}%> >Tigrinya</option>
+                    <option value="Thaï" <%if(enfant.langue_maternelle == "Thaï"){%>selected<%}%> >Thaï</option>
+                    <option value="Tok pisin" <%if(enfant.langue_maternelle == "Tok pisin"){%>selected<%}%> >Tok pisin</option>
+                    <option value="Tongien" <%if(enfant.langue_maternelle == "Tongien"){%>selected<%}%> >Tongien</option>
+                    <option value="Toromona" <%if(enfant.langue_maternelle == "Toromona"){%>selected<%}%> >Toromona</option>
+                    <option value="Turkmène" <%if(enfant.langue_maternelle == "Turkmène"){%>selected<%}%> >Turkmène</option>
+                    <option value="Tuvaluan" <%if(enfant.langue_maternelle == "Tuvaluan"){%>selected<%}%> >Tuvaluan</option>
+                    <option value="Ukrainien" <%if(enfant.langue_maternelle == "Ukrainien"){%>selected<%}%> >Ukrainien</option>
+                    <option value="Uru-Chipaya" <%if(enfant.langue_maternelle == "Uru-Chipaya"){%>selected<%}%> >Uru-Chipaya</option>
+                    <option value="Vietnamien" <%if(enfant.langue_maternelle == "Vietnamien"){%>selected<%}%> >Vietnamien</option>
+                    <option value="Wichi" <%if(enfant.langue_maternelle == "Wichi"){%>selected<%}%> >Wichi</option>
+                    <option value="Yaminahua" <%if(enfant.langue_maternelle == "Yaminahua"){%>selected<%}%> >Yaminahua</option>
+                    <option value="Yuki" <%if(enfant.langue_maternelle == "Yuki"){%>selected<%}%> >Yuki</option>
+                    <option value="Yaracaré" <%if(enfant.langue_maternelle == "Yaracaré"){%>selected<%}%> >Yaracaré</option>
+                    <option value="Zamuco" <%if(enfant.langue_maternelle == "Zamuco"){%>selected<%}%> >Zamuco</option>
+                    <option value="Zoulou" <%if(enfant.langue_maternelle == "Zoulou"){%>selected<%}%> >Zoulou</option>
+                    <option value="Adyguéen" <%if(enfant.langue_maternelle == "Adyguéen"){%>selected<%}%> >Adyguéen</option>
+                    <option value="Agul" <%if(enfant.langue_maternelle == "Agul"){%>selected<%}%> >Agul</option>
+                    <option value="Altaï" <%if(enfant.langue_maternelle == "Altaï"){%>selected<%}%> >Altaï</option>
+                    <option value="Assamais" <%if(enfant.langue_maternelle == "Assamais"){%>selected<%}%> >Assamais</option>
+                    <option value="Avar" <%if(enfant.langue_maternelle == "Avar"){%>selected<%}%> >Avar</option>
+                    <option value="Bachkir" <%if(enfant.langue_maternelle == "Bachkir"){%>selected<%}%> >Bachkir</option>
+                    <option value="Bas saxon" <%if(enfant.langue_maternelle == "Bas saxon"){%>selected<%}%> >Bas saxon</option>
+                    <option value="Basque" <%if(enfant.langue_maternelle == "Basque"){%>selected<%}%> >Basque</option>
+                    <option value="Bouriate" <%if(enfant.langue_maternelle == "Bouriate"){%>selected<%}%> >Bouriate</option>
+                    <option value="Cantonais" <%if(enfant.langue_maternelle == "Cantonais"){%>selected<%}%> >Cantonais</option>
+                    <option value="Carolinien" <%if(enfant.langue_maternelle == "Carolinien"){%>selected<%}%> >Carolinien</option>
+                    <option value="Chamorro" <%if(enfant.langue_maternelle == "Chamorro"){%>selected<%}%> >Chamorro</option>
+                    <option value="Darguine" <%if(enfant.langue_maternelle == "Darguine"){%>selected<%}%> >Darguine</option>
+                    <option value="Erzya" <%if(enfant.langue_maternelle == "Erzya"){%>selected<%}%> >Erzya</option>
+                    <option value="Galicien" <%if(enfant.langue_maternelle == "Galicien"){%>selected<%}%> >Galicien</option>
+                    <option value="Gallois" <%if(enfant.langue_maternelle == "Gallois"){%>selected<%}%> >Gallois</option>
+                    <option value="Gwich'in" <%if(enfant.langue_maternelle == "Gwich'in"){%>selected<%}%> >Gwich'in</option>
+                    <option value="Hawaïen" <%if(enfant.langue_maternelle == "Hawaïen"){%>selected<%}%> >Hawaïen</option>
+                    <option value="Iakoute" <%if(enfant.langue_maternelle == "Iakoute"){%>selected<%}%> >Iakoute</option>
+                    <option value="Ingouche" <%if(enfant.langue_maternelle == "Ingouche"){%>selected<%}%> >Ingouche</option>
+                    <option value="Inuinnaqtun" <%if(enfant.langue_maternelle == "Inuinnaqtun"){%>selected<%}%> >Inuinnaqtun</option>
+                    <option value="Inuktitut" <%if(enfant.langue_maternelle == "Inuktitut"){%>selected<%}%> >Inuktitut</option>
+                    <option value="Kabarde" <%if(enfant.langue_maternelle == "Kabarde"){%>selected<%}%> >Kabarde</option>
+                    <option value="Kalmouk" <%if(enfant.langue_maternelle == "Kalmouk"){%>selected<%}%> >Kalmouk</option>
+                    <option value="Karatchaï-balkar" <%if(enfant.langue_maternelle == "Karatchaï-balkar"){%>selected<%}%> >Karatchaï-balkar</option>
+                    <option value="Khakasse" <%if(enfant.langue_maternelle == "Khakasse"){%>selected<%}%> >Khakasse</option>
+                    <option value="Komi" <%if(enfant.langue_maternelle == "Komi"){%>selected<%}%> >Komi</option>
+                    <option value="Koumyk" <%if(enfant.langue_maternelle == "Koumyk"){%>selected<%}%> >Koumyk</option>
+                    <option value="Lak" <%if(enfant.langue_maternelle == "Lak"){%>selected<%}%> >Lak</option>
+                    <option value="Lezghien" <%if(enfant.langue_maternelle == "Lezghien"){%>selected<%}%> >Lezghien</option>
+                    <option value="Mannois" <%if(enfant.langue_maternelle == "Mannois"){%>selected<%}%> >Mannois</option>
+                    <option value="Mari" <%if(enfant.langue_maternelle == "Mari"){%>selected<%}%> >Mari</option>
+                    <option value="Moksa" <%if(enfant.langue_maternelle == "Moksa"){%>selected<%}%> >Moksa</option>
+                    <option value="Nogaï" <%if(enfant.langue_maternelle == "Nogaï"){%>selected<%}%> >Nogaï</option>
+                    <option value="Occitan (aranais)" <%if(enfant.langue_maternelle == "Occitan (aranais)"){%>selected<%}%> >Occitan (aranais)</option>
+                    <option value="Ossète" <%if(enfant.langue_maternelle == "Ossète"){%>selected<%}%> >Ossète</option>
+                    <option value="Oudmourte" <%if(enfant.langue_maternelle == "Oudmourte"){%>selected<%}%> >Oudmourte</option>
+                    <option value="Ouïghour" <%if(enfant.langue_maternelle == "Ouïghour"){%>selected<%}%> >Ouïghour</option>
+                    <option value="Romanche" <%if(enfant.langue_maternelle == "Romanche"){%>selected<%}%> >Romanche</option>
+                    <option value="Routoul" <%if(enfant.langue_maternelle == "Routoul"){%>selected<%}%> >Routoul</option>
+                    <option value="Ruthène" <%if(enfant.langue_maternelle == "Ruthène"){%>selected<%}%> >Ruthène</option>
+                    <option value="Same" <%if(enfant.langue_maternelle == "Same"){%>selected<%}%> >Same</option>
+                    <option value="Sorabe" <%if(enfant.langue_maternelle == "Sorabe"){%>selected<%}%> >Sorabe</option>
+                    <option value="Swati" <%if(enfant.langue_maternelle == "Swati"){%>selected<%}%> >Swati</option>
+                    <option value="Tabassaran" <%if(enfant.langue_maternelle == "Tabassaran"){%>selected<%}%> >Tabassaran</option>
+                    <option value="Tat" <%if(enfant.langue_maternelle == "Tat"){%>selected<%}%> >Tat</option>
+                    <option value="Tatare" <%if(enfant.langue_maternelle == "Tatare"){%>selected<%}%> >Tatare</option>
+                    <option value="Tchétchène" <%if(enfant.langue_maternelle == "Tchétchène"){%>selected<%}%> >Tchétchène</option>
+                    <option value="Tchouvache" <%if(enfant.langue_maternelle == "Tchouvache"){%>selected<%}%> >Tchouvache</option>
+                    <option value="Tibétain" <%if(enfant.langue_maternelle == "Tibétain"){%>selected<%}%> >Tibétain</option>
+                    <option value="Tobi" <%if(enfant.langue_maternelle == "Tobi"){%>selected<%}%> >Tobi</option>
+                    <option value="Touvain" <%if(enfant.langue_maternelle == "Touvain"){%>selected<%}%> >Touvain</option>
+                    <option value="Tsakhur" <%if(enfant.langue_maternelle == "Tsakhur"){%>selected<%}%> >Tsakhur</option>
+                    <option value="Tsonga" <%if(enfant.langue_maternelle == "Tsonga"){%>selected<%}%> >Tsonga</option>
+                    <option value="Tswana" <%if(enfant.langue_maternelle == "Tswana"){%>selected<%}%> >Tswana</option>
+                    <option value="Venda" <%if(enfant.langue_maternelle == "Venda"){%>selected<%}%> >Venda</option>
+                    <option value="Xhosa" <%if(enfant.langue_maternelle == "Xhosa"){%>selected<%}%> >Xhosa</option>
+                </select>
                 </div>
                 <!-- langues parlées -->
                 <div class="form-group w-75">
                   <label for="lang-parlees"></label>
-                  <textarea class="form-control shadow shadow" name="e_parlees" id="lang-parlees" placeholder="Langues parlées"><%=enfant.langues_parlees%></textarea>
+                  <select name="e_maternelle" class="w-75 json"><option value="Albanais" <%if(enfant.langues_parlees.includes("Albanais")){%>selected<%}%> >Albanais</option>
+                    <option value="Allemand" <%if(enfant.langues_parlees.includes("Allemand")){%>selected<%}%> >Allemand</option>
+                    <option value="Afrikaans" <%if(enfant.langues_parlees.includes("Afrikaans")){%>selected<%}%> >Afrikaans</option>
+                    <option value="Araona" <%if(enfant.langues_parlees.includes("Araona")){%>selected<%}%> >Araona</option>
+                    <option value="Azéri" <%if(enfant.langues_parlees.includes("Azéri")){%>selected<%}%> >Azéri</option>
+                    <option value="Amazigh" <%if(enfant.langues_parlees.includes("Amazigh")){%>selected<%}%> >Amazigh</option>
+                    <option value="Arménien" <%if(enfant.langues_parlees.includes("Arménien")){%>selected<%}%> >Arménien</option>
+                    <option value="Aymara" <%if(enfant.langues_parlees.includes("Aymara")){%>selected<%}%> >Aymara</option>
+                    <option value="Anglais" <%if(enfant.langues_parlees.includes("Anglais")){%>selected<%}%> >Anglais</option>
+                    <option value="Arabe" <%if(enfant.langues_parlees.includes("Arabe")){%>selected<%}%> >Arabe</option>
+                    <option value="Bengali" <%if(enfant.langues_parlees.includes("Bengali")){%>selected<%}%> >Bengali</option>
+                    <option value="Bulgare" <%if(enfant.langues_parlees.includes("Bulgare")){%>selected<%}%> >Bulgare</option>
+                    <option value="Bésiro" <%if(enfant.langues_parlees.includes("Bésiro")){%>selected<%}%> >Bésiro</option>
+                    <option value="Bichelamar" <%if(enfant.langues_parlees.includes("Bichelamar")){%>selected<%}%> >Bichelamar</option>
+                    <option value="Biélorusse" <%if(enfant.langues_parlees.includes("Biélorusse")){%>selected<%}%> >Biélorusse</option>
+                    <option value="Birman" <%if(enfant.langues_parlees.includes("Birman")){%>selected<%}%> >Birman</option>
+                    <option value="Catalan" <%if(enfant.langues_parlees.includes("Catalan")){%>selected<%}%> >Catalan</option>
+                    <option value="Coréen" <%if(enfant.langues_parlees.includes("Coréen")){%>selected<%}%> >Coréen</option>
+                    <option value="Croate" <%if(enfant.langues_parlees.includes("Croate")){%>selected<%}%> >Croate</option>
+                    <option value="Cambodgien" <%if(enfant.langues_parlees.includes("Cambodgien")){%>selected<%}%> >Cambodgien</option>
+                    <option value="Chinois" <%if(enfant.langues_parlees.includes("Chinois")){%>selected<%}%> >Chinois</option>
+                    <option value="Danois" <%if(enfant.langues_parlees.includes("Danois")){%>selected<%}%> >Danois</option>
+                    <option value="Espagnol" <%if(enfant.langues_parlees.includes("Espagnol")){%>selected<%}%> >Espagnol</option>
+                    <option value="Finnois" <%if(enfant.langues_parlees.includes("Finnois")){%>selected<%}%> >Finnois</option>
+                    <option value="Français" <%if(enfant.langues_parlees.includes("Français")){%>selected<%}%> >Français</option>
+                    <option value="Japonais" <%if(enfant.langues_parlees.includes("Japonais")){%>selected<%}%> >Japonais</option>
+                    <option value="Portugais" <%if(enfant.langues_parlees.includes("Portugais")){%>selected<%}%> >Portugais</option>
+                    <option value="Russe" <%if(enfant.langues_parlees.includes("Russe")){%>selected<%}%> >Russe</option>
+                    <option value="Guarani" <%if(enfant.langues_parlees.includes("Guarani")){%>selected<%}%> >Guarani</option>
+                    <option value="Grec" <%if(enfant.langues_parlees.includes("Grec")){%>selected<%}%> >Grec</option>
+                    <option value="Hongrois" <%if(enfant.langues_parlees.includes("Hongrois")){%>selected<%}%> >Hongrois</option>
+                    <option value="Italien" <%if(enfant.langues_parlees.includes("Italien")){%>selected<%}%> >Italien</option>
+                    <option value="Kikongo" <%if(enfant.langues_parlees.includes("Kikongo")){%>selected<%}%> >Kikongo</option>
+                    <option value="Kiswahili" <%if(enfant.langues_parlees.includes("Kiswahili")){%>selected<%}%> >Kiswahili</option>
+                    <option value="Lingala" <%if(enfant.langues_parlees.includes("Lingala")){%>selected<%}%> >Lingala</option>
+                    <option value="Malais" <%if(enfant.langues_parlees.includes("Malais")){%>selected<%}%> >Malais</option>
+                    <option value="Mongol" <%if(enfant.langues_parlees.includes("Mongol")){%>selected<%}%> >Mongol</option>
+                    <option value="Néerlandais" <%if(enfant.langues_parlees.includes("Néerlandais")){%>selected<%}%> >Néerlandais</option>
+                    <option value="Occitan" <%if(enfant.langues_parlees.includes("Occitan")){%>selected<%}%> >Occitan</option>
+                    <option value="Ourdou" <%if(enfant.langues_parlees.includes("Ourdou")){%>selected<%}%> >Ourdou</option>
+                    <option value="Persan" <%if(enfant.langues_parlees.includes("Persan")){%>selected<%}%> >Persan</option>
+                    <option value="Quechua" <%if(enfant.langues_parlees.includes("Quechua")){%>selected<%}%> >Quechua</option>
+                    <option value="Roumain" <%if(enfant.langues_parlees.includes("Roumain")){%>selected<%}%> >Roumain</option>
+                    <option value="Samoan" <%if(enfant.langues_parlees.includes("Samoan")){%>selected<%}%> >Samoan</option>
+                    <option value="Serbe" <%if(enfant.langues_parlees.includes("Serbe")){%>selected<%}%> >Serbe</option>
+                    <option value="Sesotho" <%if(enfant.langues_parlees.includes("Sesotho")){%>selected<%}%> >Sesotho</option>
+                    <option value="Slovaque" <%if(enfant.langues_parlees.includes("Slovaque")){%>selected<%}%> >Slovaque</option>
+                    <option value="Slovène" <%if(enfant.langues_parlees.includes("Slovène")){%>selected<%}%> >Slovène</option>
+                    <option value="Suédois" <%if(enfant.langues_parlees.includes("Suédois")){%>selected<%}%> >Suédois</option>
+                    <option value="Tamoul" <%if(enfant.langues_parlees.includes("Tamoul")){%>selected<%}%> >Tamoul</option>
+                    <option value="Turc" <%if(enfant.langues_parlees.includes("Turc")){%>selected<%}%> >Turc</option>
+                    <option value="Canichana" <%if(enfant.langues_parlees.includes("Canichana")){%>selected<%}%> >Canichana</option>
+                    <option value="Cavineña" <%if(enfant.langues_parlees.includes("Cavineña")){%>selected<%}%> >Cavineña</option>
+                    <option value="Cayubaba" <%if(enfant.langues_parlees.includes("Cayubaba")){%>selected<%}%> >Cayubaba</option>
+                    <option value="Chácobo" <%if(enfant.langues_parlees.includes("Chácobo")){%>selected<%}%> >Chácobo</option>
+                    <option value="Chichewa" <%if(enfant.langues_parlees.includes("Chichewa")){%>selected<%}%> >Chichewa</option>
+                    <option value="Chimane" <%if(enfant.langues_parlees.includes("Chimane")){%>selected<%}%> >Chimane</option>
+                    <option value="Créole de Guinée-Bissau" <%if(enfant.langues_parlees.includes("Créole de Guinée-Bissau")){%>selected<%}%> >Créole de Guinée-Bissau</option>
+                    <option value="Créole haïtien" <%if(enfant.langues_parlees.includes("Créole haïtien")){%>selected<%}%> >Créole haïtien</option>
+                    <option value="Créole seychellois" <%if(enfant.langues_parlees.includes("Créole seychellois")){%>selected<%}%> >Créole seychellois</option>
+                    <option value="Divehi" <%if(enfant.langues_parlees.includes("Divehi")){%>selected<%}%> >Divehi</option>
+                    <option value="Dzongkha" <%if(enfant.langues_parlees.includes("Dzongkha")){%>selected<%}%> >Dzongkha</option>
+                    <option value="Ese 'ejja" <%if(enfant.langues_parlees.includes("Ese 'ejja")){%>selected<%}%> >Ese 'ejja</option>
+                    <option value="Estonien" <%if(enfant.langues_parlees.includes("Estonien")){%>selected<%}%> >Estonien</option>
+                    <option value="Éwé" <%if(enfant.langues_parlees.includes("Éwé")){%>selected<%}%> >Éwé</option>
+                    <option value="Fidjien" <%if(enfant.langues_parlees.includes("Fidjien")){%>selected<%}%> >Fidjien</option>
+                    <option value="Filipino" <%if(enfant.langues_parlees.includes("Filipino")){%>selected<%}%> >Filipino</option>
+                    <option value="Géorgien" <%if(enfant.langues_parlees.includes("Géorgien")){%>selected<%}%> >Géorgien</option>
+                    <option value="Gilbertin" <%if(enfant.langues_parlees.includes("Gilbertin")){%>selected<%}%> >Gilbertin</option>
+                    <option value="Guarasu'we" <%if(enfant.langues_parlees.includes("Guarasu'we")){%>selected<%}%> >Guarasu'we</option>
+                    <option value="Guarayu" <%if(enfant.langues_parlees.includes("Guarayu")){%>selected<%}%> >Guarayu</option>
+                    <option value="Hébreu" <%if(enfant.langues_parlees.includes("Hébreu")){%>selected<%}%> >Hébreu</option>
+                    <option value="Hindi" <%if(enfant.langues_parlees.includes("Hindi")){%>selected<%}%> >Hindi</option>
+                    <option value="Hindi des Fidji" <%if(enfant.langues_parlees.includes("Hindi des Fidji")){%>selected<%}%> >Hindi des Fidji</option>
+                    <option value="Hiri motu" <%if(enfant.langues_parlees.includes("Hiri motu")){%>selected<%}%> >Hiri motu</option>
+                    <option value="Indonésien" <%if(enfant.langues_parlees.includes("Indonésien")){%>selected<%}%> >Indonésien</option>
+                    <option value="Irlandais" <%if(enfant.langues_parlees.includes("Irlandais")){%>selected<%}%> >Irlandais</option>
+                    <option value="Islandais" <%if(enfant.langues_parlees.includes("Islandais")){%>selected<%}%> >Islandais</option>
+                    <option value="Itonama" <%if(enfant.langues_parlees.includes("Itonama")){%>selected<%}%> >Itonama</option>
+                    <option value="Kallawaya" <%if(enfant.langues_parlees.includes("Kallawaya")){%>selected<%}%> >Kallawaya</option>
+                    <option value="Kabiyè" <%if(enfant.langues_parlees.includes("Kabiyè")){%>selected<%}%> >Kabiyè</option>
+                    <option value="Kazakh" <%if(enfant.langues_parlees.includes("Kazakh")){%>selected<%}%> >Kazakh</option>
+                    <option value="Khmer" <%if(enfant.langues_parlees.includes("Khmer")){%>selected<%}%> >Khmer</option>
+                    <option value="Kirghiz" <%if(enfant.langues_parlees.includes("Kirghiz")){%>selected<%}%> >Kirghiz</option>
+                    <option value="Kirundi" <%if(enfant.langues_parlees.includes("Kirundi")){%>selected<%}%> >Kirundi</option>
+                    <option value="Lao" <%if(enfant.langues_parlees.includes("Lao")){%>selected<%}%> >Lao</option>
+                    <option value="Néo-zélandaise" <%if(enfant.langues_parlees.includes("Néo-zélandaise")){%>selected<%}%> >Néo-zélandaise</option>
+                    <option value="Papouasienne" <%if(enfant.langues_parlees.includes("Papouasienne")){%>selected<%}%> >Papouasienne</option>
+                    <option value="Latin" <%if(enfant.langues_parlees.includes("Latin")){%>selected<%}%> >Latin</option>
+                    <option value="Leko" <%if(enfant.langues_parlees.includes("Leko")){%>selected<%}%> >Leko</option>
+                    <option value="Letton" <%if(enfant.langues_parlees.includes("Letton")){%>selected<%}%> >Letton</option>
+                    <option value="Lituanien" <%if(enfant.langues_parlees.includes("Lituanien")){%>selected<%}%> >Lituanien</option>
+                    <option value="Luxembourgeois" <%if(enfant.langues_parlees.includes("Luxembourgeois")){%>selected<%}%> >Luxembourgeois</option>
+                    <option value="Macédonien" <%if(enfant.langues_parlees.includes("Macédonien")){%>selected<%}%> >Macédonien</option>
+                    <option value="Machineri" <%if(enfant.langues_parlees.includes("Machineri")){%>selected<%}%> >Machineri</option>
+                    <option value="Malgache" <%if(enfant.langues_parlees.includes("Malgache")){%>selected<%}%> >Malgache</option>
+                    <option value="Maltais" <%if(enfant.langues_parlees.includes("Maltais")){%>selected<%}%> >Maltais</option>
+                    <option value="Maori" <%if(enfant.langues_parlees.includes("Maori")){%>selected<%}%> >Maori</option>
+                    <option value="Maori des Îles Cook" <%if(enfant.langues_parlees.includes("Maori des Îles Cook")){%>selected<%}%> >Maori des Îles Cook</option>
+                    <option value="Maropa" <%if(enfant.langues_parlees.includes("Maropa")){%>selected<%}%> >Maropa</option>
+                    <option value="Marshallais" <%if(enfant.langues_parlees.includes("Marshallais")){%>selected<%}%> >Marshallais</option>
+                    <option value="Mirandais" <%if(enfant.langues_parlees.includes("Mirandais")){%>selected<%}%> >Mirandais</option>
+                    <option value="Mojeño-Trinitario" <%if(enfant.langues_parlees.includes("Mojeño-Trinitario")){%>selected<%}%> >Mojeño-Trinitario</option>
+                    <option value="Mojeño-Ignaciano" <%if(enfant.langues_parlees.includes("Mojeño-Ignaciano")){%>selected<%}%> >Mojeño-Ignaciano</option>
+                    <option value="Monténégrin" <%if(enfant.langues_parlees.includes("Monténégrin")){%>selected<%}%> >Monténégrin</option>
+                    <option value="Moré" <%if(enfant.langues_parlees.includes("Moré")){%>selected<%}%> >Moré</option>
+                    <option value="Mosetén" <%if(enfant.langues_parlees.includes("Mosetén")){%>selected<%}%> >Mosetén</option>
+                    <option value="Movima" <%if(enfant.langues_parlees.includes("Movima")){%>selected<%}%> >Movima</option>
+                    <option value="Nauruan" <%if(enfant.langues_parlees.includes("Nauruan")){%>selected<%}%> >Nauruan</option>
+                    <option value="Ndébélé du Transvaal" <%if(enfant.langues_parlees.includes("Ndébélé du Transvaal")){%>selected<%}%> >Ndébélé du Transvaal</option>
+                    <option value="Népalais" <%if(enfant.langues_parlees.includes("Népalais")){%>selected<%}%> >Népalais</option>
+                    <option value="Norvégien" <%if(enfant.langues_parlees.includes("Norvégien")){%>selected<%}%> >Norvégien</option>
+                    <option value="Ouzbek" <%if(enfant.langues_parlees.includes("Ouzbek")){%>selected<%}%> >Ouzbek</option>
+                    <option value="Pacahuara" <%if(enfant.langues_parlees.includes("Pacahuara")){%>selected<%}%> >Pacahuara</option>
+                    <option value="Pachto" <%if(enfant.langues_parlees.includes("Pachto")){%>selected<%}%> >Pachto</option>
+                    <option value="Paluan" <%if(enfant.langues_parlees.includes("Paluan")){%>selected<%}%> >Paluan</option>
+                    <option value="Polonais" <%if(enfant.langues_parlees.includes("Polonais")){%>selected<%}%> >Polonais</option>
+                    <option value="Puquina" <%if(enfant.langues_parlees.includes("Puquina")){%>selected<%}%> >Puquina</option>
+                    <option value="Sango" <%if(enfant.langues_parlees.includes("Sango")){%>selected<%}%> >Sango</option>
+                    <option value="Shikomor" <%if(enfant.langues_parlees.includes("Shikomor")){%>selected<%}%> >Shikomor</option>
+                    <option value="Shona" <%if(enfant.langues_parlees.includes("Shona")){%>selected<%}%> >Shona</option>
+                    <option value="Shuar" <%if(enfant.langues_parlees.includes("Shuar")){%>selected<%}%> >Shuar</option>
+                    <option value="Sindebele" <%if(enfant.langues_parlees.includes("Sindebele")){%>selected<%}%> >Sindebele</option>
+                    <option value="Singhalais" <%if(enfant.langues_parlees.includes("Singhalais")){%>selected<%}%> >Singhalais</option>
+                    <option value="Sirionó" <%if(enfant.langues_parlees.includes("Sirionó")){%>selected<%}%> >Sirionó</option>
+                    <option value="Somali" <%if(enfant.langues_parlees.includes("Somali")){%>selected<%}%> >Somali</option>
+                    <option value="Sotho du Nord" <%if(enfant.langues_parlees.includes("Sotho du Nord")){%>selected<%}%> >Sotho du Nord</option>
+                    <option value="Sotho du Sud" <%if(enfant.langues_parlees.includes("Sotho du Sud")){%>selected<%}%> >Sotho du Sud</option>
+                    <option value="Tacana" <%if(enfant.langues_parlees.includes("Tacana")){%>selected<%}%> >Tacana</option>
+                    <option value="Tadjik" <%if(enfant.langues_parlees.includes("Tadjik")){%>selected<%}%> >Tadjik</option>
+                    <option value="Tamazight" <%if(enfant.langues_parlees.includes("Tamazight")){%>selected<%}%> >Tamazight</option>
+                    <option value="Tapiete" <%if(enfant.langues_parlees.includes("Tapiete")){%>selected<%}%> >Tapiete</option>
+                    <option value="Tchèque" <%if(enfant.langues_parlees.includes("Tchèque")){%>selected<%}%> >Tchèque</option>
+                    <option value="Tétoum" <%if(enfant.langues_parlees.includes("Tétoum")){%>selected<%}%> >Tétoum</option>
+                    <option value="Tigrinya" <%if(enfant.langues_parlees.includes("Tigrinya")){%>selected<%}%> >Tigrinya</option>
+                    <option value="Thaï" <%if(enfant.langues_parlees.includes("Thaï")){%>selected<%}%> >Thaï</option>
+                    <option value="Tok pisin" <%if(enfant.langues_parlees.includes("Tok pisin")){%>selected<%}%> >Tok pisin</option>
+                    <option value="Tongien" <%if(enfant.langues_parlees.includes("Tongien")){%>selected<%}%> >Tongien</option>
+                    <option value="Toromona" <%if(enfant.langues_parlees.includes("Toromona")){%>selected<%}%> >Toromona</option>
+                    <option value="Turkmène" <%if(enfant.langues_parlees.includes("Turkmène")){%>selected<%}%> >Turkmène</option>
+                    <option value="Tuvaluan" <%if(enfant.langues_parlees.includes("Tuvaluan")){%>selected<%}%> >Tuvaluan</option>
+                    <option value="Ukrainien" <%if(enfant.langues_parlees.includes("Ukrainien")){%>selected<%}%> >Ukrainien</option>
+                    <option value="Uru-Chipaya" <%if(enfant.langues_parlees.includes("Uru-Chipaya")){%>selected<%}%> >Uru-Chipaya</option>
+                    <option value="Vietnamien" <%if(enfant.langues_parlees.includes("Vietnamien")){%>selected<%}%> >Vietnamien</option>
+                    <option value="Wichi" <%if(enfant.langues_parlees.includes("Wichi")){%>selected<%}%> >Wichi</option>
+                    <option value="Yaminahua" <%if(enfant.langues_parlees.includes("Yaminahua")){%>selected<%}%> >Yaminahua</option>
+                    <option value="Yuki" <%if(enfant.langues_parlees.includes("Yuki")){%>selected<%}%> >Yuki</option>
+                    <option value="Yaracaré" <%if(enfant.langues_parlees.includes("Yaracaré")){%>selected<%}%> >Yaracaré</option>
+                    <option value="Zamuco" <%if(enfant.langues_parlees.includes("Zamuco")){%>selected<%}%> >Zamuco</option>
+                    <option value="Zoulou" <%if(enfant.langues_parlees.includes("Zoulou")){%>selected<%}%> >Zoulou</option>
+                    <option value="Adyguéen" <%if(enfant.langues_parlees.includes("Adyguéen")){%>selected<%}%> >Adyguéen</option>
+                    <option value="Agul" <%if(enfant.langues_parlees.includes("Agul")){%>selected<%}%> >Agul</option>
+                    <option value="Altaï" <%if(enfant.langues_parlees.includes("Altaï")){%>selected<%}%> >Altaï</option>
+                    <option value="Assamais" <%if(enfant.langues_parlees.includes("Assamais")){%>selected<%}%> >Assamais</option>
+                    <option value="Avar" <%if(enfant.langues_parlees.includes("Avar")){%>selected<%}%> >Avar</option>
+                    <option value="Bachkir" <%if(enfant.langues_parlees.includes("Bachkir")){%>selected<%}%> >Bachkir</option>
+                    <option value="Bas saxon" <%if(enfant.langues_parlees.includes("Bas saxon")){%>selected<%}%> >Bas saxon</option>
+                    <option value="Basque" <%if(enfant.langues_parlees.includes("Basque")){%>selected<%}%> >Basque</option>
+                    <option value="Bouriate" <%if(enfant.langues_parlees.includes("Bouriate")){%>selected<%}%> >Bouriate</option>
+                    <option value="Cantonais" <%if(enfant.langues_parlees.includes("Cantonais")){%>selected<%}%> >Cantonais</option>
+                    <option value="Carolinien" <%if(enfant.langues_parlees.includes("Carolinien")){%>selected<%}%> >Carolinien</option>
+                    <option value="Chamorro" <%if(enfant.langues_parlees.includes("Chamorro")){%>selected<%}%> >Chamorro</option>
+                    <option value="Darguine" <%if(enfant.langues_parlees.includes("Darguine")){%>selected<%}%> >Darguine</option>
+                    <option value="Erzya" <%if(enfant.langues_parlees.includes("Erzya")){%>selected<%}%> >Erzya</option>
+                    <option value="Galicien" <%if(enfant.langues_parlees.includes("Galicien")){%>selected<%}%> >Galicien</option>
+                    <option value="Gallois" <%if(enfant.langues_parlees.includes("Gallois")){%>selected<%}%> >Gallois</option>
+                    <option value="Gwich'in" <%if(enfant.langues_parlees.includes("Gwich'in")){%>selected<%}%> >Gwich'in</option>
+                    <option value="Hawaïen" <%if(enfant.langues_parlees.includes("Hawaïen")){%>selected<%}%> >Hawaïen</option>
+                    <option value="Iakoute" <%if(enfant.langues_parlees.includes("Iakoute")){%>selected<%}%> >Iakoute</option>
+                    <option value="Ingouche" <%if(enfant.langues_parlees.includes("Ingouche")){%>selected<%}%> >Ingouche</option>
+                    <option value="Inuinnaqtun" <%if(enfant.langues_parlees.includes("Inuinnaqtun")){%>selected<%}%> >Inuinnaqtun</option>
+                    <option value="Inuktitut" <%if(enfant.langues_parlees.includes("Inuktitut")){%>selected<%}%> >Inuktitut</option>
+                    <option value="Kabarde" <%if(enfant.langues_parlees.includes("Kabarde")){%>selected<%}%> >Kabarde</option>
+                    <option value="Kalmouk" <%if(enfant.langues_parlees.includes("Kalmouk")){%>selected<%}%> >Kalmouk</option>
+                    <option value="Karatchaï-balkar" <%if(enfant.langues_parlees.includes("Karatchaï-balkar")){%>selected<%}%> >Karatchaï-balkar</option>
+                    <option value="Khakasse" <%if(enfant.langues_parlees.includes("Khakasse")){%>selected<%}%> >Khakasse</option>
+                    <option value="Komi" <%if(enfant.langues_parlees.includes("Komi")){%>selected<%}%> >Komi</option>
+                    <option value="Koumyk" <%if(enfant.langues_parlees.includes("Koumyk")){%>selected<%}%> >Koumyk</option>
+                    <option value="Lak" <%if(enfant.langues_parlees.includes("Lak")){%>selected<%}%> >Lak</option>
+                    <option value="Lezghien" <%if(enfant.langues_parlees.includes("Lezghien")){%>selected<%}%> >Lezghien</option>
+                    <option value="Mannois" <%if(enfant.langues_parlees.includes("Mannois")){%>selected<%}%> >Mannois</option>
+                    <option value="Mari" <%if(enfant.langues_parlees.includes("Mari")){%>selected<%}%> >Mari</option>
+                    <option value="Moksa" <%if(enfant.langues_parlees.includes("Moksa")){%>selected<%}%> >Moksa</option>
+                    <option value="Nogaï" <%if(enfant.langues_parlees.includes("Nogaï")){%>selected<%}%> >Nogaï</option>
+                    <option value="Occitan (aranais)" <%if(enfant.langues_parlees.includes("Occitan (aranais)")){%>selected<%}%> >Occitan (aranais)</option>
+                    <option value="Ossète" <%if(enfant.langues_parlees.includes("Ossète")){%>selected<%}%> >Ossète</option>
+                    <option value="Oudmourte" <%if(enfant.langues_parlees.includes("Oudmourte")){%>selected<%}%> >Oudmourte</option>
+                    <option value="Ouïghour" <%if(enfant.langues_parlees.includes("Ouïghour")){%>selected<%}%> >Ouïghour</option>
+                    <option value="Romanche" <%if(enfant.langues_parlees.includes("Romanche")){%>selected<%}%> >Romanche</option>
+                    <option value="Routoul" <%if(enfant.langues_parlees.includes("Routoul")){%>selected<%}%> >Routoul</option>
+                    <option value="Ruthène" <%if(enfant.langues_parlees.includes("Ruthène")){%>selected<%}%> >Ruthène</option>
+                    <option value="Same" <%if(enfant.langues_parlees.includes("Same")){%>selected<%}%> >Same</option>
+                    <option value="Sorabe" <%if(enfant.langues_parlees.includes("Sorabe")){%>selected<%}%> >Sorabe</option>
+                    <option value="Swati" <%if(enfant.langues_parlees.includes("Swati")){%>selected<%}%> >Swati</option>
+                    <option value="Tabassaran" <%if(enfant.langues_parlees.includes("Tabassaran")){%>selected<%}%> >Tabassaran</option>
+                    <option value="Tat" <%if(enfant.langues_parlees.includes("Tat")){%>selected<%}%> >Tat</option>
+                    <option value="Tatare" <%if(enfant.langues_parlees.includes("Tatare")){%>selected<%}%> >Tatare</option>
+                    <option value="Tchétchène" <%if(enfant.langues_parlees.includes("Tchétchène")){%>selected<%}%> >Tchétchène</option>
+                    <option value="Tchouvache" <%if(enfant.langues_parlees.includes("Tchouvache")){%>selected<%}%> >Tchouvache</option>
+                    <option value="Tibétain" <%if(enfant.langues_parlees.includes("Tibétain")){%>selected<%}%> >Tibétain</option>
+                    <option value="Tobi" <%if(enfant.langues_parlees.includes("Tobi")){%>selected<%}%> >Tobi</option>
+                    <option value="Touvain" <%if(enfant.langues_parlees.includes("Touvain")){%>selected<%}%> >Touvain</option>
+                    <option value="Tsakhur" <%if(enfant.langues_parlees.includes("Tsakhur")){%>selected<%}%> >Tsakhur</option>
+                    <option value="Tsonga" <%if(enfant.langues_parlees.includes("Tsonga")){%>selected<%}%> >Tsonga</option>
+                    <option value="Tswana" <%if(enfant.langues_parlees.includes("Tswana")){%>selected<%}%> >Tswana</option>
+                    <option value="Venda" <%if(enfant.langues_parlees.includes("Venda")){%>selected<%}%> >Venda</option>
+                    <option value="Xhosa" <%if(enfant.langues_parlees.includes("Xhosa")){%>selected<%}%> >Xhosa</option>
+                    </select>
                 </div>
               </center>
                 <div class="form-group w-75" style="margin-top:40px; margin-left: 50px;">
@@ -218,8 +837,8 @@
                 </div>
                 <div class="form-group w-75" style="margin-top: 40px;  margin-left: 50px;">
                   <label for="ancien" style="display: block;" class="text-500">Enfant ancien</label>
-                  <input type="radio" id="ancien" name="ancien_oui" <%if(enfant.type_scolarite == 1){%>checked<%}%>> Oui
-                  <input type="radio" id="ancien" name="ancien_non" style="margin-left: 15px;" <%if(enfant.type_scolarite == 2){%>checked<%}%>> Non
+                  <input type="radio" id="ancien" name="ancien"  value="1" <%if(enfant.type_scolarite == 1){%>checked<%}%>> Oui
+                  <input type="radio" id="ancien" name="ancien" value="2" style="margin-left: 15px;" <%if(enfant.type_scolarite == 2){%>checked<%}%>> Non
                 </div>
                 </div>
               </div>
@@ -276,46 +895,51 @@
                           <div style="margin-top: 10px;margin-left: 10px; margin-left: 50px;" class="text-500">Service de gardes</div>
                           <div class="form-group" style="margin-top: 10px; margin-left: 10px;  margin-left: 50px;">
                             <label for="s_am"></label>
-                            <input type="checkbox" id="s_am" name="service" value="1" <%if(enfant.gardes_type.includes(1)){%>checked<%}%> ><span style="margin-left: 10px;">AM</span>
+                            <input type="radio" id="s_am" name="service" value="1" <%if(enfant.gardes_type.includes(1)){%>checked<%}%> ><span style="margin-left: 10px;">AM</span>
                           </div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px;  margin-left: 50px;">
                             <label for="s_pm"></label>
-                            <input type="checkbox" id="s_pm" name="service" value="2" <%if(enfant.gardes_type.includes(2)){%>checked<%}%> ><span style="margin-left: 10px;">PM</span>
+                            <input type="radio" id="s_pm" name="service" value="2" <%if(enfant.gardes_type.includes(2)){%>checked<%}%> ><span style="margin-left: 10px;">PM</span>
                           </div>
                           <div style="margin-top: 20px;margin-left: 10px; margin-left: 50px;" class="text-500">Mercredi après-midi</div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px;  margin-left: 50px;">
                             <label for="m_oui"></label>
-                            <input type="checkbox" id="m_oui" name="mercredi" value="1" <%if(enfant.mercredi){%>checked<%}%>> <span style="margin-left: 10px;">Oui</span>
+                            <input type="radio" id="m_oui" name="mercredi" value="1" <%if(enfant.mercredi){%>checked<%}%>> <span style="margin-left: 10px;">Oui</span>
                             </div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
                             <label for="m_non"></label>
-                            <input type="checkbox" id="m_non" name="mercredi" value="2" <%if(!enfant.mercredi){%>checked<%}%> ><span style="margin-left: 10px;">Non</span>
+                            <input type="radio" id="m_non" name="mercredi" value="2" <%if(!enfant.mercredi){%>checked<%}%> ><span style="margin-left: 10px;">Non</span>
                           </div>
                           <div style="margin-top: 20px;margin-left: 10px; margin-left: 50px;" class="text-500">Cantine</div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
                             <label for="c_4jrs"></label>
-                            <input type="checkbox" id="c_4jrs" name="cantine" value="1" <%if(enfant.type_cantine == 1){%>checked<%}%> ><span style="margin-left: 10px;">4 Jours</span>
+                            <input type="radio" id="c_4jrs" name="cantine" value="1" <%if(enfant.type_cantine == 1){%>checked<%}%> ><span style="margin-left: 10px;">4 Jours</span>
                             </div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
                             <label for="c_5jrs"></label>
-                            <input type="checkbox" id="c_5jrs" name="cantine" value="2" <%if(enfant.type_cantine == 2){%>checked<%}%> ><span style="margin-left: 10px;">5 Jours</span>
+                            <input type="radio" id="c_5jrs" name="cantine" value="2" <%if(enfant.type_cantine == 2){%>checked<%}%> ><span style="margin-left: 10px;">5 Jours</span>
                           </div>
+                          <div style="margin-top: 20px;margin-left: 10px; margin-left: 50px;" class="text-500">Goûter</div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
-                            <label for="gouter"></label>
-                            <input type="checkbox" id="gouter" name="cantine" value="3" <%if(enfant.type_cantine == 3){%>checked<%}%> > <span style="margin-left: 10px;">Goûter</span>
-                          </div>
+                            <label for="c_4jrs"></label>
+                            <input type="radio" id="c_4jrs" name="gouter" value="1" <%if(enfant.type_cantine == 1){%>checked<%}%> ><span style="margin-left: 10px;">Oui</span>
+                            </div>
+                            <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
+                              <label for="c_4jrs"></label>
+                              <input type="radio" id="c_4jrs" name="gouter" value="1" <%if(enfant.type_cantine == 1){%>checked<%}%> ><span style="margin-left: 10px;">Non</span>
+                              </div>
                           <div style="margin-top: 20px;margin-left: 10px; margin-left: 50px;" class="text-500">Transport</div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
                             <label for="aller"></label>
-                            <input type="checkbox" id="aller" name="transport" value="1" <%if(enfant.type_transport == 1){%>checked<%}%> > <span style="margin-left: 10px;">Aller</span>
+                            <input type="radio" id="aller" name="transport" value="1" <%if(enfant.type_transport == 1){%>checked<%}%> > <span style="margin-left: 10px;">Aller</span>
                             </div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
                             <label for="retour"></label>
-                            <input type="checkbox" id="retour" name="transport" value="2" <%if(enfant.type_transport == 2){%>checked<%}%> > <span style="margin-left: 10px;">Retour</span>
+                            <input type="radio" id="retour" name="transport" value="2" <%if(enfant.type_transport == 2){%>checked<%}%> > <span style="margin-left: 10px;">Retour</span>
                           </div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
                             <label for="aller-retour"></label>
-                            <input type="checkbox" id="aller-retour" name="transport" value="3" <%if(enfant.type_transport == 3){%>checked<%}%> > <span style="margin-left: 10px;">Aller-retour</span>
+                            <input type="radio" id="aller-retour" name="transport" value="3" <%if(enfant.type_transport == 3){%>checked<%}%> > <span style="margin-left: 10px;">Aller-retour</span>
                           </div>
                       <!-- <label for="s7"></label>
                       <input type="checkbox" id="s7" name="s7"> Cantine 5 jrs

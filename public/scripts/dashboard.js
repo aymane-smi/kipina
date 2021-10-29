@@ -17,6 +17,9 @@ $(document).ready(function () {
     $('.click4').click(function () {
       $('.ul-test4').slideToggle();
     });
+    $('.click5').click(function () {
+      $('.ul-test5').slideToggle();
+    });
     $('.logo-details').click(()=>{
       $('.sidebar').toggle('slide');
       // $('.logo-details').css('border-bottom-right-radius', '20px');
@@ -25,4 +28,15 @@ $(document).ready(function () {
       $('.sidebar').css('opacity', '1');
     });
   });
-  
+
+ const clear = document.querySelector(".clear");
+ const radio = document.querySelectorAll("input[type='radio']");
+ const box = document.querySelectorAll("input[type='checkbox']");
+ clear.addEventListener("click", ()=>{
+   radio.forEach((item)=>{
+     item.checked = false;
+   });
+   box.forEach((item)=>{
+    item.checked = false;
+  });
+ });

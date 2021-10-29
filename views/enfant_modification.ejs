@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="/styles/rapport.css" rel="stylesheet">
      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-     <link href='../styles/nav.css' rel='stylesheet'>
+     <link href='/styles/nav.css' rel='stylesheet'>
+     <style>
+      @import url(https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css);
+
+    </style>
      <link rel="stylesheet" href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    </head>
@@ -130,7 +133,7 @@ container content
       <div class="row">
         <div class="col-lg-7 col-sm-12 text-nowarp flex-nowrap" style="display: flex; align-items: center;">
           <div style="flex-shrink:0;display:inline-block; width: 70px; height: 70px; border-radius: 50%;position: relative;background: linear-gradient(-30deg, #839000, #BCCF00);">
-            <img class="rounded-circle" src="../img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
+            <img class="rounded-circle" src="/img/avatar.png" style="width: 66px;height: 66px; position: absolute; top: -10px; left: 2px;">
           </div>
           <div style="margin-left: 30px;flex-shrink:0">
               <span class="bjr1-span ">Bonjour</span>
@@ -142,7 +145,7 @@ container content
             <div class="col-sm-12 col-lg-6" style="margin-top: 10px;">
               <div class="input-group rounded-pill search shadow" style="background: white; overflow: hidden; border: 0 none; width: 300px; display: inline-block; height: 50px;flex-shrink:0" >
                 <div class="input-group-prepend border-0">
-                  <button  type="button" id="search-button" style="margin-left: 10px; margin-top: 18px;background: url(../img/icons/search-icon.png) no-repeat center/70%;"class="btn search-enfant"></button>
+                  <button  type="button" id="search-button" style="margin-left: 10px; margin-top: 18px;background: url(/img/icons/search-icon.png) no-repeat center/70%;"class="btn search-enfant"></button>
                   <input type="search" placeholder="search" id="search-input"style="margin-left: 10px; margin-top: 10px;" class="border-0">
                 </div>
               </div>
@@ -153,13 +156,13 @@ container content
               </div> -->
               <div class="col-1" style="flex: 1; margin-left: 14px; flex-grow: 0;flex-shrink:0;margin-top:-4px;">
                 <a href="/dashboard/settings">
-                  <img src="../img/icons/settings.png" id="settings-image">
+                  <img src="/img/icons/settings.png" id="settings-image">
                 </a>
               </div>
-              <div class="col-1" style="flex: 1; margin-left: -30px; flex-grow: 0;flex-shrink:0;margin-top:-21px;">
+              <div class="col-1" style="flex: 1; margin-left: 14px; flex-grow: 0;flex-shrink:0">
                 <form action="/logout" method="post">
                   <button style="border: none; background: none;">
-                    <img src="../img/icons/logout.png">
+                    <img src="/img/icons/logout.png">
                   </button>
                 </form>
               </div>
@@ -167,49 +170,82 @@ container content
           </div>
           </div>
         </div> 
-      </div>
-      <form action="/transport-global" method="post">
-        <button class="btn btn-md global">rapport global</button>
-      </form>
-    </section>
-
-    <div class="big-container-rapport">
-      <h3 class="title-rapport">Choisissez Une Classe</h3>
-      <form action="/rapport-transport" method="post">
-        <div class="classes-selection-rapport">
-          <div class="listes-classes-dispo">
-            <h4 style="font-weight: 800">Classes</h4>
-            <%for(let i=1;i<=nbr_classe;i++){%>
-              <div>
-                <label for="check"></label>
-                <input id="check" type="checkbox" name="class_check" value="<%=i%>"/>
-                <span class="ml-2">Classe <%if(i==1){%>
-                  Swans
-                <%}%>
-                <%if(i == 2){%>
-                  Little foxes
-                <%}%>
-                <%if(i == 3){%>
-                  Foxes
-                <%}%>
-                <%if(i == 4){%>
-                  Bears
-                <%}%>
-                <%if(i == 5){%>
-                  Seals
-                <%}%>
-                <%if(i == 6){%>
-                  Owls
-                <%}%> </span>
-              </div>
-            <%}%>
-            <br />
-          </div>
-        </div>
-        <input class="submit-button-cantine" type="submit" value="Générer" />
-      </form>
     </div>
+    <div class="class-container mt-5 ml-5" style="justify-content: flex-start;">
+      <%enfant.forEach((item)=>{%>
+          <div class="card pt-3" style="width:250px;  margin-left: 10px; padding-bottom: 10px; border-radius: 10px;">
+            <center>
+              <img src="#" style="height:80px; width: 120px;">
+              <div class="prenom" style="font-size: 20px;">
+                <%=item.prenom%>
+              </div>
+              <div class="nom" style="font-size: 20px;">
+                <%=item.nom%>
+              </div>
+              <div>
+                <a class="btn btn-primary mt-2" href="/dashboard/enfant/<%=item._id%>" style="width: 150px;">Voir les détails</a>
+                <%if(key){%>
+                  <form action="/dashboard/delete/<%=item._id%>" method="POST">
+                    <button class="btn btn-danger mt-2" href="/dashboard/enfant/<%=item._id%>" style="width: 150px;">supprimer</button>
+                  </form>
+                  <form action="/dashboard/restore/<%=item._id%>" method="post" class="form3">
+                    <button class="btn btn-success mt-2"style="width: 150px;" aria-hidden="true" data-toggle="modal" data-target="#exampleModal">désactiver</button>
+                  </form>
+                  <a class="btn btn-warning mt-2" href="/dashboard/modification/<%=item._id%>" style="width: 150px;">modifier</a>
+                <%}%>
+              </div>
+            </center>
+        </div>
+      <%})%>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title">Causes de désinscription</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="form3" method="post" class="form-horizontal">
+            <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
+              <label for="complete"></label>
+              <input type="checkbox" id="complete" name="choix" value="déménagement"><span style="margin-left: 10px;">Déménagement</span>
+            </div>
+            <div class="form-group" style="margin-top: 10px; margin-left: 10px;  margin-left: 50px;">
+              <label for="AM"></label>
+              <input type="checkbox" id="AM" name="choix" value="maladie"><span style="margin-left: 10px;">Maladie</span> 
+            </div>
+            <div class="form-group" style="margin-top: 10px;margin-left: 10px;  margin-left: 50px;">
+              <label for="complete"></label>
+              <input type="checkbox" id="PM" name="choix" value="insatisfaction"><span style="margin-left: 10px;">Insatisfaction</span> 
+            </div>
+            <div class="form-group w-50 mt-4 ml-5">
+              <textarea id="autres"  class="form-control" placeholder="Autres" name="autre"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-md btn-danger">Supprimer</button>
+          </div> 
+          </form>
+      </div>
+  
+  
+    </div>
+  </div>
+  <div class="clear"></div>
+   </section>
+</body>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>     
 
-    <script src="/scripts/dashboard.js" type="text/javascript"></script>
-  </body>
+<script src="/scripts/dashboard.js"></script>
+<script>
+  document.querySelectorAll(".form3").forEach((form)=>{
+    form.addEventListener("submit", (event)=>{
+      event.preventDefault();
+      document.querySelector("#form3").action = "/dashboard/restore/"+form.action.split("/")[5];
+    });
+  });
+</script>
 </html>

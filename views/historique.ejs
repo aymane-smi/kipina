@@ -183,13 +183,13 @@
             <td><%if(enfant.date_inscription){%><%=enfant.date_inscription.toISOString().slice(0,10)%><%}%></td>
             <td><%if(enfant.date_quitte){%><%=enfant.date_quitte.toISOString().slice(0,10)%><%}%></td>
             <td>
-                <%if(enfant.choix && enfant.choix.includes("maladie")){%>
+                <%if(enfant.choix.includes("maladie")){%>
                     Maladie<br>
                 <%}%>
-                <%if(enfant.choix && enfant.choix.includes("insatisfaction")){%>
+                <%if(enfant.choix.includes("insatisfaction")){%>
                     Insatisfaction<br>
                 <%}%>
-                <%if(enfant.choix && enfant.choix.includes("déménagement")){%>
+                <%if(enfant.choix.includes("déménagement")){%>
                     Déménagement<br>
                 <%}%>
                 <%if(enfant.autre){%>

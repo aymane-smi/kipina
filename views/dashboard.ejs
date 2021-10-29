@@ -241,11 +241,11 @@ container content
     <div style="border-bottom:1px solid grey; margin-top: 10px; width: 100%;"></div>
     <%}%>
     <div  style="margin-top: 40px; margin-left: 20px;">
-        <div class="row" >
+        <div class="row flex-row" >
           <form action="/dashboard" method="POST">
           <div class="col-lg-3 col-sm-12"><span class="big-font">Filtres</span>
             <ul class="list-group shadow" style="width: 250px;">
-              <li class="list-group-item text-left">classes<img src="../img/icons/arrow.png" class="float-right click" >
+              <li class="list-group-item text-left "><span class="big-font">classes</span><img src="../img/icons/arrow.png" class="float-right click" >
                 <ul style="margin-right:23px;margin-top:5px;" class="ul-test">
                   <span id="ejs-filter"><%for(let i=1;i<=nbr_classe;i++){%></span>
                   <li style="list-style: none; margin-left: 30px;">
@@ -272,140 +272,132 @@ container content
                   <%}%>
                 </ul>
               </li>
-              <li class="list-group-item text-left">Payement<img src="../img/icons/arrow.png" class="float-right click4">
+              <li class="list-group-item text-left"><span class="big-font">Payement</span><img src="../img/icons/arrow.png" class="float-right click4">
                 <ul style="margin-right:23px;margin-top:5px;" class="ul-test4">
                   <li style="list-style: none; margin-left: 30px;">
-                    <input class="form-check-input" type="checkbox" name="paye">
+                    <input class="form-check-input" type="radio"  value="1" name="paye">
                     Payé
                   </li>
                   <li style="list-style: none; margin-left: 30px;">
-                    <input class="form-check-input" type="checkbox" name="impaye">
+                    <input class="form-check-input" type="radio" name="paye" value="2">
                     Impayé
                   </li>
                 </ul>
               </li>
-              <li class="list-group-item text-left">Transport<img src="../img/icons/arrow.png" class="float-right click1">
+              <div style="background: white;">
+                <hr>
+  <center>
+    <span class="big-font">Service annexes</span>
+  </center>
+              </div>
+              <li class="list-group-item text-left"><span class="big-font">Transport</span><img src="../img/icons/arrow.png" class="float-right click1">
                 <ul style="margin-right:23px;margin-top:5px;" class="ul-test1">
                   <li style="list-style: none; margin-left: 30px;">
-                    <input class="form-check-input" type="checkbox" name="transport1">
+                    <input class="form-check-input" type="radio" value="1" name="transport">
                     Oui
                   </li>
                   <li style="list-style: none; margin-left: 30px;">
-                    <input class="form-check-input" type="checkbox" name="transport2">
+                    <input class="form-check-input" type="radio"  value="2" name="transport">
                     Non
                   </li>
                 </ul>
               </li>
-              <li class="list-group-item text-left">Service de garde<img src="../img/icons/arrow.png" class="float-right click2" >
+              <li class="list-group-item text-left"><span class="big-font">Service de garde</span><img src="../img/icons/arrow.png" class="float-right click2" >
                 <ul style="margin-right:23px;margin-top:5px;" class="ul-test2">
                   <li style="list-style: none; margin-left: 30px;">
-                    <input class="form-check-input" type="checkbox" name="g_am" value="1">
+                    <input class="form-check-input" type="radio" name="garde" value="1">
                     AM
                   </li>
                   <li style="list-style: none; margin-left: 30px;">
-                    <input class="form-check-input" type="checkbox" name="g_pm" value="2">
+                    <input class="form-check-input" type="radio" name="garde" value="2">
                     PM
                   </li>
                 </ul>
               </li>
-              <li class="list-group-item text-left">Garde mercredi après-midi<img src="../img/icons/arrow.png" class="float-right click3">
+              <li class="list-group-item text-left"><span class="big-font">Garde mercredi après-midi</span><img src="../img/icons/arrow.png" class="float-right click3">
                 <ul style="margin-right:23px;margin-top:5px;" class="ul-test3">
                   <li style="list-style: none; margin-left: 30px;">
-                    <input class="form-check-input" type="checkbox" name="mercredi_oui">
+                    <input class="form-check-input" type="radio"  value="1" name="mercredi">
                     Oui
                   </li>
                   <li style="list-style: none; margin-left: 30px;">
-                    <input class="form-check-input" type="checkbox" name="mercredi_non">
+                    <input class="form-check-input" type="radio"  value="2" name="mercredi">
                     Non
                   </li>
                   
                 </ul>
               </li>
+              <li class="list-group-item text-left"><span class="big-font">Goûter</span><img src="../img/icons/arrow.png" class="float-right click5">
+                <ul style="margin-right:23px;margin-top:5px;" class="ul-test5">
+                  <li style="list-style: none; margin-left: 30px;">
+                    <input class="form-check-input" type="radio" value="1" name="gouter">
+                    Oui
+                  </li>
+                  <li style="list-style: none; margin-left: 30px;">
+                    <input class="form-check-input" type="radio" value="2" name="gouter">
+                    Non
+                  </li>
+                  
+                </ul>
+              </li>
+              <li class="list-group-item text-left"><span class="big-font">Cantine</span><img src="../img/icons/arrow.png" class="float-right click5">
+                <ul style="margin-right:23px;margin-top:5px;" class="ul-test5">
+                  <li style="list-style: none; margin-left: 30px;">
+                    <input class="form-check-input"  value="1" type="radio" name="cantine">
+                    4 jours
+                  </li>
+                  <li style="list-style: none; margin-left: 30px;">
+                    <input class="form-check-input" type="radio" value="2" name="cantine">
+                    5 jours
+                  </li>
+                  
+                </ul>
+              </li>
               <li class="list-group-item text-left">
-                <button class="btn btn-primary">filtrer!</button>
+                <button class="btn btn-success">filtrer!</button>
+                <a class="btn btn-primary clear">clear!</a>
               </li>
             </ul>
             </div>
           </form>
-          <div class="col-lg-9 col-sm-12">
-            <!-- test -->
-            <%j=0;for(let i=1;i<=nbr_classe;i++){%>
-              <div class="class<%=i%>">
-              <span class="big-font">Classe: <%if(i==1){%>
-                Swans
-              <%}%>
-              <%if(i == 2){%>
-                Little foxes
-              <%}%>
-              <%if(i == 3){%>
-                Foxes
-              <%}%>
-              <%if(i == 4){%>
-                Bears
-              <%}%>
-              <%if(i == 5){%>
-                Seals
-              <%}%>
-              <%if(i == 6){%>
-                Owls
-              <%}%></span>
-              
-              <div class="row mt-2 flex-nowrap" style="width: 100%; overflow-x: scroll; scrollbar-width: none; flex-shrink:0; margin-bottom: 15px; margin-left: -40px;">
-                  <%enfant.forEach((element) => {%>
-                    <%if(element.classe == i){j++;%>
-                  <div class="col-lg-2 col-md-6 col-sm-6 col-xs-3 mt-2 ml-4">
-                      <div class="card shadow-sm card-eleve float-left" style="border-radius: 24px; overflow: hidden;">
-                        <div class="text-center pt-2">
-                          <!-- <div class="card-title rounded-circle" style=" width: 110px; height: 110px; background: rgb(255, 0, 234); margin-left: 90px; margin-top: 10px;"> -->
-                            <img class="rounded-circle" style="width:80px; height: 80px; margin-top: 4.5px;" src="/files/avatar/<%=element.image%>" class="card-img-top">
-                            <span class="prenom pt-1"><%=element.prenom%></span>
-                            <span class="nom"><%=element.nom%></span>
-                        </div>
+          <div class="col">
+              <div class="class-container pl-5">
+                <%for(let i=1;i<=6;i++){%>
+                <div class="card shadow-sm " style="border-radius: 24px; overflow: hidden; width: 300px; height: 300px; margin-top: 20px; margin-right: 15px;">
+                  <div class="text-center pt-2">
+                      <img class="rounded-circle" style="width:150px; height: 120px; margin-top: 4.5px;" src="#" class="card-img-top">
+                      <br>
+                      <span class="big-font" style="font-size: 25px;"><%if(i==1){%>
+                        Swans
+                      <%}%>
+                      <%if(i == 2){%>
+                        Little foxes
+                      <%}%>
+                      <%if(i == 3){%>
+                        Foxes
+                      <%}%>
+                      <%if(i == 4){%>
+                        Bears
+                      <%}%>
+                      <%if(i == 5){%>
+                        Seals
+                      <%}%>
+                      <%if(i == 6){%>
+                        Owls
+                      <%}%></span>
+                      <br>
+                      <span class="text-500">Nombre d'enfants: <span style="font-weight: bold;"><%=classe[i-1]%></span></span>
+                      <br>
+                      <a class="btn btn-md btn-primary mt-3" href="/dashboard/classe/<%=i%>" style="background: #BCCF00; border: 0; color: white;">Voir la classe</a>
                   </div>
-                  </div>
-                  <%}%>
-                  <%});%>
                 </div>
+                <%}%>
               </div>
-              
-            <%}%>
           </div>
         </div>
     </div>
   </section>
   <script src="../scripts/dashboard.js" type="text/javascript"></script>
-  <script>
-    <%j=0;for(let i=1;i<=nbr_classe;i++){%>
-      <%for(let k=0;k<enfant.length;k++){%>
-        <%if(enfant[k].classe == i){j++;}%>
-      <%}%>
-      <%if(j == 0){%>
-        document.querySelector(".class<%=i%>").style.display = "none";
-      <%}%>
-    <%j=0;}%>
-    <%for(let i=1;i<=nbr_classe;i++){%>
-      <%for(let k=0;k<enfant.length;k++){%>
-        <%if(!user.classe.includes(i) && (user.role=="educatrice")){%>
-          document.querySelector(".class<%=i%>").style.display = "none";
-          <%}%>
-      <%}%>
-    <%}%>
-    const search = document.querySelector("#search-input");
-    const card = document.querySelectorAll(".card-eleve");
-    setInterval(()=>{
-  card.forEach((tmp)=>{
-
-    if(tmp.childNodes[1].childNodes[5].textContent.includes(search.value) || tmp.childNodes[1].childNodes[7].textContent.includes(search.value)){
-      tmp.style.visibility = 'visible';
-    }
-    else{
-      tmp.style.visibility = 'hidden';
-    }
-    if(search.value == ""){
-    tmp.style.visibility = 'visible';
-  }
-  });
-}, 100);
-  </script>
+  
 </body>
 </html>

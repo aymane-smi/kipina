@@ -5,6 +5,10 @@ const mongoose         = require("mongoose"),
           date_inscription: Date,
           date_quitte: Date,
           choix: [String],
-          autre: String
+          autre: String,
+          id: {
+              type: mongoose.Schema.Types.ObjectId,
+              ref: "Enfant"
+          }
       });
 module.exports = mongoose.model("Historique", historiqueSchema);

@@ -133,6 +133,8 @@
         <div class=table>
             <%let total = 0;let tmp = [];cpt=0;%>
             <p>Valeur en DHS</p>
+            <%=prix%>
+            <%=mere%>
             <table>
 
                 <tr>
@@ -143,7 +145,7 @@
                     <th>Total</th>
                 </tr>
                 <%impaye.forEach((x)=>{%>
-                    <%if ((x.date.getMonth()+1) == Number.parseInt(month.slice(5)) && (x.date.getFullYear() == Number.parseInt(month.slice(0,4))) ){%>
+                    <%//if ((x.date.getMonth()+1) == Number.parseInt(month.slice(5)) && (x.date.getFullYear() == Number.parseInt(month.slice(0,4))) ){%>
                         <tr>
                     <td>Scolarité</td>
                     <%if(enfant.type_scolarite == 1){%>
@@ -323,7 +325,7 @@
                 </tr>
                 <%}%>
                 <%}%>
-                <%}%>
+                <%//}%>
                 <%})%>
             </table>
             <br>

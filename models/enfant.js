@@ -11,7 +11,7 @@ const mongoose     = require("mongoose"),
       	sexe: Number,
       	nationnalite: String,
       	langue_maternelle: String,
-      	langues_parlees: String,
+      	langues_parlees: [String],
       	pere: {
       		type: mongoose.Schema.Types.ObjectId,
       		ref: "Personne"
@@ -34,6 +34,7 @@ const mongoose     = require("mongoose"),
 		mercredi: Boolean,
 		personnel: Boolean,
 		cantine: Boolean,
+		gouter:Boolean,
 		type_cantine: Number,
 		sm: Boolean,
 		inscription:{
@@ -43,6 +44,10 @@ const mongoose     = require("mongoose"),
 		type_scolarite:{
 			type: Number,
 			default: 1
+		},
+		store:{
+			type: Boolean,
+			default: false
 		}
       });
 module.exports = mongoose.model("Enfant", enfantSchema);
