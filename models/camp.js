@@ -3,7 +3,7 @@ const mongoose = require("mongoose"),
         nom: String,
         nbr_jrs: Number,
         location: String,
-        type_camp: String,
+        type_camp: Number,
         fini:{
             type: Boolean,
             default: false

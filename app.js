@@ -1252,7 +1252,7 @@ app.post("/rapport-cantine", AccessMiddleware.isLoggedIn, AccessMiddleware.isSup
     type2 = 0;
     console.log("=>"+req.body.class_check);
     console.log("=>"+req.body.cantine);
-  enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec((err, allEnfant)=>{
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance: -1}).exec((err, allEnfant)=>{
     allEnfant.forEach((enfant) => {
       console.log(enfant);
       if (req.body.class_check && req.body.cantine)
@@ -1294,7 +1294,7 @@ app.post("/rapport-assurance", AccessMiddleware.isLoggedIn, AccessMiddleware.isS
     for (let i = 0; i < req.body.class_check.length; i++)
       req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
   let enfant_arr = [];
-  enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec((err, allEnfant) => {
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance: -1}).exec((err, allEnfant) => {
     allEnfant.forEach((enfant) => {
       if (req.body.class_check)
         if (req.body.class_check.includes(enfant.classe))
@@ -1335,7 +1335,7 @@ app.post("/classe-global", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper
 });
 app.post("/rapport-classe", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res) => {
   let enfant_arr = [], urgence_arr = [];
-  enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec(async (err, enfant) => {
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance: -1}).exec(async (err, enfant) => {
     enfant_arr.push(enfant);
       await Promise.all(enfant.map(async (enfant)=>{
         await urgence.findOne({eleve: enfant._id}, async (err, urgence)=>{
@@ -1384,7 +1384,7 @@ app.post("/rapport-routine", AccessMiddleware.isLoggedIn, AccessMiddleware.isSup
   let enfant_arr = [],
     rapport_arr = [];
   routine.find({}, async (err, rapport) => {
-    await enfant.find({location: req.user.location}).sort({date_naissance:-1}).exec(async (err, allEnfant) => {
+    await enfant.find({location: req.user.location, store: false}).sort({date_naissance:-1}).exec(async (err, allEnfant) => {
       await Promise.all(rapport.map((item) => {
         allEnfant.forEach((enfant) => {
           if((item.eleve).equals(enfant._id)) {
@@ -1426,7 +1426,7 @@ app.post("/rapport-paye", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper,
     for (let i = 0; i < req.body.class_check.length; i++)
       req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
   let enfant_arr = [];
-  enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec((err, allEnfant) => {
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance: -1}).exec((err, allEnfant) => {
     allEnfant.forEach((enfant) => {
       if (enfant.payement) enfant_arr.push(enfant);
     });
@@ -1459,7 +1459,7 @@ app.post("/rapport-impaye", AccessMiddleware.isLoggedIn, AccessMiddleware.isSupe
     for (let i = 0; i < req.body.class_check.length; i++)
       req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
   let enfant_arr = [];
-  enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec((err, allEnfant) => {
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance: -1}).exec((err, allEnfant) => {
     allEnfant.forEach((enfant) => {
       if (!enfant.payement) enfant_arr.push(enfant);
     });
@@ -1501,7 +1501,7 @@ app.post("/rapport-allergies", AccessMiddleware.isLoggedIn, AccessMiddleware.isS
       req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
   let enfant_arr = [],
     allergie_arr = [];
-  enfant.find({location: req.user.location}).sort({date_naissance:-1}).exec(async (err, allEnfant) => {
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance:-1}).exec(async (err, allEnfant) => {
     await Promise.all(allEnfant.map(async (enfant) => {
       await medical.find({ eleve: enfant._id }, async (err, medical) => {
         console.log(medical);
@@ -1541,7 +1541,7 @@ app.post("/rapport-gardes", AccessMiddleware.isLoggedIn, (req, res) => {
     for (let i = 0; i < req.body.class_check.length; i++)
       req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
   let enfant_arr = [];
-  enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec((err, allEnfant) => {
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance: -1}).exec((err, allEnfant) => {
     allEnfant.forEach((enfant) => {
       if (enfant.gardes) enfant_arr.push(enfant);
     });
@@ -1574,7 +1574,7 @@ app.post("/rapport-mercredi", AccessMiddleware.isLoggedIn, AccessMiddleware.isSu
     for (let i = 0; i < req.body.class_check.length; i++)
       req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
   let enfant_arr = [];
-  enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec((err, allEnfant) => {
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance: -1}).exec((err, allEnfant) => {
     allEnfant.forEach((item) => {
       if(item.mercredi)
         enfant_arr.push(item);
@@ -1622,7 +1622,7 @@ app.post("/rapport-email", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper
     pere_arr = [],
     mere_arr = [];
     
-  enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec(async (err, allEnfant) => {
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance: -1}).exec(async (err, allEnfant) => {
     console.log(allEnfant);
     console.log("----------------------------------\n");
     await Promise.all(allEnfant.map(async (enfant)=>{
@@ -1667,7 +1667,7 @@ app.post("/rapport-transport", AccessMiddleware.isLoggedIn, AccessMiddleware.isS
     for (let i = 0; i < req.body.class_check.length; i++)
       req.body.class_check[i] = Number.parseInt(req.body.class_check[i]);
   let enfant_arr = [];
-  enfant.find({location: req.user.location}).sort({date_naissance: -1}).exec(async (err, allEnfant) => {
+  enfant.find({location: req.user.location, store: false}).sort({date_naissance: -1}).exec(async (err, allEnfant) => {
     await Promise.all(allEnfant.map(async (item) => {
       if(item.transport){
         console.log("ok");
@@ -1708,9 +1708,9 @@ let camp_promise = camp_eleve.find({camp: camp._id}, (err, camp_eleve)=>{
     });}
 });
 
-app.get("/dashboard/camps", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
+app.get("/dashboard/camps/:type", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
   let arr = [], x;
-  camp.find({location: req.user.location}, (err, camps)=>{
+  camp.find({location: req.user.location, type_camp: req.params.type}, (err, camps)=>{
     console.log(camps.date_creation);
     camps.forEach((camp_)=>{
       x = new Date(camp_.date_creation);
@@ -1764,7 +1764,7 @@ app.post("/add-camps", (req, res) => {
 
 app.get("/dashboard/camps/:id/add-enfant-camps-interne", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res) => {
   let enfant_arr = [];
-  enfant.find({type_eleve: 2}, (err, allEnfant)=>{
+  enfant.find({type_eleve: 2, store: false}, (err, allEnfant)=>{
       camp_eleve.find({camp: req.params.id}, (err, camp_eleves)=>{
         console.log(camp_eleves[0]);
         if(!camp_eleves[0]){
@@ -1784,7 +1784,7 @@ app.get("/dashboard/camps/:id/add-enfant-camps-interne", AccessMiddleware.isLogg
 
   app.get("/dashboard/camps/:id/add-enfant-camps-externe", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res) => {
     let enfant_arr = [];
-    enfant.find({type_eleve: 3}, (err, allEnfant)=>{
+    enfant.find({type_eleve: 3, store: false}, (err, allEnfant)=>{
         camp_eleve.find({camp: req.params.id}, (err, camp_eleves)=>{
           console.log(camp_eleves[0]);
           if(!camp_eleves[0]){
@@ -1828,10 +1828,10 @@ app.post("/:id/add-enfant-camp", AccessMiddleware.isLoggedIn, AccessMiddleware.i
 
 //preview camp
 
-app.get("/dashboard/camps/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
+app.get("/dashboard/camps/:type/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
   let enfant_arr= [];
     camp_eleve.find({camp: req.params.id}, (err, camp)=>{
-    enfant.find({}, (err, allEnfant)=>{
+    enfant.find({store: false}, (err, allEnfant)=>{
       if(camp[0])
         allEnfant.forEach((enfant)=>{
           if(camp[0].eleve.includes(enfant._id)){
