@@ -158,9 +158,8 @@
                   <input type="radio" id="sexe" name="enfant" style="margin-left: 10px;" value="2" <%if(enfant.sexe === 0){%> <%= 'checked'%> <%}%>> Fille
                 </div>
                 <!-- nationnalité -->
-                <center>
-                <div class="form-group w-75">
-                  <label for="nationnalite"></label>
+                <div class="form-group w-75" style="margin-top:40px; margin-left: 50px;">
+                  <label for="nationnalite" style="display: block;" class="text-500">nationnalité</label>
                   <select name="e_nationnalite" class="w-75 json">
                     <option value="Afghanistan" <%if(enfant.nationnalite == "Afghanistan"){%>selected<%}%> >Afghanistan</option>
                     <option value="Afrique du Sud" <%if(enfant.nationnalite == "Afrique du Sud"){%>selected<%}%> >Afrique du Sud</option>
@@ -369,8 +368,8 @@
                 </select>
                 </div>
                 <!-- langue maternelle -->
-                <div class="form-group w-75">
-                  <label for="lang-maternelle"></label>
+                <div class="form-group w-75" style="margin-top:40px; margin-left: 50px;">
+                  <label for="lang-maternelle" style="display: block;" class="text-500">langue maternelle</label>
                   <select name="e_maternelle" class="w-75 json"><option value="Albanais" <%if(enfant.langue_maternelle == "Albanais"){%>selected<%}%> >Albanais</option>
                     <option value="Allemand" <%if(enfant.langue_maternelle == "Allemand"){%>selected<%}%> >Allemand</option>
                     <option value="Afrikaans" <%if(enfant.langue_maternelle == "Afrikaans"){%>selected<%}%> >Afrikaans</option>
@@ -581,9 +580,10 @@
                 </select>
                 </div>
                 <!-- langues parlées -->
-                <div class="form-group w-75">
-                  <label for="lang-parlees"></label>
-                  <select name="e_maternelle" class="w-75 json"><option value="Albanais" <%if(enfant.langues_parlees.includes("Albanais")){%>selected<%}%> >Albanais</option>
+                <br>
+                <div class="form-group w-75" style="margin-top:40px; margin-left: 50px;">
+                  <label for="lang-parlees" style="display: block;" class="text-500">langues parlées</label>
+                  <select name="e_parlees" class="w-75 json"><option value="Albanais" <%if(enfant.langues_parlees.includes("Albanais")){%>selected<%}%> >Albanais</option>
                     <option value="Allemand" <%if(enfant.langues_parlees.includes("Allemand")){%>selected<%}%> >Allemand</option>
                     <option value="Afrikaans" <%if(enfant.langues_parlees.includes("Afrikaans")){%>selected<%}%> >Afrikaans</option>
                     <option value="Araona" <%if(enfant.langues_parlees.includes("Araona")){%>selected<%}%> >Araona</option>
@@ -792,7 +792,6 @@
                     <option value="Xhosa" <%if(enfant.langues_parlees.includes("Xhosa")){%>selected<%}%> >Xhosa</option>
                     </select>
                 </div>
-              </center>
                 <div class="form-group w-75" style="margin-top:40px; margin-left: 50px;">
                   <label for="classes" class="text-500">Classe:</label>
                   <br>
@@ -869,9 +868,9 @@
                   <div class="col">
                     <div class="card shadow flex-nowrap" style="border: 0;padding: 20px 0; padding-left: 10px;border-radius: 20px; margin-top: 20px; margin-left: 5px;">
                       <center>
-                        <span style="margin-left: 5px; font-size: 28px;" class="big-font">Kipina Sessions</span>
+                        <span style="margin-left: 5px; font-size: 28px;" class="big-font">Forfait</span>
                       </center>
-                      <div style="margin-top: 10px; margin-left: 10px;  margin-left: 50px;" class="text-500">Forfaits</div>
+                      <div style="margin-top: 10px; margin-left: 10px;  margin-left: 50px;" class="text-500"></div>
                           <div class="form-group" style="margin-top: 10px;margin-left: 10px; margin-left: 50px;">
                             <label for="complete"></label>
                             <input type="checkbox" id="complete" name="forfait" value="1"  <%if(enfant.type_forfait.includes(1)){%>checked<%}%> ><span style="margin-left: 10px;">Journée complète </span>
@@ -892,6 +891,10 @@
                             <label for="3jrs"></label>
                             <input type="checkbox" id="3jrs" name="forfait" value="5" <%if(enfant.type_forfait.includes(5)){%>checked<%}%> ><span style="margin-left: 10px;">3 jours</span>
                           </div>
+                          <center>
+                            <br>
+                            <span style="margin-left: 5px; font-size: 28px; margin-top: 10px;" class="big-font">Services annexes</span>
+                          </center>
                           <div style="margin-top: 10px;margin-left: 10px; margin-left: 50px;" class="text-500">Service de gardes</div>
                           <div class="form-group" style="margin-top: 10px; margin-left: 10px;  margin-left: 50px;">
                             <label for="s_am"></label>
