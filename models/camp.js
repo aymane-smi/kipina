@@ -11,6 +11,10 @@ const mongoose = require("mongoose"),
         date_creation:{
             type: Date,
             default: Date.now
+        },
+        create_scamp:{
+            type: Number,
+            default: 0
         }
     });
 module.exports = mongoose.model("Camp", campSchema);

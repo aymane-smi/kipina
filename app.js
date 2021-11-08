@@ -13,6 +13,7 @@ const express = require("express"),
   mongoose = require("mongoose"),
   localmongoose = require("passport-local-mongoose"),
   multer = require("multer"),
+  sous_camp = require("./models/sous-camp"),
   upload = multer({ dest: "./public/files/avatar/" }),
   BodyParser = require("body-parser"),
   enfant = require("./models/enfant"),
@@ -1708,10 +1709,11 @@ let camp_promise = camp_eleve.find({camp: camp._id}, (err, camp_eleve)=>{
     });}
 });
 
-app.get("/dashboard/camps/:type", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
+app.get("/dashboard/camps", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
   let arr = [], x;
-  camp.find({location: req.user.location, type_camp: req.params.type}, (err, camps)=>{
-    console.log(camps.date_creation);
+  console.log("camps")
+  camp.find({location: req.user.location}, (err, camps)=>{
+    console.log(camps);
     camps.forEach((camp_)=>{
       x = new Date(camp_.date_creation);
       x.setDate(x.getDate() + camp_.nbr_jrs);
@@ -1733,7 +1735,7 @@ app.get("/dashboard/camps/:type", AccessMiddleware.isLoggedIn, AccessMiddleware.
         console.log(image_arr);
       }).catch(()=>{});
     }); 
-    res.render("camps", {camps: arr, key: true});
+    res.render("camps", {camps: arr, key: true, add:false});
   });
 });
 app.get("/dashboard/historique-camps", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
@@ -1762,13 +1764,13 @@ app.post("/add-camps", (req, res) => {
 
 //add enfant to camps
 
-app.get("/dashboard/camps/:id/add-enfant-camps-interne", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res) => {
+app.get("/dashboard/camps/:id1/:id2/add-enfant-camps-interne", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res) => {
   let enfant_arr = [];
   enfant.find({type_eleve: 2, store: false}, (err, allEnfant)=>{
-      camp_eleve.find({camp: req.params.id}, (err, camp_eleves)=>{
+      camp_eleve.find({camp: req.params.id2}, (err, camp_eleves)=>{
         console.log(camp_eleves[0]);
         if(!camp_eleves[0]){
-          res.render("add-enfant-camps-interne", {enfant:allEnfant, camp:req.params.id});
+          res.render("add-enfant-camps-interne", {enfant:allEnfant, camp:req.params.id2});
         }else{
         allEnfant.forEach((enfant)=>{
           console.log(enfant._id);
@@ -1776,8 +1778,8 @@ app.get("/dashboard/camps/:id/add-enfant-camps-interne", AccessMiddleware.isLogg
               enfant_arr.push(enfant);
             }
         });
+        res.render("add-enfant-camps-interne", {enfant:enfant_arr, camp:req.params.id2});
       }
-      res.render("add-enfant-camps-interne", {enfant:enfant_arr, camp:req.params.id});
     });
     });
   });
@@ -1796,8 +1798,8 @@ app.get("/dashboard/camps/:id/add-enfant-camps-interne", AccessMiddleware.isLogg
                 enfant_arr.push(enfant);
               }
           });
+          res.render("add-enfant-camps-externe", {enfant:enfant_arr, camp:req.params.id});
         }
-        res.render("add-enfant-camps-externe", {enfant:enfant_arr, camp:req.params.id});
       });
       });
     });
@@ -1807,6 +1809,7 @@ app.post("/:id/add-enfant-camp", AccessMiddleware.isLoggedIn, AccessMiddleware.i
   const camp_eleve_obj = {};
   if(!Array.isArray(req.body.class_check)){
     camp_eleve.findOne({camp: req.params.id}, (err, camp)=>{
+      console.log(camp);
       let eleve_arr = camp.eleve;
       eleve_arr.push(req.body.class_check);
       camp_eleve.findOneAndUpdate({camp: req.params.id}, {eleve: eleve_arr}, (err, camp)=>{
@@ -1828,20 +1831,43 @@ app.post("/:id/add-enfant-camp", AccessMiddleware.isLoggedIn, AccessMiddleware.i
 
 //preview camp
 
-app.get("/dashboard/camps/:type/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
-  let enfant_arr= [];
-    camp_eleve.find({camp: req.params.id}, (err, camp)=>{
-    enfant.find({store: false}, (err, allEnfant)=>{
-      if(camp[0])
-        allEnfant.forEach((enfant)=>{
-          if(camp[0].eleve.includes(enfant._id)){
-            console.log("ok");
-            enfant_arr.push(enfant);
-          }
+app.get("/dashboard/camps/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
+  let arr = [], x;
+  console.log("camps")
+  sous_camp.find({camp: req.params.id}, (err, camps)=>{
+    camps.forEach((camp_)=>{
+      console.log(camp_);
+      x = new Date(camp_.date_creation);
+      x.setDate(x.getDate() + 7);
+      if(x.getTime()- new Date().getTime() > 0){
+        arr.push(camp_);
+        //console.log(camp_.date_creation);
+      }else{
+        //console.log("ok");
+        if(!camp_.fini){
+          let obj = {fini: true};
+        camp.findByIdAndUpdate(camp_._id, obj, (err, camp_)=>{
+          // console.log(camp_);
+          // console.log("inside")
         });
-      res.render("camp-show", {camp: req.params.id, enfant: enfant_arr});
+        }
+      }
     });
-  })
+    res.render("camps", {camps: arr, key: false, add: true, id: req.params.id});
+  });
+  // let enfant_arr= [];
+  //   camp_eleve.find({camp: req.params.id}, (err, camp)=>{
+  //   enfant.find({store: false}, (err, allEnfant)=>{
+  //     if(camp[0])
+  //       allEnfant.forEach((enfant)=>{
+  //         if(camp[0].eleve.includes(enfant._id)){
+  //           console.log("ok");
+  //           enfant_arr.push(enfant);
+  //         }
+  //       });
+  //     res.render("camp-show", {camp: req.params.id, enfant: enfant_arr});
+  //   });
+  // })
 });
 
 app.get("/dashboard/camps-historique/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
@@ -2535,4 +2561,132 @@ app.post("/facture/:id", (req, res)=>{
       "cash": cash,
       "message": status
     });
+});
+
+//new camps pages 
+
+
+app.get(
+	"/dashboard/camps-home/",
+	AccessMiddleware.isLoggedIn,
+	AccessMiddleware.isSuper,
+	(req, res) => {
+		res.render("camps/camps-home");
+	}
+);
+
+app.get(
+	"/dashboard/camps-rapport/",
+	AccessMiddleware.isLoggedIn,
+	AccessMiddleware.isSuper,
+	(req, res) => {
+		res.render("camps/camps-rapport");
+	}
+);
+app.get(
+	"/dashboard/camps-rapport-cantine/",
+	AccessMiddleware.isLoggedIn,
+	AccessMiddleware.isSuper,
+	(req, res) => {
+		res.render("camps/camps-rapport-cantine-choose-camps");
+	}
+);
+
+app.get(
+	"/dashboard/camps-rapport-list-camps",
+	AccessMiddleware.isLoggedIn,
+	AccessMiddleware.isSuper,
+	(req, res) => {
+		res.render("camps/camps-rapport-camps");
+	}
+);
+
+app.get(
+	"/dashboard/camps-rapport-paye",
+	AccessMiddleware.isLoggedIn,
+	AccessMiddleware.isSuper,
+	(req, res) => {
+		res.render("camps/camps-rapport-payes");
+	}
+);
+app.get(
+	"/dashboard/camps-rapport-impaye",
+	AccessMiddleware.isLoggedIn,
+	AccessMiddleware.isSuper,
+	(req, res) => {
+		res.render("camps/camps-rapport-impayes");
+	}
+);
+
+app.get(
+	"/dashboard/camps-rapport-allergie",
+	AccessMiddleware.isLoggedIn,
+	AccessMiddleware.isSuper,
+	(req, res) => {
+		res.render("camps/camps-rapport-allergie");
+	}
+);
+
+app.get(
+	"/dashboard/camps-rapport-email",
+	AccessMiddleware.isLoggedIn,
+	AccessMiddleware.isSuper,
+	(req, res) => {
+		res.render("camps/camps-rapport-email");
+	}
+);
+
+app.get(
+	"/dashboard/camps-rapport-transport",
+	AccessMiddleware.isLoggedIn,
+	AccessMiddleware.isSuper,
+	(req, res) => {
+		res.render("camps/camps-rapport-transport");
+	}
+);
+
+app.get(
+	"/dashboard/camps-paiment",
+	AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper,
+	(req,res) => {
+		res.render("camps/camps-paiment");
+	}
+);
+
+
+
+app.post("/sous-camps/:id", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
+  camp.findById(req.params.id, (err, camp_)=>{
+    if(camp_.create_scamp == camp_.nbr_jrs){
+      res.redirect("/dashboard/camps/"+req.params.id);
+    }else{
+      camp.findByIdAndUpdate(req.params.id, {$inc : {'create_scamp' : 1}}).exec((err, camp_)=>{
+        let obj = {
+          camp: req.params.id,
+          date_creation: Date.now(),
+        };
+        sous_camp.create(obj, (err, scamp_)=>{
+          camp_eleve.create({camp: scamp_._id, eleve: []}, (err, result)=>{});
+          console.log(scamp_._id);
+          res.redirect(`/dashboard/camps/${req.params.id}/${scamp_._id}`);
+        });
+      });
+    }
+  });
+});
+
+app.get("/dashboard/camps/:id1/:id2", AccessMiddleware.isLoggedIn, AccessMiddleware.isSuper, (req, res)=>{
+  let enfant_arr = [];
+  camp_eleve.findOne({camp: req.params.id2}, async(err, result)=>{
+    console.log(result);
+    if(!err || Object.keys(result).length != 0)
+    for(let item of result.eleve){
+      await enfant.findById(item, (err, result_)=>{
+        if(!err || Object.keys(result_).length != 0)
+          enfant_arr.push(result_);
+      });
+    }
+    console.log(enfant_arr);
+    res.render("camp-show", {camp: req.params.id2, enfant: enfant_arr, add: true, id: req.params.id2});
+  });
 });
